@@ -1,15 +1,15 @@
-import React from "react";
-import Form from "./Form";
-import GlobalStyles from "../GlobalStyles";
+import React from 'react'
+import Form from './Form'
+import GlobalStyles from '../GlobalStyles'
 
 export default {
-  title: "Form",
+  title: 'Form',
   component: Form,
-};
+}
 
 export const FormDefault = () => (
   <>
     <GlobalStyles />
     <Form />
   </>
-);
+)
