@@ -3,6 +3,7 @@ import Form from './components/Form'
 import ProductsList from './components/ProductsList'
 import Drawer from './components/Drawer'
 import styled from 'styled-components'
+import { v4 as uuid } from 'uuid'
 
 function App() {
   const [products, setProducts] = useState([])
@@ -16,8 +17,7 @@ function App() {
     </ContainerStyled>
   )
   function handleProducts(product) {
-    const maxId = Math.max(...products.map((product) => product.id))
-    product.id = maxId + 1
+    product.id = uuid()
     setProducts([...products, product])
     setIsDrawerOpen(false)
   }
