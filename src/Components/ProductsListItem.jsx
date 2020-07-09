@@ -11,8 +11,8 @@ export default function ProductsListItem({ product }) {
       <p className="expiring-date">
         Expires: {parsedDate.add(product.month, 'M').format('DD.MM.YYYY')}
       </p>
-      {product.size ? <p className="size">Size: {product.size}</p> : ''}
-      {product.price ? <p className="price">Price: {product.price}</p> : ''}
+      {product.size && <p className="size">Size: {product.size}</p>}
+      {product.price && <p className="price">Price: {product.price}</p>}
     </LiStyled>
   )
 }

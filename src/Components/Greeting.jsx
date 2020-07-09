@@ -4,7 +4,7 @@ import EmptyLogo from '../images/empty.svg'
 
 export default function Greeting({ isBlurred }) {
   return (
-    <GreetingStyled className={isBlurred ? 'blurred' : ''}>
+    <GreetingStyled className={isBlurred && 'blurred'}>
       <ImgStyled src={EmptyLogo} />
       <Message>Click on the plus icon to add a product.</Message>
     </GreetingStyled>
