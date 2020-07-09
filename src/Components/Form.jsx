@@ -1,19 +1,26 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import Button from './Button'
+import dayjs from 'dayjs'
 
 export default function Form({ onFormSubmit }) {
   const [name, setName] = useState('')
   const [date, setDate] = useState('')
   const [month, setMonth] = useState('')
+  const [size, setSize] = useState('')
+  const [price, setPrice] = useState('')
+
+  const currentDate = dayjs().format('YYYY-MM-DD')
 
   const handleSubmit = (event) => {
     event.preventDefault()
     if (name && date && month) {
-      onFormSubmit({ name, date, month })
+      onFormSubmit({ name, date, month, size, price })
       setName('')
       setDate('')
       setMonth('')
+      setSize('')
+      setPrice('')
     }
   }
 
@@ -25,15 +32,19 @@ export default function Form({ onFormSubmit }) {
         value={name}
         type="text"
         id="name"
+        maxLength="40"
         required
         autoFocus
         placeholder="E.g. Nivea face cream"
       />
+      {name.length >= 40 && <div>Zu lang</div>}
       <label htmlFor="date">2. When did you open the product?</label>
       <input
         onChange={(event) => setDate(event.target.value)}
         value={date}
         type="date"
+        min="2018-01-01"
+        max={currentDate}
         id="date"
         required
       />
@@ -48,6 +59,22 @@ export default function Form({ onFormSubmit }) {
         id="month"
         required
         placeholder="E.g. 12"
+      />
+      <label htmlFor="Size">4. Size of the product (optional)</label>
+      <input
+        onChange={(event) => setSize(event.target.value)}
+        value={size}
+        maxLength="10"
+        id="size"
+        placeholder="50 ml"
+      />
+      <label htmlFor="Price">5. Price of the product (optional)</label>
+      <input
+        onChange={(event) => setPrice(event.target.value)}
+        value={price}
+        maxLength="10"
+        id="price"
+        placeholder="12€"
       />
       <Button text="Save" />
     </FormStyled>
@@ -67,6 +94,13 @@ const FormStyled = styled.form`
     padding: 5px;
     border: 1px solid var(--primary);
     border-radius: 20px;
+
+    &:hover {
+      border: 2px solid var(--primary);
+    }
+    &:focus {
+      outline: none;
+    }
   }
 
   label {
@@ -77,16 +111,17 @@ const FormStyled = styled.form`
 
   Button {
     align-self: center;
-    margin: 10px 0;
     font-size: 1.2rem;
   }
 
-  [type='text'] {
+  #name {
     width: 300px;
   }
 
-  [type='number'],
-  [type='date'] {
+  #number,
+  #date,
+  #size,
+  #price {
     width: 140px;
   }
 `
