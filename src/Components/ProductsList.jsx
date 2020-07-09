@@ -1,26 +1,34 @@
 import React from 'react'
 import styled from 'styled-components'
 import ProductsListItem from './ProductsListItem'
-import EmptyLogo from '../images/empty.svg'
+import Greeting from './Greeting'
 
-export default function ProductsList({ products }) {
+export default function ProductsList({ products, isBlurred }) {
   return products.length ? (
-    <UlStyled>
+    <UlStyled className={isBlurred ? 'blurred' : ''}>
+      <h1>Your products</h1>
       {products.map((product) => (
-        <ProductsListItem key={product.name} product={product} />
+        <ProductsListItem key={product.id} product={product} />
       ))}
     </UlStyled>
   ) : (
-    <ImgStyled src={EmptyLogo} />
+    <Greeting isBlurred={isBlurred} />
   )
 }
 
 const UlStyled = styled.ul`
-  padding: 0;
-`
-
-const ImgStyled = styled.img`
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: auto;
-  margin: 20px 0;
+  padding: 0 10%;
+  filter: blur(0);
+  transition: 0.8s all ease-out;
+
+  h1 {
+    align-self: center;
+  }
+
+  &.blurred {
+    filter: blur(6px);
+  }
 `
