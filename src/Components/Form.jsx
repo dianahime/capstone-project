@@ -56,6 +56,7 @@ export default function Form({ onFormSubmit }) {
         value={month}
         type="number"
         min="1"
+        max="120"
         id="month"
         required
         placeholder="E.g. 12"
@@ -96,7 +97,7 @@ const FormStyled = styled.form`
     border-radius: 20px;
 
     &:hover {
-      border: 2px solid var(--primary);
+      border-color: var(--secondary);
     }
     &:focus {
       outline: none;
@@ -118,7 +119,7 @@ const FormStyled = styled.form`
     width: 300px;
   }
 
-  #number,
+  #month,
   #date,
   #size,
   #price {
