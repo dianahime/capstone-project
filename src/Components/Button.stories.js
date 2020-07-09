@@ -16,3 +16,10 @@ export const Text = () => (
     <Button {...eventsFromObject} text="Hello" />
   </>
 )
+
+export const LongText = () => (
+  <>
+    <GlobalStyles />
+    <Button {...eventsFromObject} text="I dont know this is long text" />
+  </>
+)
