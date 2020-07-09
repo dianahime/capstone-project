@@ -1,18 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export default function AddButton({ isCancel, onClick }) {
+export default function DrawerToggle({ isCancel, onClick }) {
   return (
-    <AddButtonStyled
+    <DrawerToggleStyled
       onClick={onClick}
-      className={isCancel ? 'cancelButton' : ''}
+      className={isCancel && 'cancelButton'}
     >
       <i className={isCancel ? 'fas fa-plus cancelIcon' : 'fas fa-plus'}></i>
-    </AddButtonStyled>
+    </DrawerToggleStyled>
   )
 }
 
-const AddButtonStyled = styled.button`
+const DrawerToggleStyled = styled.button`
   position: fixed;
   display: flex;
   justify-content: center;

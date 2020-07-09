@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import AddButton from './AddButton'
+import DrawerToggle from './DrawerToggle'
 
 export default function Drawer({ children, isOpen, setIsOpen }) {
   return (
     <>
-      <AddButton onClick={() => setIsOpen(!isOpen)} isCancel={isOpen} />
-      <DrawerStyled className={isOpen ? 'active' : ''}>{children}</DrawerStyled>
+      <DrawerToggle onClick={() => setIsOpen(!isOpen)} isCancel={isOpen} />
+      <DrawerStyled className={isOpen && 'active'}>{children}</DrawerStyled>
     </>
   )
 }
