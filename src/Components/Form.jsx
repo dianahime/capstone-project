@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import Button from './Button'
 import dayjs from 'dayjs'
+import InfoPopover from './InfoPopover'
 
 export default function Form({ onFormSubmit }) {
   const [name, setName] = useState('')
@@ -51,16 +52,19 @@ export default function Form({ onFormSubmit }) {
       <label htmlFor="month">
         3. In how many months does the product expire?
       </label>
-      <input
-        onChange={(event) => setMonth(event.target.value)}
-        value={month}
-        type="number"
-        min="1"
-        max="120"
-        id="month"
-        required
-        placeholder="E.g. 12"
-      />
+      <ContainerStyled>
+        <input
+          onChange={(event) => setMonth(event.target.value)}
+          value={month}
+          type="number"
+          min="1"
+          max="120"
+          id="month"
+          required
+          placeholder="E.g. 12"
+        />
+        <InfoPopover />
+      </ContainerStyled>
       <label htmlFor="Size">4. Size of the product (optional)</label>
       <input
         onChange={(event) => setSize(event.target.value)}
@@ -119,10 +123,19 @@ const FormStyled = styled.form`
     width: 300px;
   }
 
+  #month {
+    display: inline;
+  }
+
   #month,
   #date,
   #size,
   #price {
     width: 140px;
   }
+`
+const ContainerStyled = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-left: 30px;
 `
