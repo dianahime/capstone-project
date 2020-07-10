@@ -11,14 +11,18 @@ export default function ProductsListItem({ product }) {
       <p className="expiring-date">
         Expires: {parsedDate.add(product.month, 'M').format('DD.MM.YYYY')}
       </p>
+      {product.size && <p className="size">Size: {product.size}</p>}
+      {product.price && <p className="price">Price: {product.price}</p>}
     </LiStyled>
   )
 }
 
 const LiStyled = styled.li`
+  display: block;
   list-style-type: none;
-  height: 100px;
-  width: 300px;
+  min-height: 100px;
+  max-width: 250px;
+  margin-top: 10px;
 
   p {
     margin: 5px;

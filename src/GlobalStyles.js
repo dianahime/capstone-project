@@ -1,6 +1,7 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
+
   :root {
     --primary: #006D77;
     --primaryLight: #83C5BE;
@@ -17,6 +18,8 @@ export default createGlobalStyle`
   }
   
   body {
-     padding: 20px 10px;
+     width: 100%;
+     height: 100vh;
+     margin: 0 auto;
   }
-`;
+`

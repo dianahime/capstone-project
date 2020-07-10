@@ -1,9 +1,11 @@
 describe('Input form', () => {
   beforeEach(() => {
     cy.visit('/')
+    cy.get('.sc-Axmtr').click()
   })
-  it('focuses input on load', () => {
-    cy.focused().should('have.id', 'name')
+
+  it('opens form', () => {
+    cy.get('.sc-Axmtr').click()
   })
 
   it('accepts input', () => {
@@ -20,7 +22,8 @@ describe('Input form', () => {
     const itemText = 'Nivea body lotion'
     const itemOpeningDate = '2020-05-27'
     const itemMonth = 6
-    it('Adds a new product on submit', () => {
+
+    it('adds a new product on submit', () => {
       cy.get('#name').type(itemText)
       cy.get('#date').type(itemOpeningDate)
       cy.get('#month').type(itemMonth).type('{enter}')
@@ -32,6 +35,46 @@ describe('Input form', () => {
       cy.get('li').should('have.length', 1).and('contain', itemText)
       cy.get('.opening-date').should('contain', 'Opened: 27.05.2020')
       cy.get('.expiring-date').should('contain', 'Expires: 27.11.2020')
+    })
+
+    it('adds a new product with additional fields on submit', () => {
+      cy.get('#name').type(itemText)
+      cy.get('#date').type(itemOpeningDate)
+      cy.get('#month').type(itemMonth)
+      cy.get('#size').type('50ml')
+      cy.get('#price').type('3,55$').type('{enter}')
+
+      cy.get('#name').should('have.value', '')
+      cy.get('#date').should('have.value', '')
+      cy.get('#month').should('have.value', '')
+      cy.get('#size').should('have.value', '')
+      cy.get('#price').should('have.value', '')
+
+      cy.get('li').should('have.length', 1).and('contain', itemText)
+      cy.get('.opening-date').should('contain', 'Opened: 27.05.2020')
+      cy.get('.expiring-date').should('contain', 'Expires: 27.11.2020')
+      cy.get('.size').should('contain', 'Size: 50ml')
+      cy.get('.price').should('contain', '3,55$')
+    })
+
+    it('adds multiple products', () => {
+      cy.get('#name').type(itemText)
+      cy.get('#date').type(itemOpeningDate)
+      cy.get('#month').type(itemMonth).type('{enter}')
+
+      cy.get('.sc-Axmtr').click()
+      cy.get('#name').type('Nivea night face cream long product name')
+      cy.get('#date').type(itemOpeningDate)
+      cy.get('#month').type(itemMonth).type('{enter}')
+
+      cy.get('.sc-Axmtr').click()
+      cy.get('#name').type('Hairspray')
+      cy.get('#date').type(itemOpeningDate)
+      cy.get('#month').type(itemMonth)
+      cy.get('.size').should('contain', 'Size: 50ml')
+      cy.get('.price').should('contain', '3,55$').type('{enter}')
+
+      cy.get('li').should('have.length', 3)
     })
   })
 })
