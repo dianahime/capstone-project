@@ -19,7 +19,7 @@ export default function InfoPopover() {
     <Popup
       trigger={
         <ButtonStyled type="button" className="button">
-          <i class="fa fa-question" aria-hidden="true"></i>
+          <i className="fa fa-question" aria-hidden="true"></i>
         </ButtonStyled>
       }
       position="left top"
