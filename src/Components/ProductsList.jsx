@@ -5,7 +5,7 @@ import Greeting from './Greeting'
 
 export default function ProductsList({ products, isBlurred }) {
   return products.length ? (
-    <UlStyled className={isBlurred ? 'blurred' : ''}>
+    <UlStyled data-testid="productsList" className={isBlurred ? 'blurred' : ''}>
       <h1>Your products</h1>
       {products.map((product) => (
         <ProductsListItem key={product.id} product={product} />
@@ -21,6 +21,7 @@ const UlStyled = styled.ul`
   flex-direction: column;
   width: 100%;
   padding: 0 10%;
+  margin-bottom: 100px;
   filter: blur(0);
   transition: 0.8s all ease-out;
 

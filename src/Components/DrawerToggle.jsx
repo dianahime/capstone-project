@@ -7,7 +7,10 @@ export default function DrawerToggle({ isCancel, onClick }) {
       onClick={onClick}
       className={isCancel && 'cancelButton'}
     >
-      <i className={isCancel ? 'fas fa-plus cancelIcon' : 'fas fa-plus'}></i>
+      <i
+        className={isCancel ? 'fas fa-plus cancelIcon' : 'fas fa-plus'}
+        data-testid="icon"
+      ></i>
     </DrawerToggleStyled>
   )
 }
