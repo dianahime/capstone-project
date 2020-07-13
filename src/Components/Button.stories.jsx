@@ -1,7 +1,6 @@
 import React from 'react'
 import { actions } from '@storybook/addon-actions'
 import Button from './Button'
-import GlobalStyles from '../GlobalStyles'
 
 export default {
   title: 'Button',
@@ -10,16 +9,8 @@ export default {
 
 const eventsFromObject = actions({ onClick: 'clicked', onMouseOver: 'hovered' })
 
-export const Text = () => (
-  <>
-    <GlobalStyles />
-    <Button {...eventsFromObject} text="Hello" />
-  </>
-)
+export const Text = () => <Button {...eventsFromObject} text="Hello" />
 
 export const LongText = () => (
-  <>
-    <GlobalStyles />
-    <Button {...eventsFromObject} text="I dont know this is long text" />
-  </>
+  <Button {...eventsFromObject} text="I dont know this is long text" />
 )
