@@ -18,9 +18,8 @@ function App() {
   return (
     <ContainerStyled>
       <ProductsList isBlurred={isDrawerOpen} products={products} />
-
       <Drawer isOpen={isDrawerOpen} setIsOpen={setIsDrawerOpen}>
-        <Form onFormSubmit={handleProducts} />
+        <Form onFormSubmit={handleProducts} isVisible={isDrawerOpen} />
       </Drawer>
     </ContainerStyled>
   )

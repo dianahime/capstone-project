@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Button from './Button'
 import dayjs from 'dayjs'
 import InfoPopover from './InfoPopover'
 
-export default function Form({ onFormSubmit }) {
+export default function Form({ onFormSubmit, isVisible }) {
   const [name, setName] = useState('')
   const [date, setDate] = useState('')
   const [month, setMonth] = useState('')
@@ -12,18 +12,23 @@ export default function Form({ onFormSubmit }) {
   const [price, setPrice] = useState('')
 
   const currentDate = dayjs().format('YYYY-MM-DD')
-
+  const resetForm = () => {
+    setName('')
+    setDate('')
+    setMonth('')
+    setSize('')
+    setPrice('')
+  }
   const handleSubmit = (event) => {
     event.preventDefault()
     if (name && date && month) {
       onFormSubmit({ name, date, month, size, price })
-      setName('')
-      setDate('')
-      setMonth('')
-      setSize('')
-      setPrice('')
+      resetForm()
     }
   }
+  useEffect(() => {
+    !isVisible && resetForm()
+  }, [isVisible])
 
   return (
     <FormStyled onSubmit={handleSubmit}>
