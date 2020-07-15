@@ -3,13 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.4.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/user-event": "^7.2.1",
     "dayjs": "^1.8.29",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
     "react-scripts": "3.4.1",
     "reactjs-popup": "^1.5.0",
+    "redux": "^4.0.5",
     "styled-components": "^5.1.1",
     "uuid": "^8.2.0"
   },
@@ -48,6 +51,7 @@
     "@storybook/react": "^5.3.19",
     "@testing-library/react": "^9.5.0",
     "cypress": "^4.9.0",
-    "eslint-plugin-cypress": "^2.11.1"
+    "eslint-plugin-cypress": "^2.11.1",
+    "redux-devtools": "^3.5.0"
   }
 }
