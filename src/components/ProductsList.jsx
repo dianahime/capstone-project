@@ -2,8 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 import ProductsListItem from './ProductsListItem'
 import Greeting from './Greeting'
+import { useSelector } from 'react-redux'
 
-export default function ProductsList({ products, isBlurred }) {
+export default function ProductsList() {
+  const products = useSelector((state) => state.products)
+  const isBlurred = useSelector((state) => state.drawer.isOpen)
+
   return products.length ? (
     <UlStyled data-testid="productsList" className={isBlurred ? 'blurred' : ''}>
       <h1>Your products</h1>

@@ -3,13 +3,22 @@ import styled from 'styled-components'
 import Button from './Button'
 import dayjs from 'dayjs'
 import InfoPopover from './InfoPopover'
+import { useDispatch } from 'react-redux'
+import { productAdded } from '../store/productsSlice'
+import { useSelector } from 'react-redux'
+import { drawerIsOpened } from '../store/drawerSlice'
+import { v4 as uuid } from 'uuid'
 
-export default function Form({ onFormSubmit, isVisible }) {
+export default function Form() {
   const [name, setName] = useState('')
   const [date, setDate] = useState('')
   const [month, setMonth] = useState('')
   const [size, setSize] = useState('')
   const [price, setPrice] = useState('')
+
+  const isDrawerOpen = useSelector((state) => state.drawer.isOpen)
+
+  const dispatch = useDispatch()
 
   const currentDate = dayjs().format('YYYY-MM-DD')
   const resetForm = () => {
@@ -22,13 +31,14 @@ export default function Form({ onFormSubmit, isVisible }) {
   const handleSubmit = (event) => {
     event.preventDefault()
     if (name && date && month) {
-      onFormSubmit({ name, date, month, size, price })
+      dispatch(productAdded({ id: uuid(), name, date, month, size, price }))
+      dispatch(drawerIsOpened(false))
       resetForm()
     }
   }
   useEffect(() => {
-    !isVisible && resetForm()
-  }, [isVisible])
+    !isDrawerOpen && resetForm()
+  }, [isDrawerOpen])
 
   return (
     <FormStyled onSubmit={handleSubmit}>

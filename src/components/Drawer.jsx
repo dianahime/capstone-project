@@ -1,11 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
 import DrawerToggle from './DrawerToggle'
+import { useDispatch } from 'react-redux'
+import { drawerIsOpened } from '../store/drawerSlice'
+import { useSelector } from 'react-redux'
 
-export default function Drawer({ children, isOpen, setIsOpen }) {
+export default function Drawer({ children }) {
+  const isOpen = useSelector((state) => state.drawer.isOpen)
+  const dispatch = useDispatch()
   return (
     <>
-      <DrawerToggle onClick={() => setIsOpen(!isOpen)} isCancel={isOpen} />
+      <DrawerToggle
+        onClick={() => dispatch(drawerIsOpened(!isOpen))}
+        isCancel={isOpen}
+      />
       <DrawerStyled data-testid="section" className={isOpen && 'active'}>
         {children}
       </DrawerStyled>
