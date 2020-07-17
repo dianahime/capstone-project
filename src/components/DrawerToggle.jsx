@@ -1,16 +1,31 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
+import { drawerIsOpened } from '../store/drawerSlice'
+import { useSelector } from 'react-redux'
+import { displayDrawerContent } from '../store/drawerSlice'
 
-export default function DrawerToggle({ isCancel, onClick }) {
+export default function DrawerToggle() {
+  const isDrawerOpen = useSelector((state) => state.drawer.isOpen)
+  const dispatch = useDispatch()
+
+  const handleToggle = () => {
+    if (isDrawerOpen) {
+      dispatch(drawerIsOpened(false))
+    } else {
+      dispatch(displayDrawerContent('Form'))
+    }
+  }
+
   return (
     <DrawerToggleStyled
-      onClick={onClick}
-      className={isCancel && 'cancelButton'}
+      onClick={handleToggle}
+      className={isDrawerOpen && 'cancelButton'}
     >
       <i
-        className={isCancel ? 'fas fa-plus cancelIcon' : 'fas fa-plus'}
+        className={isDrawerOpen ? 'fas fa-plus cancelIcon' : 'fas fa-plus'}
         data-testid="icon"
-      ></i>
+      />
     </DrawerToggleStyled>
   )
 }
@@ -20,8 +35,8 @@ const DrawerToggleStyled = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   left: 50%;
   bottom: 10px;
   border: none;
@@ -35,7 +50,7 @@ const DrawerToggleStyled = styled.button`
     outline: none;
   }
   i {
-    font-size: 2.5rem;
+    font-size: 2.7rem;
     transition: 0.5s all ease-out;
   }
 

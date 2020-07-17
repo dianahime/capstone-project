@@ -1,21 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
 import DrawerToggle from './DrawerToggle'
-import { useDispatch } from 'react-redux'
-import { drawerIsOpened } from '../store/drawerSlice'
+import Form from './Form'
 import { useSelector } from 'react-redux'
+import ProductDetails from './ProductDetails'
 
-export default function Drawer({ children }) {
-  const isOpen = useSelector((state) => state.drawer.isOpen)
-  const dispatch = useDispatch()
+export default function Drawer() {
+  const { isOpen, visibleComponent } = useSelector((state) => state.drawer)
+
   return (
     <>
-      <DrawerToggle
-        onClick={() => dispatch(drawerIsOpened(!isOpen))}
-        isCancel={isOpen}
-      />
+      <DrawerToggle />
       <DrawerStyled data-testid="section" className={isOpen && 'active'}>
-        {children}
+        {visibleComponent === 'Form' && <Form />}
+        {visibleComponent === 'ProductDetails' && <ProductDetails />}
       </DrawerStyled>
     </>
   )
@@ -34,7 +32,7 @@ const DrawerStyled = styled.section`
   transition: 0.8s all ease-out;
 
   &.active {
-    top: 100px;
+    top: 85px;
     z-index: 100;
     border: 1px solid var(--primary);
     margin: 0 auto;
