@@ -10,8 +10,8 @@ const store = configureStore({
 })
 
 store.subscribe(() => {
-  const { products } = store.getState()
-  localStorage.setItem('products', JSON.stringify(products))
+  const { allProducts } = store.getState().products
+  localStorage.setItem('products', JSON.stringify(allProducts))
 })
 
 export default store
