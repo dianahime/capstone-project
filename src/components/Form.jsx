@@ -106,6 +106,7 @@ const FormStyled = styled.form`
   flex-direction: column;
 
   input {
+    font-size: 1.2rem;
     display: block;
     align-self: center;
     background-color: white;
@@ -125,7 +126,7 @@ const FormStyled = styled.form`
 
   label {
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-top: 10px;
   }
 
