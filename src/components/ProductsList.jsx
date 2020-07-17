@@ -5,7 +5,7 @@ import Greeting from './Greeting'
 import { useSelector } from 'react-redux'
 
 export default function ProductsList() {
-  const products = useSelector((state) => state.products)
+  const products = useSelector((state) => state.products.allProducts)
   const isBlurred = useSelector((state) => state.drawer.isOpen)
 
   return products.length ? (
