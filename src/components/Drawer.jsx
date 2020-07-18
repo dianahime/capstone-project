@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import DrawerToggle from './DrawerToggle'
 import Form from './Form'
-import { useSelector } from 'react-redux'
 import ProductDetails from './ProductDetails'
+import { useSelector } from 'react-redux'
 
 export default function Drawer() {
   const { isOpen, visibleComponent } = useSelector((state) => state.drawer)
