@@ -1,9 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useDispatch } from 'react-redux'
-import { drawerIsOpened } from '../store/drawerSlice'
-import { useSelector } from 'react-redux'
-import { displayDrawerContent } from '../store/drawerSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { drawerIsOpened, displayDrawerContent } from '../store/drawerSlice'
 
 export default function DrawerToggle() {
   const isDrawerOpen = useSelector((state) => state.drawer.isOpen)

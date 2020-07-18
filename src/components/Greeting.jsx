@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import EmptyLogo from '../images/empty.svg'
 import { useSelector } from 'react-redux'
+import EmptyLogo from '../images/empty.svg'
 
 export default function Greeting() {
   const isBlurred = useSelector((state) => state.drawer.isOpen)
