@@ -1,5 +1,4 @@
 import React from 'react'
-import Form from './components/Form'
 import ProductsList from './components/ProductsList'
 import Drawer from './components/Drawer'
 import styled from 'styled-components'
@@ -8,9 +7,7 @@ function App() {
   return (
     <ContainerStyled>
       <ProductsList />
-      <Drawer>
-        <Form />
-      </Drawer>
+      <Drawer />
     </ContainerStyled>
   )
 }

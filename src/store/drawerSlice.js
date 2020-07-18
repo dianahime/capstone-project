@@ -4,6 +4,7 @@ const drawerSlice = createSlice({
   name: 'drawer',
   initialState: {
     isOpen: false,
+    visibleComponent: 'Form',
   },
   reducers: {
     drawerIsOpened(state, action) {
@@ -12,8 +13,15 @@ const drawerSlice = createSlice({
         isOpen: action.payload,
       }
     },
+    displayDrawerContent(state, action) {
+      return {
+        ...state,
+        isOpen: true,
+        visibleComponent: action.payload,
+      }
+    },
   },
 })
 
 export default drawerSlice.reducer
-export const { drawerIsOpened } = drawerSlice.actions
+export const { drawerIsOpened, displayDrawerContent } = drawerSlice.actions

@@ -1,8 +1,12 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-export default function Button({ text, onClick }) {
-  return <ButtonStyled onClick={onClick}>{text}</ButtonStyled>
+export default function Button({ text, onClick, disabled }) {
+  return (
+    <ButtonStyled onClick={onClick} disabled={disabled}>
+      {text}
+    </ButtonStyled>
+  )
 }
 
 const ButtonStyled = styled.button`
@@ -17,6 +21,14 @@ const ButtonStyled = styled.button`
   &:focus {
     outline: none;
   }
+
+  ${(props) =>
+    props.disabled &&
+    css`
+      background: white;
+      color: var(--secondary);
+      border: 1px solid var(--secondary);
+    `}
 
   :hover {
     background-color: var(--primaryLight);
