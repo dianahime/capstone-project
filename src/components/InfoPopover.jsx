@@ -17,6 +17,7 @@ export default function InfoPopover() {
   )
   return (
     <Popup
+      contentStyle={{ width: '220px' }}
       trigger={
         <ButtonStyled type="button" className="button">
           <i className="fa fa-question" aria-hidden="true"></i>
