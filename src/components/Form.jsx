@@ -48,11 +48,12 @@ export default function Form() {
         type="text"
         id="name"
         maxLength="40"
-        required
         autoFocus
         placeholder="E.g. Nivea face cream"
       />
-      {name.length >= 40 && <div>Zu lang</div>}
+      {name.length >= 40 && (
+        <p>The product name can consist of up to 40 characters.</p>
+      )}
       <label htmlFor="date">2. When did you open the product?</label>
       <input
         onChange={(event) => setDate(event.target.value)}
@@ -61,7 +62,6 @@ export default function Form() {
         min="2018-01-01"
         max={currentDate}
         id="date"
-        required
       />
       <label htmlFor="month">
         3. In how many months does the product expire?
@@ -74,11 +74,13 @@ export default function Form() {
           min="1"
           max="120"
           id="month"
-          required
           placeholder="E.g. 12"
         />
         <InfoPopover />
       </ContainerStyled>
+      {month > 120 && (
+        <p>The product can expire up to 120 months after opening.</p>
+      )}
       <label htmlFor="Size">4. Size of the product (optional)</label>
       <input
         onChange={(event) => setSize(event.target.value)}
@@ -87,6 +89,9 @@ export default function Form() {
         id="size"
         placeholder="50 ml"
       />
+      {size.length >= 10 && (
+        <p>The product size can consist of up to 10 characters.</p>
+      )}
       <label htmlFor="Price">5. Price of the product (optional)</label>
       <input
         onChange={(event) => setPrice(event.target.value)}
@@ -95,7 +100,10 @@ export default function Form() {
         id="price"
         placeholder="12€"
       />
-      <Button text="Save" />
+      {price.length >= 10 && (
+        <p>The product price can consist of up to 10 characters.</p>
+      )}
+      <Button text="Save" disabled={!(name && date && month)} />
     </FormStyled>
   )
 }
@@ -132,6 +140,12 @@ const FormStyled = styled.form`
   Button {
     align-self: center;
     font-size: 1.2rem;
+  }
+
+  p {
+    color: var(--secondary);
+    padding: 5px 10px;
+    margin: 0;
   }
 
   #name {
