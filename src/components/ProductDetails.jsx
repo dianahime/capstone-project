@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
 import { useSelector } from 'react-redux'
+import MenuPopover from './MenuPopover'
 
 export default function ProductDetails() {
   const product = useSelector((state) => state.products.selected)
@@ -10,7 +11,10 @@ export default function ProductDetails() {
 
   return (
     <ProductStyled>
-      <h1 className="name">{product.name}</h1>
+      <div className="titleContainer">
+        <h1 className="name">{product.name}</h1>
+        <MenuPopover />
+      </div>
       <p className="opening-date">Opened: {parsedDate.format('DD.MM.YYYY')}</p>
       <p className="expiring-date">
         Expires: {parsedDate.add(product.month, 'M').format('DD.MM.YYYY')}
@@ -27,6 +31,13 @@ const ProductStyled = styled.section`
   p {
     font-size: 1.2rem;
     margin: 10px 0;
+  }
+
+  .titleContainer {
+    display: flex;
+    p {
+      margin: 0;
+    }
   }
 
   .expiring-date {
