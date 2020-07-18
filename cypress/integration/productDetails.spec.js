@@ -1,7 +1,7 @@
 describe('Product Details', () => {
   beforeEach(() => {
     cy.visit('/')
-    cy.get('.sc-AxgMl').click()
+    cy.get('[data-testid=icon]').click()
   })
 
   it('opens product details', () => {
