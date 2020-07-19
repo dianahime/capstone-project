@@ -1,52 +1,41 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
 import Button from './Button'
 import InfoPopover from './InfoPopover'
-import { useSelector, useDispatch, productSelected } from 'react-redux'
-import { productAdded } from '../store/productsSlice'
-import { drawerIsOpened } from '../store/drawerSlice'
-import { v4 as uuid } from 'uuid'
+import { useSelector, useDispatch } from 'react-redux'
+import { productChanged } from '../store/productsSlice'
+import { displayDrawerContent } from '../store/drawerSlice'
 
-export default function ProductDetails() {
-  const product = useSelector((state) => state.products.selected)
+export default function ProductEdit() {
+  const productId = useSelector((state) => state.products.selected)
+  const allProducts = useSelector((state) => state.products.allProducts)
+  const product = allProducts.find(product => product.id === productId)
+
   const dispatch = useDispatch()
 
-  const [name, setName] = useState('')
-  const [date, setDate] = useState('')
-  const [month, setMonth] = useState('')
-  const [size, setSize] = useState('')
-  const [price, setPrice] = useState('')
-
-  const isDrawerOpen = useSelector((state) => state.drawer.isOpen)
-  dispatch(productSelected(product))
+  const [name, setName] = useState(product.name)
+  const [date, setDate] = useState(product.date)
+  const [month, setMonth] = useState(product.month)
+  const [size, setSize] = useState(product.size)
+  const [price, setPrice] = useState(product.price)
 
   const currentDate = dayjs().format('YYYY-MM-DD')
-  const resetForm = () => {
-    setName('')
-    setDate('')
-    setMonth('')
-    setSize('')
-    setPrice('')
-  }
+  
   const handleSubmit = (event) => {
     event.preventDefault()
     if (name && date && month) {
-      dispatch(productAdded({ id: uuid(), name, date, month, size, price }))
-      dispatch(drawerIsOpened(false))
-      resetForm()
+      dispatch(productChanged({ ...product, name, date, month, size, price }))
+      dispatch(displayDrawerContent('ProductDetails'))
     }
   }
-  useEffect(() => {
-    !isDrawerOpen && resetForm()
-  }, [isDrawerOpen])
 
   return (
     <FormStyled onSubmit={handleSubmit}>
       <label htmlFor="name">Product Name</label>
       <input
         onChange={(event) => setName(event.target.value)}
-        value={product.name}
+        value={name}
         type="text"
         id="name"
         maxLength="40"
@@ -58,7 +47,7 @@ export default function ProductDetails() {
       <label htmlFor="date">Product opened</label>
       <input
         onChange={(event) => setDate(event.target.value)}
-        value={product.date}
+        value={date}
         type="date"
         min="2018-01-01"
         max={currentDate}
@@ -69,7 +58,7 @@ export default function ProductDetails() {
       <ContainerStyled>
         <input
           onChange={(event) => setMonth(event.target.value)}
-          value={product.month}
+          value={month}
           type="number"
           min="1"
           max="120"
@@ -82,7 +71,7 @@ export default function ProductDetails() {
       <label htmlFor="Size">Size of the product (optional)</label>
       <input
         onChange={(event) => setSize(event.target.value)}
-        value={product.size}
+        value={size}
         maxLength="10"
         id="size"
         placeholder="50 ml"
@@ -90,7 +79,7 @@ export default function ProductDetails() {
       <label htmlFor="Price">Price of the product (optional)</label>
       <input
         onChange={(event) => setPrice(event.target.value)}
-        value={product.price}
+        value={price}
         maxLength="10"
         id="price"
         placeholder="12€"

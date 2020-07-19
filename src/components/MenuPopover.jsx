@@ -1,10 +1,16 @@
 import React from 'react'
 import Popup from 'reactjs-popup'
 import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
+import { displayDrawerContent } from '../store/drawerSlice'
+import DeleteModal from './DeleteModal'
 
 export default function InfoPopover() {
-  const handleEditClick = () => {}
-  const handleDeleteClick = () => {}
+  const dispatch = useDispatch()
+
+  const handleEditClick = () => {
+    dispatch(displayDrawerContent('ProductEdit'))
+  }
 
   const Card = () => (
     <CardStyled className="card">
@@ -13,10 +19,7 @@ export default function InfoPopover() {
           <p>Edit</p>
           <i className="fas fa-pen" />
         </div>
-        <div className="item" onClick={handleDeleteClick}>
-          <p className="delete">Delete</p>
-          <i className="fa fa-trash delete" aria-hidden="true"></i>
-        </div>
+        <DeleteModal />
       </div>
     </CardStyled>
   )
@@ -33,6 +36,7 @@ export default function InfoPopover() {
       }
       position="left top"
       on="hover"
+      closeOnDocumentClick
     >
       <Card />
     </Popup>

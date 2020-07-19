@@ -21,8 +21,27 @@ const productsSlice = createSlice({
         selected: action.payload,
       }
     },
+    productChanged(state, action) {
+      return {
+        ...state,
+        allProducts: state.allProducts.map((product) =>
+          product.id === action.payload.id ? action.payload : product
+        ),
+      }
+    },
+    productRemoved(state, action) {
+      return {
+        ...state,
+        selected: null,
+        allProducts: state.allProducts.filter(product => product.id !== action.payload.id)
+      }
+    }
   },
 })
 
 export default productsSlice.reducer
-export const { productAdded, productSelected } = productsSlice.actions
+export const {
+  productAdded,
+  productSelected,
+  productChanged,
+} = productsSlice.actions
