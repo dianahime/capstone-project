@@ -5,7 +5,9 @@ import { useSelector } from 'react-redux'
 import MenuPopover from './MenuPopover'
 
 export default function ProductDetails() {
-  const product = useSelector((state) => state.products.selected)
+  const productId = useSelector((state) => state.products.selected)
+  const allProducts = useSelector((state) => state.products.allProducts)
+  const product = allProducts.find((product) => product.id === productId)
 
   const parsedDate = dayjs(product.date)
 
