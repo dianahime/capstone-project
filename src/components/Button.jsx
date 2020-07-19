@@ -1,9 +1,9 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-export default function Button({ text, onClick, disabled }) {
+export default function Button({ text, onClick, disabled, isCancel }) {
   return (
-    <ButtonStyled onClick={onClick} disabled={disabled}>
+    <ButtonStyled onClick={onClick} disabled={disabled} isCancel={isCancel}>
       {text}
     </ButtonStyled>
   )
@@ -28,6 +28,13 @@ const ButtonStyled = styled.button`
       background: white;
       color: var(--secondary);
       border: 1px solid var(--secondary);
+    `}
+
+  ${(props) =>
+    props.isCancel &&
+    css`
+      background: white;
+      color: var(--secondary);
     `}
 
   :hover {
