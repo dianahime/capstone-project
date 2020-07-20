@@ -81,7 +81,9 @@ export default function Form() {
       {month > 120 && (
         <p>The product can expire up to 120 months after opening.</p>
       )}
-      <label htmlFor="Size">4. Size of the product (optional)</label>
+      <label htmlFor="Size">
+        4. Size of the product <span>(optional)</span>
+      </label>
       <input
         onChange={(event) => setSize(event.target.value)}
         value={size}
@@ -92,7 +94,9 @@ export default function Form() {
       {size.length >= 10 && (
         <p>The product size can consist of up to 10 characters.</p>
       )}
-      <label htmlFor="Price">5. Price of the product (optional)</label>
+      <label htmlFor="Price">
+        5. Price of the product <span>(optional)</span>
+      </label>
       <input
         onChange={(event) => setPrice(event.target.value)}
         value={price}
@@ -103,7 +107,11 @@ export default function Form() {
       {price.length >= 10 && (
         <p>The product price can consist of up to 10 characters.</p>
       )}
-      <Button text="Save" disabled={!(name && date && month)} />
+      <Button
+        text="Save"
+        disabled={!(name && date && month)}
+        className="save-button"
+      />
     </FormStyled>
   )
 }
@@ -148,16 +156,23 @@ const FormStyled = styled.form`
     margin: 0;
   }
 
+  span {
+    font-size: 1rem;
+  }
+
+  .save-button {
+    margin-top: 20px;
+  }
+
   #name {
     width: 300px;
   }
 
-  #month {
-    display: inline;
+  #date {
+    width: 180px;
   }
 
   #month,
-  #date,
   #size,
   #price {
     width: 140px;
