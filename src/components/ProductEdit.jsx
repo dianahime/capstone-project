@@ -32,6 +32,7 @@ export default function ProductEdit() {
   const handleCancelClick = () => {
     dispatch(displayDrawerContent('ProductDetails'))
   }
+
   return (
     <FormStyled onSubmit={handleSubmit}>
       <label htmlFor="name">Product Name</label>
@@ -48,6 +49,7 @@ export default function ProductEdit() {
       {name.length >= 40 && (
         <p>The product name can consist of up to 40 characters.</p>
       )}
+
       <label htmlFor="date">Product opened</label>
       <input
         onChange={(event) => setDate(event.target.value)}
@@ -58,6 +60,7 @@ export default function ProductEdit() {
         id="date"
         required
       />
+
       <label htmlFor="month">Months until expiration</label>
       <ContainerStyled>
         <input
@@ -75,6 +78,7 @@ export default function ProductEdit() {
       {month > 120 && (
         <p>The product can expire up to 120 months after opening.</p>
       )}
+
       <label htmlFor="Size">
         Size of the product <span>(optional)</span>
       </label>
@@ -88,6 +92,7 @@ export default function ProductEdit() {
       {size.length >= 10 && (
         <p>The product size can consist of up to 10 characters.</p>
       )}
+
       <label htmlFor="Price">
         Price of the product <span>(optional)</span>
       </label>
@@ -101,6 +106,7 @@ export default function ProductEdit() {
       {price.length >= 10 && (
         <p>The product price can consist of up to 10 characters.</p>
       )}
+
       <div className="button-container">
         <Button text="Cancel" isCancel onClick={handleCancelClick} />
         <Button text="Save" />
@@ -138,11 +144,6 @@ const FormStyled = styled.form`
     margin-top: 10px;
   }
 
-  Button {
-    align-self: center;
-    font-size: 1.2rem;
-  }
-
   p {
     color: var(--secondary);
     padding: 5px 10px;
@@ -152,6 +153,11 @@ const FormStyled = styled.form`
 
   span {
     font-size: 1rem;
+  }
+
+  Button {
+    align-self: center;
+    font-size: 1.2rem;
   }
 
   .button-container {
@@ -168,7 +174,7 @@ const FormStyled = styled.form`
   #date {
     width: 180px;
   }
-  
+
   #month,
   #size,
   #price {

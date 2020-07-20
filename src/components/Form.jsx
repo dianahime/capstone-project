@@ -35,6 +35,7 @@ export default function Form() {
       resetForm()
     }
   }
+
   useEffect(() => {
     !isDrawerOpen && resetForm()
   }, [isDrawerOpen])
@@ -54,6 +55,7 @@ export default function Form() {
       {name.length >= 40 && (
         <p>The product name can consist of up to 40 characters.</p>
       )}
+
       <label htmlFor="date">2. When did you open the product?</label>
       <input
         onChange={(event) => setDate(event.target.value)}
@@ -63,6 +65,7 @@ export default function Form() {
         max={currentDate}
         id="date"
       />
+
       <label htmlFor="month">
         3. In how many months does the product expire?
       </label>
@@ -81,6 +84,7 @@ export default function Form() {
       {month > 120 && (
         <p>The product can expire up to 120 months after opening.</p>
       )}
+
       <label htmlFor="Size">
         4. Size of the product <span>(optional)</span>
       </label>
@@ -94,6 +98,7 @@ export default function Form() {
       {size.length >= 10 && (
         <p>The product size can consist of up to 10 characters.</p>
       )}
+
       <label htmlFor="Price">
         5. Price of the product <span>(optional)</span>
       </label>
@@ -107,6 +112,7 @@ export default function Form() {
       {price.length >= 10 && (
         <p>The product price can consist of up to 10 characters.</p>
       )}
+
       <Button
         text="Save"
         disabled={!(name && date && month)}
@@ -145,11 +151,6 @@ const FormStyled = styled.form`
     margin-top: 10px;
   }
 
-  Button {
-    align-self: center;
-    font-size: 1.2rem;
-  }
-
   p {
     color: var(--secondary);
     padding: 5px 10px;
@@ -158,6 +159,11 @@ const FormStyled = styled.form`
 
   span {
     font-size: 1rem;
+  }
+
+  Button {
+    align-self: center;
+    font-size: 1.2rem;
   }
 
   .save-button {
