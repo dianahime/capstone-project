@@ -9,6 +9,10 @@ export default function ProductDetails() {
   const allProducts = useSelector((state) => state.products.allProducts)
   const product = allProducts.find((product) => product.id === productId)
 
+  if (!product) {
+    return <></>
+  }
+
   const parsedDate = dayjs(product.date)
 
   return (
@@ -29,6 +33,9 @@ export default function ProductDetails() {
 
 const ProductStyled = styled.section`
   padding: 0 20px;
+  h1 {
+    word-break: break-all;
+  }
 
   p {
     font-size: 1.2rem;
@@ -37,6 +44,8 @@ const ProductStyled = styled.section`
 
   .titleContainer {
     display: flex;
+    align-items: center;
+
     p {
       margin: 0;
     }
