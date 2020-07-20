@@ -1,53 +1,62 @@
-import React from 'react'
-import Popup from 'reactjs-popup'
+import React, { useState } from 'react'
+import { Popover, Position } from '@blueprintjs/core'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 import { displayDrawerContent } from '../store/drawerSlice'
 import DeleteModal from './DeleteModal'
 
-export default function InfoPopover() {
+export default function MenuPopover() {
   const dispatch = useDispatch()
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
 
   const handleEditClick = () => {
     dispatch(displayDrawerContent('ProductEdit'))
   }
+  const handleDeleteClick = () => {
+    setIsDeleteModalOpen(true)
+  }
 
-  const Card = () => (
-    <CardStyled className="card">
-      <div className="content">
+  return (
+    <PopoverStyled usePortal={false} position={Position.LEFT_TOP}>
+      <ButtonStyled type="button" className="button">
+        <IconStyled
+          className="fa fa-ellipsis-v"
+          aria-hidden="true"
+        ></IconStyled>
+      </ButtonStyled>
+      <CardStyled>
         <div className="item" onClick={handleEditClick}>
           <p>Edit</p>
           <i className="fas fa-pen" />
         </div>
-        <DeleteModal />
-      </div>
-    </CardStyled>
-  )
-  return (
-    <Popup
-      contentStyle={{ width: '120px' }}
-      trigger={
-        <ButtonStyled type="button" className="button">
-          <IconStyled
-            className="fa fa-ellipsis-v"
-            aria-hidden="true"
-          ></IconStyled>
-        </ButtonStyled>
-      }
-      position="left top"
-      on="hover"
-      closeOnDocumentClick
-    >
-      <Card />
-    </Popup>
+        <div className="item" onClick={handleDeleteClick}>
+          <p className="delete">Delete</p>
+          <i className="fa fa-trash delete" aria-hidden="true"></i>
+        </div>
+        <DeleteModal
+          isOpen={isDeleteModalOpen}
+          onClose={() => setIsDeleteModalOpen(false)}
+        />
+      </CardStyled>
+    </PopoverStyled>
   )
 }
 
-const CardStyled = styled.div`
-  .content {
-    background-color: white;
-    padding: 5px;
+const PopoverStyled = styled(Popover)`
+  height: 20px;
+  * {
+    background: none;
   }
+
+  .bp3-popover-target {
+    height: 100%;
+  }
+`
+
+const CardStyled = styled.div`
+  background-color: white;
+  padding: 10px;
+  width: 120px;
 
   p {
     background-color: white;
@@ -74,7 +83,6 @@ const CardStyled = styled.div`
 
 const ButtonStyled = styled.button`
   border: none;
-  margin-left: 5px;
 
   :focus {
     outline: none;
