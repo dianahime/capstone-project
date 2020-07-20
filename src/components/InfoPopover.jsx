@@ -1,47 +1,46 @@
 import React from 'react'
-import Popup from 'reactjs-popup'
+import { Popover, Position } from '@blueprintjs/core'
 import styled from 'styled-components'
 import AfterOpen from '../images/12M_PAO_Symbol.svg'
 
 export default function InfoPopover() {
-  const Card = () => (
-    <CardStyled className="card">
-      <div className="content">
+  return (
+    <PopoverStyled usePortal={false} position={Position.LEFT_TOP}>
+      <ButtonStyled type="button" className="button">
+        <i className="fa fa-question" aria-hidden="true"></i>
+      </ButtonStyled>
+      <CardStyled>
         The time in months when the product will remain in good condition after
         you have used the product for the first time. A symbol of an open cream
         jar is usually used and the time in months can be inside the symbol or
         alongside it.
         <ImgStyled src={AfterOpen} alt="" />
-      </div>
-    </CardStyled>
-  )
-  return (
-    <Popup
-      contentStyle={{ width: '220px' }}
-      trigger={
-        <ButtonStyled type="button" className="button">
-          <i className="fa fa-question" aria-hidden="true"></i>
-        </ButtonStyled>
-      }
-      position="left top"
-      on="hover"
-    >
-      <Card />
-    </Popup>
+      </CardStyled>
+    </PopoverStyled>
   )
 }
 
-const CardStyled = styled.div`
-  div {
-    background-color: white;
-    padding: 5px;
+const PopoverStyled = styled(Popover)`
+  margin-left: 10px;
+  * {
+    background: none;
   }
+
+  .bp3-popover-target {
+    height: 100%;
+  }
+`
+
+const CardStyled = styled.div`
+  background-color: white;
+  padding: 10px;
+  max-width: 220px;
 `
 
 const ButtonStyled = styled.button`
   border: none;
-  margin-left: 5px;
-
+  padding: 0;
+  height: 100%;
   :focus {
     outline: none;
   }
