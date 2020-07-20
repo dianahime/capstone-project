@@ -9,12 +9,11 @@ export default function ProductDetails() {
   const allProducts = useSelector((state) => state.products.allProducts)
   const product = allProducts.find((product) => product.id === productId)
 
-  const parsedDate = dayjs(product.date)
-
   if (!product) {
     return <></>
   }
 
+  const parsedDate = dayjs(product.date)
   return (
     <ProductStyled>
       <div className="titleContainer">
