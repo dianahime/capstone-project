@@ -29,13 +29,15 @@ const productsSlice = createSlice({
         ),
       }
     },
-    productRemoved(state, action) {
+    selectedProductRemoved(state) {
       return {
         ...state,
         selected: null,
-        allProducts: state.allProducts.filter(product => product.id !== action.payload.id)
+        allProducts: state.allProducts.filter(
+          (product) => product.id !== state.selected
+        ),
       }
-    }
+    },
   },
 })
 
@@ -44,4 +46,5 @@ export const {
   productAdded,
   productSelected,
   productChanged,
+  selectedProductRemoved,
 } = productsSlice.actions
