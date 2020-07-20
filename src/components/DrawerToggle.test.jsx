@@ -1,7 +1,7 @@
 import React from 'react'
 import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import DrawerToggle from './DrawerToggle.jsx'
 
 describe('DrawerToggle.test.js', () => {
@@ -10,7 +10,7 @@ describe('DrawerToggle.test.js', () => {
     expect(screen.getByRole('button')).toBeInTheDocument()
   })
 
-  it('renders an i element', () => {
+  /* it('renders an i element', () => {
     render(<DrawerToggle />)
     expect(screen.queryByTestId('icon')).toBeInTheDocument()
   })
@@ -31,5 +31,5 @@ describe('DrawerToggle.test.js', () => {
   it('should not have class cancelButton if isCancel prop is falsy', () => {
     const { getByRole } = render(<DrawerToggle />)
     expect(getByRole('button')).not.toHaveClass('cancelButton')
-  })
+  }) */
 })
