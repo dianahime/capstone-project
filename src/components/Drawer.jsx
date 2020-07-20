@@ -35,7 +35,7 @@ const DrawerStyled = styled.section`
 
   &.active {
     top: 85px;
-    z-index: 100;
+    z-index: 10;
     border: 1px solid var(--primary);
     margin: 0 auto;
   }
