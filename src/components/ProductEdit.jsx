@@ -10,7 +10,7 @@ import { displayDrawerContent } from '../store/drawerSlice'
 export default function ProductEdit() {
   const productId = useSelector((state) => state.products.selected)
   const allProducts = useSelector((state) => state.products.allProducts)
-  const product = allProducts.find(product => product.id === productId)
+  const product = allProducts.find((product) => product.id === productId)
 
   const dispatch = useDispatch()
 
@@ -21,7 +21,7 @@ export default function ProductEdit() {
   const [price, setPrice] = useState(product.price)
 
   const currentDate = dayjs().format('YYYY-MM-DD')
-  
+
   const handleSubmit = (event) => {
     event.preventDefault()
     if (name && date && month) {
@@ -29,7 +29,9 @@ export default function ProductEdit() {
       dispatch(displayDrawerContent('ProductDetails'))
     }
   }
-
+  const handleCancelClick = () => {
+    dispatch(displayDrawerContent('ProductDetails'))
+  }
   return (
     <FormStyled onSubmit={handleSubmit}>
       <label htmlFor="name">Product Name</label>
@@ -43,7 +45,9 @@ export default function ProductEdit() {
         autoFocus
         placeholder="E.g. Nivea face cream"
       />
-      {name.length >= 40 && <div>Zu lang</div>}
+      {name.length >= 40 && (
+        <p>The product name can consist of up to 40 characters.</p>
+      )}
       <label htmlFor="date">Product opened</label>
       <input
         onChange={(event) => setDate(event.target.value)}
@@ -68,7 +72,12 @@ export default function ProductEdit() {
         />
         <InfoPopover />
       </ContainerStyled>
-      <label htmlFor="Size">Size of the product (optional)</label>
+      {month > 120 && (
+        <p>The product can expire up to 120 months after opening.</p>
+      )}
+      <label htmlFor="Size">
+        Size of the product <span>(optional)</span>
+      </label>
       <input
         onChange={(event) => setSize(event.target.value)}
         value={size}
@@ -76,7 +85,12 @@ export default function ProductEdit() {
         id="size"
         placeholder="50 ml"
       />
-      <label htmlFor="Price">Price of the product (optional)</label>
+      {size.length >= 10 && (
+        <p>The product size can consist of up to 10 characters.</p>
+      )}
+      <label htmlFor="Price">
+        Price of the product <span>(optional)</span>
+      </label>
       <input
         onChange={(event) => setPrice(event.target.value)}
         value={price}
@@ -84,7 +98,13 @@ export default function ProductEdit() {
         id="price"
         placeholder="12€"
       />
-      <Button text="Save" />
+      {price.length >= 10 && (
+        <p>The product price can consist of up to 10 characters.</p>
+      )}
+      <div className="button-container">
+        <Button text="Cancel" isCancel onClick={handleCancelClick} />
+        <Button text="Save" />
+      </div>
     </FormStyled>
   )
 }
@@ -123,16 +143,33 @@ const FormStyled = styled.form`
     font-size: 1.2rem;
   }
 
+  p {
+    color: var(--secondary);
+    padding: 5px 10px;
+    margin: 0;
+    text-align: center;
+  }
+
+  span {
+    font-size: 1rem;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 20px;
+  }
+
   #name {
     width: 300px;
   }
 
-  #month {
-    display: inline;
+  #date {
+    width: 180px;
   }
-
+  
   #month,
-  #date,
   #size,
   #price {
     width: 140px;
