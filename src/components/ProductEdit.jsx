@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import dayjs from 'dayjs'
 import Button from './Button'
 import InfoPopover from './InfoPopover'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { productChanged } from '../store/productsSlice'
 import { displayDrawerContent } from '../store/drawerSlice'
 
@@ -17,8 +17,8 @@ export default function ProductEdit() {
   const [name, setName] = useState(product.name)
   const [date, setDate] = useState(product.date)
   const [month, setMonth] = useState(product.month)
-  const [size, setSize] = useState(product.size)
-  const [price, setPrice] = useState(product.price)
+  const [size, setSize] = useState(product.size || '')
+  const [price, setPrice] = useState(product.price || '')
 
   const currentDate = dayjs().format('YYYY-MM-DD')
 
