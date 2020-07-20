@@ -2,6 +2,7 @@ import React from 'react'
 import ProductsList from './components/ProductsList'
 import Drawer from './components/Drawer'
 import styled from 'styled-components'
+import '@blueprintjs/core/lib/css/blueprint.css'
 
 function App() {
   return (
