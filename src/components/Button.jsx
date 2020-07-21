@@ -35,7 +35,7 @@ const ButtonStyled = styled.button`
     outline: none;
   }
 
-  :hover {
+  &:hover {
     background-color: var(--primaryLight);
     color: var(--primary);
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
@@ -47,11 +47,13 @@ const ButtonStyled = styled.button`
       background: white;
       color: var(--secondary);
       border: 1px solid var(--secondary);
+      box-shadow: none;
 
       &:hover {
         background: white;
         color: var(--secondary);
         border: 1px solid var(--secondary);
+        box-shadow: none;
       }
     `}
 
