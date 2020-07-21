@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import DrawerToggle from './DrawerToggle'
 import Form from './Form'
 import ProductDetails from './ProductDetails'
+import ProductEdit from './ProductEdit'
 import { useSelector } from 'react-redux'
 
 export default function Drawer() {
@@ -14,6 +15,7 @@ export default function Drawer() {
       <DrawerStyled data-testid="section" className={isOpen && 'active'}>
         {visibleComponent === 'Form' && <Form />}
         {visibleComponent === 'ProductDetails' && <ProductDetails />}
+        {visibleComponent === 'ProductEdit' && <ProductEdit />}
       </DrawerStyled>
     </>
   )
@@ -33,7 +35,7 @@ const DrawerStyled = styled.section`
 
   &.active {
     top: 85px;
-    z-index: 100;
+    z-index: 10;
     border: 1px solid var(--primary);
     margin: 0 auto;
   }

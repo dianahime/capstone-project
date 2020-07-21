@@ -13,6 +13,7 @@ export default function Greeting() {
     </GreetingStyled>
   )
 }
+
 const GreetingStyled = styled.div`
   width: 100%;
   height: 100vh;

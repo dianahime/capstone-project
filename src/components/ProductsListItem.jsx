@@ -10,7 +10,7 @@ export default function ProductsListItem({ product }) {
   const parsedDate = dayjs(product.date)
 
   const handleClick = () => {
-    dispatch(productSelected(product))
+    dispatch(productSelected(product.id))
     dispatch(displayDrawerContent('ProductDetails'))
   }
 

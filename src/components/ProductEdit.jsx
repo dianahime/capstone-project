@@ -1,54 +1,48 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import Button from './Button'
 import dayjs from 'dayjs'
+import Button from './Button'
 import InfoPopover from './InfoPopover'
-import { useDispatch, useSelector } from 'react-redux'
-import { productAdded } from '../store/productsSlice'
-import { drawerIsOpened } from '../store/drawerSlice'
-import { v4 as uuid } from 'uuid'
+import { useSelector, useDispatch } from 'react-redux'
+import { productChanged } from '../store/productsSlice'
+import { displayDrawerContent } from '../store/drawerSlice'
 
-export default function Form() {
-  const [name, setName] = useState('')
-  const [date, setDate] = useState('')
-  const [month, setMonth] = useState('')
-  const [size, setSize] = useState('')
-  const [price, setPrice] = useState('')
-
-  const isDrawerOpen = useSelector((state) => state.drawer.isOpen)
+export default function ProductEdit() {
+  const productId = useSelector((state) => state.products.selected)
+  const allProducts = useSelector((state) => state.products.allProducts)
+  const product = allProducts.find((product) => product.id === productId)
 
   const dispatch = useDispatch()
 
+  const [name, setName] = useState(product.name)
+  const [date, setDate] = useState(product.date)
+  const [month, setMonth] = useState(product.month)
+  const [size, setSize] = useState(product.size)
+  const [price, setPrice] = useState(product.price)
+
   const currentDate = dayjs().format('YYYY-MM-DD')
-  const resetForm = () => {
-    setName('')
-    setDate('')
-    setMonth('')
-    setSize('')
-    setPrice('')
-  }
+
   const handleSubmit = (event) => {
     event.preventDefault()
     if (name && date && month) {
-      dispatch(productAdded({ id: uuid(), name, date, month, size, price }))
-      dispatch(drawerIsOpened(false))
-      resetForm()
+      dispatch(productChanged({ ...product, name, date, month, size, price }))
+      dispatch(displayDrawerContent('ProductDetails'))
     }
   }
-
-  useEffect(() => {
-    !isDrawerOpen && resetForm()
-  }, [isDrawerOpen])
+  const handleCancelClick = () => {
+    dispatch(displayDrawerContent('ProductDetails'))
+  }
 
   return (
     <FormStyled onSubmit={handleSubmit}>
-      <label htmlFor="name">1. Add product name:</label>
+      <label htmlFor="name">Product Name</label>
       <input
         onChange={(event) => setName(event.target.value)}
         value={name}
         type="text"
         id="name"
         maxLength="40"
+        required
         autoFocus
         placeholder="E.g. Nivea face cream"
       />
@@ -56,7 +50,7 @@ export default function Form() {
         <p>The product name can consist of up to 40 characters.</p>
       )}
 
-      <label htmlFor="date">2. When did you open the product?</label>
+      <label htmlFor="date">Product opened</label>
       <input
         onChange={(event) => setDate(event.target.value)}
         value={date}
@@ -64,11 +58,10 @@ export default function Form() {
         min="2018-01-01"
         max={currentDate}
         id="date"
+        required
       />
 
-      <label htmlFor="month">
-        3. In how many months does the product expire?
-      </label>
+      <label htmlFor="month">Months until expiration</label>
       <ContainerStyled>
         <input
           onChange={(event) => setMonth(event.target.value)}
@@ -77,6 +70,7 @@ export default function Form() {
           min="1"
           max="120"
           id="month"
+          required
           placeholder="E.g. 12"
         />
         <InfoPopover />
@@ -86,7 +80,7 @@ export default function Form() {
       )}
 
       <label htmlFor="Size">
-        4. Size of the product <span>(optional)</span>
+        Size of the product <span>(optional)</span>
       </label>
       <input
         onChange={(event) => setSize(event.target.value)}
@@ -100,7 +94,7 @@ export default function Form() {
       )}
 
       <label htmlFor="Price">
-        5. Price of the product <span>(optional)</span>
+        Price of the product <span>(optional)</span>
       </label>
       <input
         onChange={(event) => setPrice(event.target.value)}
@@ -113,11 +107,10 @@ export default function Form() {
         <p>The product price can consist of up to 10 characters.</p>
       )}
 
-      <Button
-        text="Save"
-        disabled={!(name && date && month)}
-        className="save-button"
-      />
+      <div className="button-container">
+        <Button text="Cancel" isCancel onClick={handleCancelClick} />
+        <Button text="Save" />
+      </div>
     </FormStyled>
   )
 }
@@ -155,6 +148,7 @@ const FormStyled = styled.form`
     color: var(--secondary);
     padding: 5px 10px;
     margin: 0;
+    text-align: center;
   }
 
   span {
@@ -166,7 +160,10 @@ const FormStyled = styled.form`
     font-size: 1.2rem;
   }
 
-  .save-button {
+  .button-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
     margin-top: 20px;
   }
 

@@ -11,9 +11,10 @@ export default function ProductsList() {
   return products.length ? (
     <UlStyled data-testid="productsList" className={isBlurred ? 'blurred' : ''}>
       <h1>Your products</h1>
-      {products.map((product) => (
-        <ProductsListItem key={product.id} product={product} />
-      ))}
+      {products &&
+        products.map((product) => (
+          <ProductsListItem key={product.id} product={product} />
+        ))}
     </UlStyled>
   ) : (
     <Greeting isBlurred={isBlurred} />
