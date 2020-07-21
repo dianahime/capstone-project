@@ -46,7 +46,7 @@ export default function Form() {
   return (
     <FormStyled onSubmit={handleSubmit}>
       {visibleCard === 'nameInput' && (
-        <div className="card">
+        <Card>
           <label htmlFor="name">1. Add product name:</label>
           <input
             onChange={(event) => setName(event.target.value)}
@@ -68,11 +68,11 @@ export default function Form() {
             <Circle />
             <Circle />
           </div>
-        </div>
+        </Card>
       )}
 
       {visibleCard === 'dateInput' && (
-        <div className="card">
+        <Card>
           <label htmlFor="date">2. When did you open the product?</label>
           <input
             onChange={(event) => setDate(event.target.value)}
@@ -96,11 +96,11 @@ export default function Form() {
             <Circle />
             <Circle />
           </div>
-        </div>
+        </Card>
       )}
 
       {visibleCard === 'monthInput' && (
-        <div className="card">
+        <Card>
           <label htmlFor="month">
             3. In how many months does the product expire?
           </label>
@@ -136,11 +136,11 @@ export default function Form() {
             <Circle className="active" />
             <Circle />
           </div>
-        </div>
+        </Card>
       )}
 
       {visibleCard === 'sizeAndPriceInput' && (
-        <div className="card">
+        <Card>
           <label htmlFor="Size">
             4. Size of the product <span>(optional)</span>
           </label>
@@ -186,7 +186,7 @@ export default function Form() {
             <Circle />
             <Circle className="active" />
           </div>
-        </div>
+        </Card>
       )}
       {visibleCard === 'success' && (
         <div className="card">
@@ -247,35 +247,6 @@ const FormStyled = styled.form`
     padding-bottom: 10px;
   }
 
-  .card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 500px;
-
-    h2 {
-      text-align: center;
-    }
-    .step-indicator {
-      display: flex;
-      margin: 40px 0;
-    }
-
-    .button-container {
-      display: flex;
-      justify-content: space-around;
-      width: 100%;
-      margin-top: 10px;
-    }
-
-    .fa-check-circle {
-      font-size: 2.5rem;
-      color: var(--secondary);
-      margin: 20px 0 40px 0;
-    }
-  }
-
   #name {
     width: 300px;
   }
@@ -295,6 +266,35 @@ const ContainerStyled = styled.div`
   justify-content: center;
   align-items: center;
   margin-left: 30px;
+`
+
+const Card = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+
+  h2 {
+    text-align: center;
+  }
+  .step-indicator {
+    display: flex;
+    margin: 40px 0;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .fa-check-circle {
+    font-size: 2.5rem;
+    color: var(--secondary);
+    margin: 20px 0 40px 0;
+  }
 `
 const Circle = styled.div`
   width: 5px;
