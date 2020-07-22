@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import Button from './Button'
 import dayjs from 'dayjs'
 import InfoPopover from './InfoPopover'
@@ -30,13 +30,16 @@ export default function Form() {
     setPrice('')
     setVisibleCard('nameInput')
   }
-  const handleSubmit = (event) => {
-    event.preventDefault()
+  const handleSubmit = () => {
     if (name && date && month) {
       dispatch(productAdded({ id: uuid(), name, date, month, size, price }))
-      dispatch(drawerIsOpened(false))
-      resetForm()
+      setVisibleCard('success')
     }
+  }
+
+  const handleCloseClick = () => {
+    dispatch(drawerIsOpened(false))
+    resetForm()
   }
 
   useEffect(() => {
@@ -44,157 +47,148 @@ export default function Form() {
   }, [isDrawerOpen])
 
   return (
-    <FormStyled onSubmit={handleSubmit}>
-      {visibleCard === 'nameInput' && (
-        <Card>
-          <label htmlFor="name">1. Add product name:</label>
-          <input
-            onChange={(event) => setName(event.target.value)}
-            value={name}
-            type="text"
-            id="name"
-            maxLength="40"
-            autoFocus
-            placeholder="E.g. Nivea face cream"
-          />
-          {name.length >= 40 && (
-            <p>The product name can consist of up to 40 characters.</p>
-          )}
+    <FormStyled onSubmit={(event) => event.preventDefault()}>
+      <Card isVisible={visibleCard === 'nameInput'}>
+        <label htmlFor="name">1. Add product name:</label>
+        <input
+          onChange={(event) => setName(event.target.value)}
+          value={name}
+          type="text"
+          id="name"
+          maxLength="40"
+          autoFocus
+          placeholder="E.g. Nivea face cream"
+        />
+        {name.length >= 40 && (
+          <p>The product name can consist of up to 40 characters.</p>
+        )}
 
-          <Button text="Next" onClick={() => setVisibleCard('dateInput')} />
-          <div className="step-indicator">
-            <Circle className="active" />
-            <Circle />
-            <Circle />
-            <Circle />
-          </div>
-        </Card>
-      )}
-
-      {visibleCard === 'dateInput' && (
-        <Card>
-          <label htmlFor="date">2. When did you open the product?</label>
-          <input
-            onChange={(event) => setDate(event.target.value)}
-            value={date}
-            type="date"
-            min="2018-01-01"
-            max={currentDate}
-            id="date"
-          />
-          <div className="button-container">
-            <Button
-              text="Back"
-              isCancel
-              onClick={() => setVisibleCard('nameInput')}
-            />
-            <Button text="Next" onClick={() => setVisibleCard('monthInput')} />
-          </div>
-          <div className="step-indicator">
-            <Circle />
-            <Circle className="active" />
-            <Circle />
-            <Circle />
-          </div>
-        </Card>
-      )}
-
-      {visibleCard === 'monthInput' && (
-        <Card>
-          <label htmlFor="month">
-            3. In how many months does the product expire?
-          </label>
-          <ContainerStyled>
-            <input
-              onChange={(event) => setMonth(event.target.value)}
-              value={month}
-              type="number"
-              min="1"
-              max="120"
-              id="month"
-              placeholder="E.g. 12"
-            />
-            <InfoPopover />
-          </ContainerStyled>
-          {month > 120 && (
-            <p>The product can expire up to 120 months after opening.</p>
-          )}
-          <div className="button-container">
-            <Button
-              text="Back"
-              isCancel
-              onClick={() => setVisibleCard('dateInput')}
-            />
-            <Button
-              text="Next"
-              onClick={() => setVisibleCard('sizeAndPriceInput')}
-            />
-          </div>
-          <div className="step-indicator">
-            <Circle />
-            <Circle />
-            <Circle className="active" />
-            <Circle />
-          </div>
-        </Card>
-      )}
-
-      {visibleCard === 'sizeAndPriceInput' && (
-        <Card>
-          <label htmlFor="Size">
-            4. Size of the product <span>(optional)</span>
-          </label>
-          <input
-            onChange={(event) => setSize(event.target.value)}
-            value={size}
-            maxLength="10"
-            id="size"
-            placeholder="50 ml"
-          />
-          {size.length >= 10 && (
-            <p>The product size can consist of up to 10 characters.</p>
-          )}
-
-          <label htmlFor="Price">
-            5. Price of the product <span>(optional)</span>
-          </label>
-          <input
-            onChange={(event) => setPrice(event.target.value)}
-            value={price}
-            maxLength="10"
-            id="price"
-            placeholder="12€"
-          />
-          {price.length >= 10 && (
-            <p>The product price can consist of up to 10 characters.</p>
-          )}
-          <div className="button-container">
-            <Button
-              text="Back"
-              isCancel
-              onClick={() => setVisibleCard('monthInput')}
-            />
-            <Button
-              text="Save"
-              disabled={!(name && date && month)}
-              onClick={() => setVisibleCard('success')}
-            />
-          </div>
-          <div className="step-indicator">
-            <Circle />
-            <Circle />
-            <Circle />
-            <Circle className="active" />
-          </div>
-        </Card>
-      )}
-      {visibleCard === 'success' && (
-        <div className="card">
-          <h2>The product has been successfully saved.</h2>
-          <i className="far fa-check-circle" aria-hidden="true" />
-          <Button text="Close" />
+        <Button text="Next" onClick={() => setVisibleCard('dateInput')}/>
+        <div className="step-indicator">
+          <Circle className="active"/>
+          <Circle/>
+          <Circle/>
+          <Circle/>
         </div>
-      )}
+      </Card>
+
+      <Card isVisible={visibleCard === 'dateInput'}>
+        <label htmlFor="date">2. When did you open the product?</label>
+        <input
+          onChange={(event) => setDate(event.target.value)}
+          value={date}
+          type="date"
+          min="2018-01-01"
+          max={currentDate}
+          id="date"
+        />
+        <div className="button-container">
+          <Button
+            text="Back"
+            isCancel
+            onClick={() => setVisibleCard('nameInput')}
+          />
+          <Button text="Next" onClick={() => setVisibleCard('monthInput')}/>
+        </div>
+        <div className="step-indicator">
+          <Circle/>
+          <Circle className="active"/>
+          <Circle/>
+          <Circle/>
+        </div>
+      </Card>
+
+      <Card isVisible={visibleCard === 'monthInput'}>
+        <label htmlFor="month">
+          3. In how many months does the product expire?
+        </label>
+        <ContainerStyled>
+          <input
+            onChange={(event) => setMonth(event.target.value)}
+            value={month}
+            type="number"
+            min="1"
+            max="120"
+            id="month"
+            placeholder="E.g. 12"
+          />
+          <InfoPopover/>
+        </ContainerStyled>
+        {month > 120 && (
+          <p>The product can expire up to 120 months after opening.</p>
+        )}
+        <div className="button-container">
+          <Button
+            text="Back"
+            isCancel
+            onClick={() => setVisibleCard('dateInput')}
+          />
+          <Button
+            text="Next"
+            onClick={() => setVisibleCard('sizeAndPriceInput')}
+          />
+        </div>
+        <div className="step-indicator">
+          <Circle/>
+          <Circle/>
+          <Circle className="active"/>
+          <Circle/>
+        </div>
+      </Card>
+
+      <Card isVisible={visibleCard === 'sizeAndPriceInput'}>
+        <label htmlFor="Size">
+          4. Size of the product <span>(optional)</span>
+        </label>
+        <input
+          onChange={(event) => setSize(event.target.value)}
+          value={size}
+          maxLength="10"
+          id="size"
+          placeholder="50 ml"
+        />
+        {size.length >= 10 && (
+          <p>The product size can consist of up to 10 characters.</p>
+        )}
+
+        <label htmlFor="Price">
+          5. Price of the product <span>(optional)</span>
+        </label>
+        <input
+          onChange={(event) => setPrice(event.target.value)}
+          value={price}
+          maxLength="10"
+          id="price"
+          placeholder="12€"
+        />
+        {price.length >= 10 && (
+          <p>The product price can consist of up to 10 characters.</p>
+        )}
+        <div className="button-container">
+          <Button
+            text="Back"
+            isCancel
+            onClick={() => setVisibleCard('monthInput')}
+          />
+          <Button
+            text="Save"
+            type="submit"
+            disabled={!(name && date && month)}
+            onClick={handleSubmit}
+          />
+        </div>
+        <div className="step-indicator">
+          <Circle/>
+          <Circle/>
+          <Circle/>
+          <Circle className="active"/>
+        </div>
+      </Card>
+      <Card isVisible={visibleCard === 'success'}>
+        <h2>The product has been successfully saved.</h2>
+        <i className="far fa-check-circle" aria-hidden="true"/>
+        <Button text="Close" type="button" onClick={handleCloseClick}/>
+      </Card>
     </FormStyled>
   )
 }
@@ -209,11 +203,10 @@ const FormStyled = styled.form`
     align-self: center;
     background-color: white;
     text-align: center;
-    margin: 10px 0;
     padding: 5px;
     border: 1px solid var(--primary);
     border-radius: 20px;
-    margin-bottom: 20px;
+    margin: 10px 0 20px 0;
 
     &:hover {
       border-color: var(--secondary);
@@ -269,11 +262,17 @@ const ContainerStyled = styled.div`
 `
 
 const Card = styled.div`
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 500px;
+
+  ${(props) =>
+  props.isVisible &&
+  css`
+      display: flex;
+    `}
 
   h2 {
     text-align: center;
