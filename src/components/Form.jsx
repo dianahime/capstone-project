@@ -41,7 +41,7 @@ export default function Form() {
   }, [isDrawerOpen])
 
   return (
-    <FormStyled onSubmit={handleSubmit}>
+    <FormStyled onSubmit={handleSubmit} data-testid="Form">
       <label htmlFor="name">1. Add product name:</label>
       <input
         onChange={(event) => setName(event.target.value)}

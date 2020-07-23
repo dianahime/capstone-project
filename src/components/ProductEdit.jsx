@@ -34,7 +34,7 @@ export default function ProductEdit() {
   }
 
   return (
-    <FormStyled onSubmit={handleSubmit}>
+    <FormStyled onSubmit={handleSubmit} data-testid="ProductEdit">
       <label htmlFor="name">Product Name</label>
       <input
         onChange={(event) => setName(event.target.value)}
@@ -79,7 +79,7 @@ export default function ProductEdit() {
         <p>The product can expire up to 120 months after opening.</p>
       )}
 
-      <label htmlFor="Size">
+      <label htmlFor="size">
         Size of the product <span>(optional)</span>
       </label>
       <input
@@ -93,7 +93,7 @@ export default function ProductEdit() {
         <p>The product size can consist of up to 10 characters.</p>
       )}
 
-      <label htmlFor="Price">
+      <label htmlFor="price">
         Price of the product <span>(optional)</span>
       </label>
       <input
