@@ -27,9 +27,9 @@ describe('Drawer.test.js', () => {
         visibleComponent: 'Form',
       },
     })
-    expect(screen.getByLabelText('1. Add product name:')).toBeInTheDocument()
-    expect(screen.queryByText(/Opened:/i)).not.toBeInTheDocument()
-    expect(screen.queryByLabelText('Product Name')).not.toBeInTheDocument()
+    expect(screen.getByTestId('Form')).toBeInTheDocument()
+    expect(screen.queryByTestId('ProductDetails')).not.toBeInTheDocument()
+    expect(screen.queryByTestId('ProductEdit')).not.toBeInTheDocument()
   })
 
   it('renders the productDetails component inside the drawer', () => {
@@ -46,9 +46,9 @@ describe('Drawer.test.js', () => {
         ], selected: '001',
       },
     })
-    expect(screen.getByText(/Opened:/i)).toBeInTheDocument()
-    expect(screen.queryByLabelText('1. Add product name:')).not.toBeInTheDocument()
-    expect(screen.queryByLabelText('Product Name')).not.toBeInTheDocument()
+    expect(screen.getByTestId('ProductDetails')).toBeInTheDocument()
+    expect(screen.queryByTestId('Form')).not.toBeInTheDocument()
+    expect(screen.queryByTestId('ProductEdit')).not.toBeInTheDocument()
   })
 
   it('renders the productEdit component inside the drawer', () => {
@@ -65,9 +65,9 @@ describe('Drawer.test.js', () => {
         ], selected: '001',
       },
     })
-    expect(screen.getByLabelText('Product Name')).toBeInTheDocument()
-    expect(screen.queryByText(/Opened:/i)).not.toBeInTheDocument()
-    expect(screen.queryByLabelText('1. Add product name:')).not.toBeInTheDocument()
+    expect(screen.getByTestId('ProductEdit')).toBeInTheDocument()
+    expect(screen.queryByTestId('Form')).not.toBeInTheDocument()
+    expect(screen.queryByTestId('ProductDetails')).not.toBeInTheDocument()
 
   })
 })
