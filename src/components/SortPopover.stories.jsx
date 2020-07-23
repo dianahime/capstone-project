@@ -7,15 +7,4 @@ export default {
   component: SortPopover,
 }
 
-export const SortPopoverDefault = () => (
-  <ContainerStyled>
-    <SortPopover />
-  </ContainerStyled>
-)
-
-const ContainerStyled = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin: 10px 20px 0 20px;
-`
+export const SortPopoverDefault = () => <SortPopover />
