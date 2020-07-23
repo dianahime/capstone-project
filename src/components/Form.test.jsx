@@ -1,8 +1,10 @@
 import React from 'react'
 import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent } from '@testing-library/react'
+import { render, screen } from '../test-utils'
 import Form from './Form.jsx'
+
 
 describe('Form.test.js', () => {
   it('provides the entered value to the name input after change event', () => {
@@ -12,7 +14,7 @@ describe('Form.test.js', () => {
     expect(nameInput.value).toBe('Face cream')
   })
 
-  /* it('provides the entered value to the date input after change event', () => {
+  it('provides the entered value to the date input after change event', () => {
     render(<Form />)
     const dateInput = screen.getByLabelText('2. When did you open the product?')
     fireEvent.change(dateInput, { target: { value: '2020-05-27' } })
@@ -48,7 +50,7 @@ describe('Form.test.js', () => {
 
   it('calls onSubmit with the entered values when name, date and month have been entered', () => {
     const onSubmit = jest.fn()
-    render(<Form onFormSubmit={onSubmit} />)
+    render(<Form onSubmit={onSubmit} />)
     const product = {
       name: 'Face cream',
       date: '2020-05-27',
@@ -72,14 +74,14 @@ describe('Form.test.js', () => {
     expect(onSubmit.mock.calls[0][0]).toEqual(product)
   })
 
-  it('resets the inputs when isVisible is changed to false', () => {
-    const { rerender } = render(<Form isVisible />)
+  it('resets the inputs when drawer is closed', () => {
+    render(<Form />, { drawer: { isOpen: true }, })
 
     const nameInput = screen.getByLabelText('1. Add product name:')
     fireEvent.change(nameInput, { target: { value: 'Face cream' } })
     expect(nameInput.value).toBe('Face cream')
 
-    rerender(<Form />)
+    render(<Form />, { drawer: { isOpen: false }, })
     expect(nameInput.value).toBe('')
-  }) */
+  })
 })
