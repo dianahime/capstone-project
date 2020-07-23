@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import dayjs from 'dayjs'
 
 const initialState = {
   allProducts: JSON.parse(localStorage.getItem('products')) || [],
@@ -15,6 +16,30 @@ const productsSlice = createSlice({
         allProducts: [...state.allProducts, action.payload],
       }
     },
+
+    productsSortedAlphabetically(state) {
+      return {
+        ...state,
+        allProducts: [...state.allProducts].sort((a,b) => a.name.localeCompare(b.name))
+      }
+    },
+
+    productsSortedByRecentlyAdded(state) {
+      return {
+        ...state,
+        allProducts: [...state.allProducts].sort((a, b) => (dayjs(a.createdAt).isBefore(dayjs(b.createdAt)) ? 1 : -1))
+      }
+    },
+
+    productsSortedBySoonToExpire(state) {
+      return {
+        ...state,
+        allProducts: [...state.allProducts].sort((a,b) =>
+          (dayjs(a.date).add(a.month, 'M').isAfter(dayjs(b.date).add(b.month, 'M')) ? 1 : -1))
+
+      }
+    },
+
     productSelected(state, action) {
       return {
         ...state,
@@ -47,4 +72,7 @@ export const {
   productSelected,
   productChanged,
   selectedProductRemoved,
+  productsSortedAlphabetically,
+  productsSortedByRecentlyAdded,
+  productsSortedBySoonToExpire,
 } = productsSlice.actions
