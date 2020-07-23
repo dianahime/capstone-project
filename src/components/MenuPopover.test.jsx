@@ -1,6 +1,7 @@
 import React from 'react'
 import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
+import { screen } from '@testing-library/react'
 import { render } from '../test-utils'
 import MenuPopover from './MenuPopover'
 
@@ -13,9 +14,9 @@ describe('MenuPopover.test.jsx', () => {
   })
 
   it('renders a edit element', () => {
-    const { getByText, getByRole } = render(<MenuPopover />)
-    getByRole('button').click()
-    expect(getByText('Edit')).toBeInTheDocument()
+    render(<MenuPopover />)
+    screen.getByRole('button').click()
+    expect(screen.getByText('Edit')).toBeInTheDocument()
   })
 
 })

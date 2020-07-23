@@ -5,6 +5,17 @@ import { render, screen } from '../test-utils'
 import Drawer from './Drawer.jsx'
 
 describe('Drawer.test.js', () => {
+  let PRODUCTS_MOCK_DATA
+  beforeEach(() => {
+    PRODUCTS_MOCK_DATA = {
+      allProducts: [
+        {
+          id: '001', name: 'test product', date: '2020-05-27', month: 6, size: '', price: ''
+        },
+      ], selected: '001',
+    }
+  })
+
   it('renders a button element', () => {
     render(<Drawer/>, {
       drawer: {
@@ -38,13 +49,7 @@ describe('Drawer.test.js', () => {
         isOpen: true,
         visibleComponent: 'ProductDetails',
       },
-      products: {
-        allProducts: [
-          {
-            id: '001', name: 'test product', date: '2020-05-27', month: 6,
-          },
-        ], selected: '001',
-      },
+      products: PRODUCTS_MOCK_DATA
     })
     expect(screen.getByTestId('ProductDetails')).toBeInTheDocument()
     expect(screen.queryByTestId('Form')).not.toBeInTheDocument()
@@ -57,13 +62,7 @@ describe('Drawer.test.js', () => {
         isOpen: true,
         visibleComponent: 'ProductEdit',
       },
-      products: {
-        allProducts: [
-          {
-            id: '001', name: 'test product', date: '2020-05-27', month: 6, size: '', price: ''
-          },
-        ], selected: '001',
-      },
+      products: PRODUCTS_MOCK_DATA
     })
     expect(screen.getByTestId('ProductEdit')).toBeInTheDocument()
     expect(screen.queryByTestId('Form')).not.toBeInTheDocument()
