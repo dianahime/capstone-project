@@ -3,7 +3,7 @@ import '@testing-library/jest-dom/extend-expect'
 import { render, screen } from '@testing-library/react'
 import Button from './Button.jsx'
 
-describe('Button.test.js', () => {
+describe('Button.test.jsx', () => {
   it('renders a button element', () => {
     render(<Button />)
     expect(screen.getByRole('button')).toBeInTheDocument()
