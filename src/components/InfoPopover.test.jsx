@@ -9,11 +9,4 @@ describe('InfoPopover.test.js', () => {
     const { getByRole } = render(<InfoPopover />)
     expect(getByRole('button')).toBeInTheDocument()
   })
-
-  it('renders a div element', () => {
-    const { getByText, getByRole } = render(<InfoPopover />)
-    getByRole('button').click()
-
-    //expect(getByText(/The time in months/i)).toBeInTheDocument()
-  })
 })
