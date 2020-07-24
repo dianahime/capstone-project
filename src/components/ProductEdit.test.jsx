@@ -7,14 +7,16 @@ import ProductEdit from './ProductEdit'
 
 
 describe('ProductEdit.test.jsx', () => {
+  const PRODUCTS_MOCK_DATA = {
+    allProducts: [
+      {
+        id: '001', name: 'test product', date: '2020-05-27', month: 6, size: '', price: ''
+      },
+    ], selected: '001',
+  }
+
   beforeEach(() => {
-    render(<ProductEdit />, {products: {
-        allProducts: [
-          {
-            id: '001', name: 'test product', date: '2020-05-27', month: 6,
-          },
-        ], selected: '001',
-      },})
+    render(<ProductEdit />, {products: PRODUCTS_MOCK_DATA})
   });
 
   it('renders the name of the product into the name input field', () => {

@@ -5,14 +5,16 @@ import { render, screen } from '../test-utils'
 import ProductDetails from './ProductDetails'
 
 describe('ProductDetails.test.jsx', () => {
+ const PRODUCTS_MOCK_DATA = {
+    allProducts: [
+      {
+        id: '001', name: 'test product', date: '2020-05-27', month: 6, size: '', price: ''
+      },
+    ], selected: '001',
+  }
+
   beforeEach(() => {
-    render(<ProductDetails />, {products: {
-        allProducts: [
-          {
-            id: '001', name: 'test product', date: '2020-05-27', month: 6,
-          },
-        ], selected: '001',
-      },})
+    render(<ProductDetails />, {products: PRODUCTS_MOCK_DATA})
   });
 
   it('renders a section element', () => {
