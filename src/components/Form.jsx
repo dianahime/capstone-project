@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { productAdded } from '../store/productsSlice'
 import { drawerIsOpened } from '../store/drawerSlice'
 import { v4 as uuid } from 'uuid'
+import zenscroll from 'zenscroll'
+import StepIndicator from './StepIndicator'
 
 export default function Form() {
   const [name, setName] = useState('')
@@ -40,6 +42,7 @@ export default function Form() {
   const handleCloseClick = () => {
     dispatch(drawerIsOpened(false))
     resetForm()
+    zenscroll.toY(0, 1000)
   }
 
   useEffect(() => {
@@ -63,13 +66,8 @@ export default function Form() {
           <p>The product name can consist of up to 40 characters.</p>
         )}
 
-        <Button text="Next" onClick={() => setVisibleCard('dateInput')}/>
-        <div className="step-indicator">
-          <Circle className="active"/>
-          <Circle/>
-          <Circle/>
-          <Circle/>
-        </div>
+        <Button testid="nameNext" text="Next" onClick={() => setVisibleCard('dateInput')}/>
+        <StepIndicator step={1} />
       </Card>
 
       <Card isVisible={visibleCard === 'dateInput'}>
@@ -88,14 +86,9 @@ export default function Form() {
             isCancel
             onClick={() => setVisibleCard('nameInput')}
           />
-          <Button text="Next" onClick={() => setVisibleCard('monthInput')}/>
+          <Button testid="dateNext"  text="Next" onClick={() => setVisibleCard('monthInput')}/>
         </div>
-        <div className="step-indicator">
-          <Circle/>
-          <Circle className="active"/>
-          <Circle/>
-          <Circle/>
-        </div>
+        <StepIndicator step={2} />
       </Card>
 
       <Card isVisible={visibleCard === 'monthInput'}>
@@ -124,16 +117,12 @@ export default function Form() {
             onClick={() => setVisibleCard('dateInput')}
           />
           <Button
+            testid="monthNext"
             text="Next"
             onClick={() => setVisibleCard('sizeAndPriceInput')}
           />
         </div>
-        <div className="step-indicator">
-          <Circle/>
-          <Circle/>
-          <Circle className="active"/>
-          <Circle/>
-        </div>
+        <StepIndicator step={3} />
       </Card>
 
       <Card isVisible={visibleCard === 'sizeAndPriceInput'}>
@@ -171,23 +160,19 @@ export default function Form() {
             onClick={() => setVisibleCard('monthInput')}
           />
           <Button
+            testid="save"
             text="Save"
             type="submit"
             disabled={!(name && date && month)}
             onClick={handleSubmit}
           />
         </div>
-        <div className="step-indicator">
-          <Circle/>
-          <Circle/>
-          <Circle/>
-          <Circle className="active"/>
-        </div>
+        <StepIndicator step={4} />
       </Card>
       <Card isVisible={visibleCard === 'success'}>
         <h2>The product has been successfully saved.</h2>
         <i className="far fa-check-circle" aria-hidden="true"/>
-        <Button text="Close" type="button" onClick={handleCloseClick}/>
+        <Button testid="close" text="Close" type="button" onClick={handleCloseClick}/>
       </Card>
     </FormStyled>
   )
@@ -293,16 +278,5 @@ const Card = styled.div`
     font-size: 2.5rem;
     color: var(--secondary);
     margin: 20px 0 40px 0;
-  }
-`
-const Circle = styled.div`
-  width: 5px;
-  height: 5px;
-  margin: 0 3px;
-  border-radius: 50%;
-  background-color: var(--primary);
-
-  &.active {
-    background-color: var(--secondary);
   }
 `
