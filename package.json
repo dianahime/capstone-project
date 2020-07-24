@@ -15,7 +15,8 @@
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
     "styled-components": "^5.1.1",
-    "uuid": "^8.2.0"
+    "uuid": "^8.2.0",
+    "zenscroll": "^4.0.2"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -10,8 +10,13 @@ describe('Product Details', () => {
     const itemMonth = 6
 
     cy.get('#name').type(itemText)
+    cy.get('[data-testid=nameNext]').click()
     cy.get('#date').type(itemOpeningDate)
-    cy.get('#month').type(itemMonth).type('{enter}')
+    cy.get('[data-testid=dateNext]').click()
+    cy.get('#month').type(itemMonth)
+    cy.get('[data-testid=monthNext]').click()
+    cy.get('[data-testid=save]').click()
+    cy.get('[data-testid=close]').click()
 
     cy.get('li').click()
 
