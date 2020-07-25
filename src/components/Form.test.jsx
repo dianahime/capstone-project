@@ -105,7 +105,6 @@ describe('Form submit', () => {
     screen.getByText('Save').click()
     expect(dispatch.mock.calls).toEqual([
       [productAdded({ id: 'jujuid', ...PRODUCT_MOCK_DATA })],
-      [drawerIsOpened(false)],
     ])
   })
 })

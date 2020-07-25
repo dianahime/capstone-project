@@ -51,7 +51,7 @@ export default function Form() {
 
   return (
     <FormStyled onSubmit={(event) => event.preventDefault()} data-testid="Form">
-      <Card isVisible={visibleCard === 'nameInput'} data-testid="Form">
+      <Card isVisible={visibleCard === 'nameInput'}>
         <label htmlFor="name">1. Add product name:</label>
         <input
           onChange={(event) => setName(event.target.value)}
