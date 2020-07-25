@@ -14,7 +14,9 @@ describe('Input form', () => {
     const typeMonth = 12
 
     cy.get('#name').type(typedText).should('have.value', typedText)
+    cy.get('[data-testid=nameNext]').click()
     cy.get('#date').type(typedDate).should('have.value', typedDate)
+    cy.get('[data-testid=dateNext]').click()
     cy.get('#month').type(typeMonth).should('have.value', typeMonth)
   })
 
@@ -25,8 +27,13 @@ describe('Input form', () => {
 
     it('adds a new product on submit', () => {
       cy.get('#name').type(itemText)
+      cy.get('[data-testid=nameNext]').click()
       cy.get('#date').type(itemOpeningDate)
-      cy.get('#month').type(itemMonth).type('{enter}')
+      cy.get('[data-testid=dateNext]').click()
+      cy.get('#month').type(itemMonth)
+      cy.get('[data-testid=monthNext]').click()
+      cy.get('[data-testid=save]').click()
+      cy.get('[data-testid=close]').click()
 
       cy.get('#name').should('have.value', '')
       cy.get('#date').should('have.value', '')
@@ -38,10 +45,15 @@ describe('Input form', () => {
 
     it('adds a new product with additional fields on submit', () => {
       cy.get('#name').type(itemText)
+      cy.get('[data-testid=nameNext]').click()
       cy.get('#date').type(itemOpeningDate)
+      cy.get('[data-testid=dateNext]').click()
       cy.get('#month').type(itemMonth)
+      cy.get('[data-testid=monthNext]').click()
       cy.get('#size').type('50ml')
-      cy.get('#price').type('3,55$').type('{enter}')
+      cy.get('#price').type('3,55$')
+      cy.get('[data-testid=save]').click()
+      cy.get('[data-testid=close]').click()
 
       cy.get('#name').should('have.value', '')
       cy.get('#date').should('have.value', '')
@@ -55,34 +67,52 @@ describe('Input form', () => {
 
     it('adds multiple products', () => {
       cy.get('#name').type(itemText)
+      cy.get('[data-testid=nameNext]').click()
       cy.get('#date').type(itemOpeningDate)
-      cy.get('#month').type(itemMonth).type('{enter}')
+      cy.get('[data-testid=dateNext]').click()
+      cy.get('#month').type(itemMonth)
+      cy.get('[data-testid=monthNext]').click()
+      cy.get('[data-testid=save]').click()
+      cy.get('[data-testid=close]').click()
 
       cy.get('[data-testid=icon]').click()
       cy.get('#name').type('Nivea night face cream long product name')
+      cy.get('[data-testid=nameNext]').click()
       cy.get('#date').type(itemOpeningDate)
-      cy.get('#month').type(itemMonth).type('{enter}')
+      cy.get('[data-testid=dateNext]').click()
+      cy.get('#month').type(itemMonth)
+      cy.get('[data-testid=monthNext]').click()
+      cy.get('[data-testid=save]').click()
+      cy.get('[data-testid=close]').click()
 
       cy.get('[data-testid=icon]').click()
       cy.get('#name').type('Hairspray')
+      cy.get('[data-testid=nameNext]').click()
       cy.get('#date').type(itemOpeningDate)
-      cy.get('#month').type(itemMonth).type('{enter}')
+      cy.get('[data-testid=dateNext]').click()
+      cy.get('#month').type(itemMonth)
+      cy.get('[data-testid=monthNext]').click()
+      cy.get('[data-testid=save]').click()
+      cy.get('[data-testid=close]').click()
 
       cy.get('li').should('have.length', 3)
     })
 
     it('has an info popover', () => {
+      cy.get('[data-testid=nameNext]').click()
+      cy.get('[data-testid=dateNext]').click()
       cy.get('.fa-question').click()
-      cy.get('.content').should(
-        'contain',
-        'The time in months when the product will remain in good condition after you have used the product for the first time. A symbol of an open cream jar is usually used and the time in months can be inside the symbol or alongside it.'
-      )
     })
 
     it('saves products to localStorage', () => {
       cy.get('#name').type(itemText)
+      cy.get('[data-testid=nameNext]').click()
       cy.get('#date').type(itemOpeningDate)
-      cy.get('#month').type(itemMonth).type('{enter}')
+      cy.get('[data-testid=dateNext]').click()
+      cy.get('#month').type(itemMonth)
+      cy.get('[data-testid=monthNext]').click()
+      cy.get('[data-testid=save]').click()
+      cy.get('[data-testid=close]').click()
 
       cy.visit('/')
 

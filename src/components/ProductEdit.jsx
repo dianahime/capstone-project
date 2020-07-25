@@ -42,8 +42,6 @@ export default function ProductEdit() {
         type="text"
         id="name"
         maxLength="40"
-        required
-        autoFocus
         placeholder="E.g. Nivea face cream"
       />
       {name.length >= 40 && (
@@ -58,7 +56,6 @@ export default function ProductEdit() {
         min="2018-01-01"
         max={currentDate}
         id="date"
-        required
       />
 
       <label htmlFor="month">Months until expiration</label>
@@ -70,7 +67,6 @@ export default function ProductEdit() {
           min="1"
           max="120"
           id="month"
-          required
           placeholder="E.g. 12"
         />
         <InfoPopover />

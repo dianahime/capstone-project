@@ -27,7 +27,7 @@ export default function MenuPopover() {
       <CardStyled>
         <div className="item" onClick={handleEditClick}>
           <p>Edit</p>
-          <i className="fas fa-pen" />
+          <i className="fas fa-pen" aria-hidden="true" />
         </div>
         <div className="item" onClick={handleDeleteClick}>
           <p className="delete">Delete</p>
