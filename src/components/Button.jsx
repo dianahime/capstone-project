@@ -8,6 +8,7 @@ export default function Button({
   isCancel,
   isDelete,
   className,
+  type
 }) {
   return (
     <ButtonStyled
@@ -16,6 +17,7 @@ export default function Button({
       isCancel={isCancel}
       isDelete={isDelete}
       className={className}
+      type={type}
     >
       {text}
     </ButtonStyled>

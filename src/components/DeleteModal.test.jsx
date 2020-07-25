@@ -2,6 +2,18 @@ import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { render, screen } from '../test-utils'
 import DeleteModal from './DeleteModal'
+import { drawerIsOpened } from '../store/drawerSlice'
+import { selectedProductRemoved } from '../store/productsSlice'
+import { useDispatch } from 'react-redux'
+
+jest.mock('react-redux', () => {
+  const dispatch = jest.fn()
+
+  return ({
+    ...jest.requireActual('react-redux'),
+    useDispatch: () => dispatch,
+  })
+})
 
 describe('DeleteModal.test.jsx', () => {
   it('renders a h2', () => {
@@ -26,8 +38,18 @@ describe('DeleteModal.test.jsx', () => {
 
   it('it closes the modal when cancel is clicked', () => {
     const close = jest.fn()
-    const { getByText } = render(<DeleteModal isOpen onClose={close} />)
+    const { getByText } = render(<DeleteModal isOpen onClose={close}/>)
     getByText('Cancel').click()
     expect(close).toHaveBeenCalled()
+  })
+
+  it('it dispatches actions when delete is clicked', () => {
+    const dispatch = useDispatch()
+    const { getByText } = render(<DeleteModal isOpen/>)
+    getByText('Delete').click()
+    expect(dispatch.mock.calls).toEqual([
+      [selectedProductRemoved()],
+      [drawerIsOpened(false)]
+    ])
   })
 })

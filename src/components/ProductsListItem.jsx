@@ -36,7 +36,7 @@ const LiStyled = styled.li`
   overflow: hidden;
   background: var(--white, #edf6f9);
   border-radius: 20px;
-  box-shadow: 10px 10px 20px 0px #c9d1d4, -10px -10px 20px 0px #ffffff;
+  box-shadow: 10px 10px 20px 0 #c9d1d4, -10px -10px 20px 0px #ffffff;
 
   p {
     font-size: 1.1rem;

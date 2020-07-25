@@ -108,7 +108,7 @@ export default function ProductEdit() {
       )}
 
       <div className="button-container">
-        <Button text="Cancel" isCancel onClick={handleCancelClick} />
+        <Button text="Cancel" type="button" isCancel onClick={handleCancelClick} />
         <Button text="Save" />
       </div>
     </FormStyled>

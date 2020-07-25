@@ -4,20 +4,36 @@ import '@testing-library/jest-dom/extend-expect'
 import { fireEvent } from '@testing-library/react'
 import { render, screen } from '../test-utils'
 import ProductEdit from './ProductEdit'
+import { useDispatch } from 'react-redux'
+import { displayDrawerContent} from '../store/drawerSlice'
+import { productChanged } from '../store/productsSlice'
 
+jest.mock('react-redux', () => {
+  const dispatch = jest.fn()
+
+  return ({
+    ...jest.requireActual('react-redux'),
+    useDispatch: () => dispatch,
+  })
+})
 
 describe('ProductEdit.test.jsx', () => {
+  afterEach(() => {
+    const dispatch = useDispatch()
+    dispatch.mockClear()
+  })
+
   const PRODUCTS_MOCK_DATA = {
     allProducts: [
       {
-        id: '001', name: 'test product', date: '2020-05-27', month: 6, size: '', price: ''
+        id: '001', name: 'test product', date: '2020-05-27', month: 6, size: '', price: '',
       },
     ], selected: '001',
   }
 
   beforeEach(() => {
-    render(<ProductEdit />, {products: PRODUCTS_MOCK_DATA})
-  });
+    render(<ProductEdit/>, { products: PRODUCTS_MOCK_DATA })
+  })
 
   it('renders the name of the product into the name input field', () => {
     const nameInput = screen.getByLabelText('Product Name')
@@ -52,9 +68,20 @@ describe('ProductEdit.test.jsx', () => {
     expect(sizeInput.value).toBe('50ml')
   })
 
-  it('calls "onClick" prop on button click', () => {
-    const onClick = jest.fn()
+  it('dispatches displayDrawerContent on cancel click', () => {
+    const dispatch = useDispatch()
     screen.getByText('Cancel').click()
-    expect(onClick).toHaveBeenCalled()
+    expect(dispatch.mock.calls).toEqual([
+      [displayDrawerContent('ProductDetails')]
+    ])
+  })
+
+  it('dispatches on button click', () => {
+    const dispatch = useDispatch()
+    screen.getByText('Save').click()
+    expect(dispatch.mock.calls).toEqual([
+      [productChanged(PRODUCTS_MOCK_DATA.allProducts[0])],
+      [displayDrawerContent('ProductDetails')],
+    ])
   })
 })
