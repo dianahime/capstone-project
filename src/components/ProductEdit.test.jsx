@@ -21,17 +21,17 @@ describe('ProductEdit.test.jsx', () => {
 
   it('renders the name of the product into the name input field', () => {
     const nameInput = screen.getByLabelText('Product Name')
-    expect(nameInput.value). toBe('test product')
+    expect(nameInput.value).toBe(PRODUCTS_MOCK_DATA.allProducts[0].name)
   })
 
   it('renders the date of the product into the date input field', () => {
     const dateInput = screen.getByLabelText('Product opened')
-    expect(dateInput.value).toBe('2020-05-27')
+    expect(dateInput.value).toBe(PRODUCTS_MOCK_DATA.allProducts[0].date)
   })
 
   it('renders the amount of months of the product into the month input field', () => {
     const monthInput = screen.getByLabelText('Months until expiration')
-    expect(monthInput.value).toBe('6')
+    expect(monthInput.value).toBe(PRODUCTS_MOCK_DATA.allProducts[0].month.toString())
   })
 
   it('changes the value of the product name', () => {

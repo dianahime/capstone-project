@@ -11,7 +11,7 @@ describe('Button.test.jsx', () => {
 
   it('renders a text inside button element', () => {
     const testChildren = 'Foo.Bar'
-    render(<Button text={testChildren}></Button>)
+    render(<Button text={testChildren} />)
     expect(screen.getByText(testChildren)).toBeInTheDocument()
   })
 

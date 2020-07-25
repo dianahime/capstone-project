@@ -86,15 +86,4 @@ describe('Form submit', () => {
     screen.getByText('Save').click()
     expect(onSubmit.mock.calls[0][0]).toEqual(PRODUCT_MOCK_DATA)
   })
-
-  it('resets the inputs when drawer is closed', () => {
-    render(<Form />, { drawer: { isOpen: true }, })
-
-    const nameInput = screen.getByLabelText('1. Add product name:')
-    fireEvent.change(nameInput, { target: { value: PRODUCT_MOCK_DATA.name } })
-    expect(nameInput.value).toBe('PRODUCT_MOCK_DATA.name')
-
-    render(<Form />, { drawer: { isOpen: false }, })
-    expect(nameInput.value).toBe('')
-  })
 })
