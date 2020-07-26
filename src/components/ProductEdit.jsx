@@ -114,8 +114,11 @@ export default function ProductEdit() {
 const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
+  overflow: auto;
+  padding: 25px;
 
   input {
+    flex-shrink: 0;
     font-size: 1.2rem;
     display: block;
     align-self: center;
@@ -158,6 +161,7 @@ const FormStyled = styled.form`
 
   .button-container {
     display: flex;
+    flex-grow: 1;
     justify-content: space-around;
     width: 100%;
     margin-top: 20px;
@@ -169,6 +173,7 @@ const FormStyled = styled.form`
 
   #date {
     width: 180px;
+    height: 30px;
   }
 
   #month,

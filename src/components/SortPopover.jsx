@@ -44,7 +44,6 @@ export default function SortPopover() {
 }
 
 const PopoverStyled = styled(Popover)`
-  height: 20px;
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -92,6 +91,7 @@ const ButtonStyled = styled.button`
 
 const IconStyled = styled.i`
   font-size: 1.4rem;
+  margin-bottom: 5px;
 
 `
 

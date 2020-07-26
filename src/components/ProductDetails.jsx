@@ -31,6 +31,7 @@ export default function ProductDetails() {
 }
 
 const ProductStyled = styled.section`
+  height: 100%;
   padding: 0 20px;
   h1 {
     word-break: break-all;
@@ -44,6 +45,7 @@ const ProductStyled = styled.section`
   .titleContainer {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 
     p {
       margin: 0;
