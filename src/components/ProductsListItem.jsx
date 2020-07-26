@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
 import { useDispatch } from 'react-redux'
 import { productSelected } from '../store/productsSlice'
 import { displayDrawerContent } from '../store/drawerSlice'
 
-export default function ProductsListItem({ product }) {
+const ProductsListItem = forwardRef(({ product }, ref) => {
   const dispatch = useDispatch()
   const parsedDate = dayjs(product.date)
 
@@ -15,14 +15,16 @@ export default function ProductsListItem({ product }) {
   }
 
   return (
-    <LiStyled onClick={handleClick}>
+    <LiStyled onClick={handleClick} ref={ref}>
       <p className="name">{product.name}</p>
       <p className="expiring-date">
         Expires: {parsedDate.add(product.month, 'M').format('DD.MM.YYYY')}
       </p>
     </LiStyled>
   )
-}
+});
+
+export default ProductsListItem
 
 const LiStyled = styled.li`
   display: flex;
@@ -32,11 +34,16 @@ const LiStyled = styled.li`
   padding: 20px;
   min-height: 100px;
   width: 300px;
-  margin-top: 20px;
+  margin: 20px auto 0 auto;
   overflow: hidden;
   background: var(--white, #edf6f9);
   border-radius: 20px;
-  box-shadow: 10px 10px 20px 0px #c9d1d4, -10px -10px 20px 0px #ffffff;
+  box-shadow: 10px 10px 20px 0 #c9d1d4, -10px -10px 20px 0 #fff;
+  transition: box-shadow 0.2s linear;
+
+  &:hover {
+    box-shadow: 1px 1px 2px 0 #c9d1d4, -1px -1px 2px 0 #fff;
+  }
 
   p {
     font-size: 1.1rem;
