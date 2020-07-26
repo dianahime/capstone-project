@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styled, { css } from 'styled-components'
 import Button from './Button'
 import dayjs from 'dayjs'
@@ -9,6 +9,7 @@ import { drawerIsOpened } from '../store/drawerSlice'
 import { v4 as uuid } from 'uuid'
 import zenscroll from 'zenscroll'
 import StepIndicator from './StepIndicator'
+import ReactSwipe from 'react-swipe'
 
 export default function Form() {
   const [name, setName] = useState('')
@@ -17,7 +18,7 @@ export default function Form() {
   const [size, setSize] = useState('')
   const [price, setPrice] = useState('')
 
-  const [visibleCard, setVisibleCard] = useState('nameInput')
+  const [isCompleted, setIsCompleted] = useState(false)
 
   const isDrawerOpen = useSelector((state) => state.drawer.isOpen)
 
@@ -30,12 +31,12 @@ export default function Form() {
     setMonth('')
     setSize('')
     setPrice('')
-    setVisibleCard('nameInput')
+    setIsCompleted(false)
   }
   const handleSubmit = () => {
     if (name && date && month) {
       dispatch(productAdded({ id: uuid(), createdAt: dayjs().format(), name, date, month, size, price }))
-      setVisibleCard('success')
+      setIsCompleted(true)
     }
   }
 
@@ -49,138 +50,147 @@ export default function Form() {
     !isDrawerOpen && resetForm()
   }, [isDrawerOpen])
 
+  const swipe = useRef()
+
+  const next = () => swipe.current.next()
+  const back = () => swipe.current.prev()
+
   return (
     <FormStyled onSubmit={(event) => event.preventDefault()}>
-      <Card isVisible={visibleCard === 'nameInput'}>
-        <label htmlFor="name">1. Add product name:</label>
-        <input
-          onChange={(event) => setName(event.target.value)}
-          value={name}
-          type="text"
-          id="name"
-          maxLength="40"
-          autoFocus
-          placeholder="E.g. Nivea face cream"
-        />
-        {name.length >= 40 && (
-          <p>The product name can consist of up to 40 characters.</p>
-        )}
-
-        <Button testid="nameNext" text="Next" onClick={() => setVisibleCard('dateInput')}/>
-        <StepIndicator step={1} />
-      </Card>
-
-      <Card isVisible={visibleCard === 'dateInput'}>
-        <label htmlFor="date">2. When did you open the product?</label>
-        <input
-          onChange={(event) => setDate(event.target.value)}
-          value={date}
-          type="date"
-          min="2018-01-01"
-          max={currentDate}
-          id="date"
-        />
-        <div className="button-container">
-          <Button
-            text="Back"
-            isCancel
-            onClick={() => setVisibleCard('nameInput')}
-          />
-          <Button testid="dateNext"  text="Next" onClick={() => setVisibleCard('monthInput')}/>
-        </div>
-        <StepIndicator step={2} />
-      </Card>
-
-      <Card isVisible={visibleCard === 'monthInput'}>
-        <label htmlFor="month">
-          3. In how many months does the product expire?
-        </label>
-        <ContainerStyled>
+      {!isCompleted &&
+      <ReactSwipe ref={swipe} swipeOptions={{ continuous: false }}>
+        <Card>
+          <label htmlFor="name">1. Add product name:</label>
           <input
-            onChange={(event) => setMonth(event.target.value)}
-            value={month}
-            type="number"
-            min="1"
-            max="120"
-            id="month"
-            placeholder="E.g. 12"
+            onChange={(event) => setName(event.target.value)}
+            value={name}
+            type="text"
+            id="name"
+            maxLength="40"
+            placeholder="E.g. Nivea face cream"
           />
-          <InfoPopover/>
-        </ContainerStyled>
-        {month > 120 && (
-          <p>The product can expire up to 120 months after opening.</p>
-        )}
-        <div className="button-container">
-          <Button
-            text="Back"
-            isCancel
-            onClick={() => setVisibleCard('dateInput')}
-          />
-          <Button
-            testid="monthNext"
-            text="Next"
-            onClick={() => setVisibleCard('sizeAndPriceInput')}
-          />
-        </div>
-        <StepIndicator step={3} />
-      </Card>
+          {name.length >= 40 && (
+            <p>The product name can consist of up to 40 characters.</p>
+          )}
 
-      <Card isVisible={visibleCard === 'sizeAndPriceInput'}>
-        <label htmlFor="Size">
-          4. Size of the product <span>(optional)</span>
-        </label>
-        <input
-          onChange={(event) => setSize(event.target.value)}
-          value={size}
-          maxLength="10"
-          id="size"
-          placeholder="50 ml"
-        />
-        {size.length >= 10 && (
-          <p>The product size can consist of up to 10 characters.</p>
-        )}
+          <Button testid="nameNext" text="Next" onClick={next}/>
+          <StepIndicator step={1}/>
+        </Card>
 
-        <label htmlFor="Price">
-          5. Price of the product <span>(optional)</span>
-        </label>
-        <input
-          onChange={(event) => setPrice(event.target.value)}
-          value={price}
-          maxLength="10"
-          id="price"
-          placeholder="12€"
-        />
-        {price.length >= 10 && (
-          <p>The product price can consist of up to 10 characters.</p>
-        )}
-        <div className="button-container">
-          <Button
-            text="Back"
-            isCancel
-            onClick={() => setVisibleCard('monthInput')}
+        <Card>
+          <label htmlFor="date">2. When did you open the product?</label>
+          <input
+            onChange={(event) => setDate(event.target.value)}
+            value={date}
+            type="date"
+            min="2018-01-01"
+            max={currentDate}
+            id="date"
           />
-          <Button
-            testid="save"
-            text="Save"
-            type="submit"
-            disabled={!(name && date && month)}
-            onClick={handleSubmit}
+          <div className="button-container">
+            <Button
+              text="Back"
+              isCancel
+              onClick={back}
+            />
+            <Button testid="dateNext" text="Next" onClick={next}/>
+          </div>
+          <StepIndicator step={2}/>
+        </Card>
+
+        <Card>
+          <label htmlFor="month">
+            3. In how many months does the product expire?
+          </label>
+          <ContainerStyled>
+            <input
+              onChange={(event) => setMonth(event.target.value)}
+              value={month}
+              type="number"
+              min="1"
+              max="120"
+              id="month"
+              placeholder="E.g. 12"
+            />
+            <InfoPopover/>
+          </ContainerStyled>
+          {month > 120 && (
+            <p>The product can expire up to 120 months after opening.</p>
+          )}
+          <div className="button-container">
+            <Button
+              text="Back"
+              isCancel
+              onClick={back}
+            />
+            <Button
+              testid="monthNext"
+              text="Next"
+              onClick={next}
+            />
+          </div>
+          <StepIndicator step={3}/>
+        </Card>
+
+        <Card>
+          <label htmlFor="Size">
+            4. Size of the product <span>(optional)</span>
+          </label>
+          <input
+            onChange={(event) => setSize(event.target.value)}
+            value={size}
+            maxLength="10"
+            id="size"
+            placeholder="50 ml"
           />
-        </div>
-        <StepIndicator step={4} />
-      </Card>
-      <Card isVisible={visibleCard === 'success'}>
-        <h2>The product has been successfully saved.</h2>
-        <i className="far fa-check-circle" aria-hidden="true"/>
-        <Button testid="close" text="Close" type="button" onClick={handleCloseClick}/>
-      </Card>
+          {size.length >= 10 && (
+            <p>The product size can consist of up to 10 characters.</p>
+          )}
+
+          <label htmlFor="Price">
+            5. Price of the product <span>(optional)</span>
+          </label>
+          <input
+            onChange={(event) => setPrice(event.target.value)}
+            value={price}
+            maxLength="10"
+            id="price"
+            placeholder="12€"
+          />
+          {price.length >= 10 && (
+            <p>The product price can consist of up to 10 characters.</p>
+          )}
+          <div className="button-container">
+            <Button
+              text="Back"
+              isCancel
+              onClick={back}
+            />
+            <Button
+              testid="save"
+              text="Save"
+              type="submit"
+              disabled={!(name && date && month)}
+              onClick={handleSubmit}
+            />
+          </div>
+          <StepIndicator step={4}/>
+        </Card>
+      </ReactSwipe>
+      }
+      {isCompleted &&
+        <Card>
+          <h2>The product has been successfully saved.</h2>
+          <i className="far fa-check-circle" aria-hidden="true"/>
+          <Button testid="close" text="Close" type="button" onClick={handleCloseClick}/>
+        </Card>
+      }
     </FormStyled>
   )
 }
 
 const FormStyled = styled.form`
-  display: flex;
-  flex-direction: column;
+  height: 100%;
 
   input {
     font-size: 1.2rem;
@@ -247,17 +257,11 @@ const ContainerStyled = styled.div`
 `
 
 const Card = styled.div`
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 500px;
-
-  ${(props) =>
-  props.isVisible &&
-  css`
-      display: flex;
-    `}
 
   h2 {
     text-align: center;
