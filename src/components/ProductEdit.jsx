@@ -8,8 +8,8 @@ import { productChanged } from '../store/productsSlice'
 import { displayDrawerContent } from '../store/drawerSlice'
 
 export default function ProductEdit() {
-  const productId = useSelector((state) => state.products.selected)
-  const allProducts = useSelector((state) => state.products.allProducts)
+  const productId = useSelector((state) => state.products.present.selected)
+  const allProducts = useSelector((state) => state.products.present.allProducts)
   const product = allProducts.find((product) => product.id === productId)
 
   const dispatch = useDispatch()

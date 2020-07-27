@@ -5,6 +5,8 @@ import { Dialog } from '@blueprintjs/core'
 import { useDispatch } from 'react-redux'
 import { selectedProductRemoved } from '../store/productsSlice'
 import { drawerIsOpened } from '../store/drawerSlice'
+import { AppToaster } from '../toaster'
+import { ActionCreators } from "redux-undo";
 
 export default function DeleteModal({ isOpen, onClose }) {
   const dispatch = useDispatch()
@@ -12,6 +14,14 @@ export default function DeleteModal({ isOpen, onClose }) {
   const handleDeleteClick = () => {
     dispatch(selectedProductRemoved())
     dispatch(drawerIsOpened(false))
+    AppToaster.show({
+      message: "Product has been deleted.",
+      className: 'toast',
+      action: {
+        text: "Undo",
+        onClick: () => dispatch(ActionCreators.undo()),
+      }
+    })
   }
 
   return (

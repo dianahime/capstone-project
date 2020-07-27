@@ -7,7 +7,7 @@ import SortPopover from './SortPopover'
 import FlipMove from 'react-flip-move'
 
 export default function ProductsList() {
-  const products = useSelector((state) => state.products.allProducts)
+  const products = useSelector((state) => state.products.present.allProducts)
   const isBlurred = useSelector((state) => state.drawer.isOpen)
 
   return products.length ? (
