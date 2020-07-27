@@ -34,7 +34,7 @@ export default function Form() {
   }
   const handleSubmit = () => {
     if (name && date && month) {
-      dispatch(productAdded({ id: uuid(), name, date, month, size, price }))
+      dispatch(productAdded({ id: uuid(), createdAt: dayjs().format(), name, date, month, size, price }))
       setVisibleCard('success')
     }
   }

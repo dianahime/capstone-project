@@ -25,13 +25,16 @@ describe('Input form', () => {
     const itemOpeningDate = '2020-05-27'
     const itemMonth = 6
 
-    it('adds a new product on submit', () => {
+    beforeEach(() => {
       cy.get('#name').type(itemText)
       cy.get('[data-testid=nameNext]').click()
       cy.get('#date').type(itemOpeningDate)
       cy.get('[data-testid=dateNext]').click()
       cy.get('#month').type(itemMonth)
       cy.get('[data-testid=monthNext]').click()
+    })
+
+    it('adds a new product on submit', () => {
       cy.get('[data-testid=save]').click()
       cy.get('[data-testid=close]').click()
 
@@ -44,12 +47,6 @@ describe('Input form', () => {
     })
 
     it('adds a new product with additional fields on submit', () => {
-      cy.get('#name').type(itemText)
-      cy.get('[data-testid=nameNext]').click()
-      cy.get('#date').type(itemOpeningDate)
-      cy.get('[data-testid=dateNext]').click()
-      cy.get('#month').type(itemMonth)
-      cy.get('[data-testid=monthNext]').click()
       cy.get('#size').type('50ml')
       cy.get('#price').type('3,55$')
       cy.get('[data-testid=save]').click()
@@ -66,12 +63,7 @@ describe('Input form', () => {
     })
 
     it('adds multiple products', () => {
-      cy.get('#name').type(itemText)
-      cy.get('[data-testid=nameNext]').click()
-      cy.get('#date').type(itemOpeningDate)
-      cy.get('[data-testid=dateNext]').click()
-      cy.get('#month').type(itemMonth)
-      cy.get('[data-testid=monthNext]').click()
+
       cy.get('[data-testid=save]').click()
       cy.get('[data-testid=close]').click()
 
@@ -99,18 +91,15 @@ describe('Input form', () => {
     })
 
     it('has an info popover', () => {
+      cy.get('[data-testid=save]').click()
+      cy.get('[data-testid=close]').click()
+      cy.get('[data-testid=icon]').click()
       cy.get('[data-testid=nameNext]').click()
       cy.get('[data-testid=dateNext]').click()
       cy.get('.fa-question').click()
     })
 
     it('saves products to localStorage', () => {
-      cy.get('#name').type(itemText)
-      cy.get('[data-testid=nameNext]').click()
-      cy.get('#date').type(itemOpeningDate)
-      cy.get('[data-testid=dateNext]').click()
-      cy.get('#month').type(itemMonth)
-      cy.get('[data-testid=monthNext]').click()
       cy.get('[data-testid=save]').click()
       cy.get('[data-testid=close]').click()
 

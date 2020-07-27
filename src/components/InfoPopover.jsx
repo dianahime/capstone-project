@@ -48,9 +48,7 @@ const ButtonStyled = styled.button`
 `
 const ImgStyled = styled.img`
   display: block;
-  margin: 0 auto;
-  margin-top: 5px;
+  margin: 5px auto 0 auto;
   width: 50px;
-  background: white;
   stroke: var(--primary);
 `

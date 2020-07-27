@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import ProductsListItem from './ProductsListItem'
 import Greeting from './Greeting'
 import { useSelector } from 'react-redux'
+import SortPopover from './SortPopover'
 
 export default function ProductsList() {
   const products = useSelector((state) => state.products.allProducts)
@@ -11,6 +12,7 @@ export default function ProductsList() {
   return products.length ? (
     <UlStyled data-testid="productsList" className={isBlurred ? 'blurred' : ''}>
       <h1>Your products</h1>
+      <SortPopover />
       {products &&
         products.map((product) => (
           <ProductsListItem key={product.id} product={product} />

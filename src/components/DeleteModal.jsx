@@ -19,7 +19,7 @@ export default function DeleteModal({ isOpen, onClose }) {
       <h2>Are you sure you want to delete this product?</h2>
       <div>
         <Button text="Cancel" isCancel onClick={onClose} />
-        <Button text="Delete" isDelete onClick={handleDeleteClick} />
+        <Button text="Delete" testid="delete" isDelete onClick={handleDeleteClick} />
       </div>
     </DialogStyled>
   )

@@ -59,7 +59,6 @@ const CardStyled = styled.div`
   width: 120px;
 
   p {
-    background-color: white;
     margin: 0;
   }
 
@@ -67,17 +66,11 @@ const CardStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: white;
-    color: black;
   }
 
   .delete {
     padding-top: 5px;
     color: var(--secondary);
-  }
-
-  i {
-    background-color: white;
   }
 `
 
