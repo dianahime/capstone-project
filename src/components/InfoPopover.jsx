@@ -34,6 +34,7 @@ const PopoverStyled = styled(Popover)`
 
 const CardStyled = styled.div`
   background-color: white;
+  color: var(--primary);
   padding: 10px;
   max-width: 220px;
 `
@@ -44,6 +45,9 @@ const ButtonStyled = styled.button`
   height: 100%;
   :focus {
     outline: none;
+  }
+  i {
+    color: var(--primary);
   }
 `
 const ImgStyled = styled.img`

@@ -27,6 +27,7 @@ export default function ProductsList() {
 }
 
 const UlStyled = styled.ul`
+  background-color: var(--neutral);
   display: flex;
   flex-direction: column;
   width: 100%;

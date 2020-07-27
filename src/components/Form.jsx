@@ -190,6 +190,7 @@ export default function Form() {
 }
 
 const FormStyled = styled.form`
+  background-color: var(--neutral);
   height: 100%;
 
   input {

@@ -15,6 +15,7 @@ export default function Greeting() {
 }
 
 const GreetingStyled = styled.div`
+  background-color: var(--neutral);
   width: 100%;
   height: 70vh;
   display: flex;

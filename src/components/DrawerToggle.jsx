@@ -48,6 +48,7 @@ const DrawerToggleStyled = styled.button`
     outline: none;
   }
   i {
+    color: var(--primary);
     font-size: 2.7rem;
     transition: 0.5s all ease-out;
   }

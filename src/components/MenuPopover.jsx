@@ -68,7 +68,7 @@ const CardStyled = styled.div`
     align-items: center;
     justify-content: space-between;
     background-color: white;
-    color: black;
+    color: var(--primary);
   }
 
   .delete {
@@ -91,4 +91,5 @@ const ButtonStyled = styled.button`
 
 const IconStyled = styled.i`
   font-size: 1.2rem;
+  color: var(--primary);
 `

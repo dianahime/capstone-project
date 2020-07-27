@@ -71,7 +71,7 @@ const CardStyled = styled.div`
     align-items: center;
     justify-content: space-between;
     background-color: white;
-    color: black;
+    color: var(--primary);
     padding: 5px 0;
     margin-right: 5px;
   }
@@ -92,6 +92,6 @@ const ButtonStyled = styled.button`
 const IconStyled = styled.i`
   font-size: 1.4rem;
   margin-bottom: 5px;
-
+  color: var(--primary);
 `
 

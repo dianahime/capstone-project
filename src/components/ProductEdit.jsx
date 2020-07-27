@@ -116,6 +116,8 @@ const FormStyled = styled.form`
   flex-direction: column;
   overflow: auto;
   padding: 25px;
+  color: var(--primary);
+  background-color: var(--neutral);
 
   input {
     flex-shrink: 0;
@@ -128,6 +130,7 @@ const FormStyled = styled.form`
     padding: 5px;
     border: 1px solid var(--primary);
     border-radius: 20px;
+    
 
     &:hover {
       border-color: var(--secondary);

@@ -31,6 +31,7 @@ export default function ProductDetails() {
 }
 
 const ProductStyled = styled.section`
+  background-color: var(--neutral);
   height: 100%;
   padding: 0 20px;
   h1 {

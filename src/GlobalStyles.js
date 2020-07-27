@@ -13,17 +13,24 @@ export default createGlobalStyle`
  * {
     box-sizing: border-box;
     font-family: 'Muli', sans-serif;
-	  background-color: var(--neutral);
-    color: var(--primary);
+	  /*background-color: var(--neutral);
+    color: var(--primary);*/
   }
   
   body {
      width: 100%;
      margin: 0 auto;
      margin-bottom: 80px;
+     color: var(--primary);
+     background-color: var(--neutral);
   }
   
   .bp3-overlay {
     background: none;
+  }
+  
+  .toast {
+    background-color: var(--secondaryLight);
+    color: var( --secondary);
   }
 `
