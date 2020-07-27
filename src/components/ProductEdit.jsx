@@ -6,6 +6,8 @@ import InfoPopover from './InfoPopover'
 import { useSelector, useDispatch } from 'react-redux'
 import { productChanged } from '../store/productsSlice'
 import { displayDrawerContent } from '../store/drawerSlice'
+import { AppToaster } from '../toaster'
+import { ActionCreators } from "redux-undo";
 
 export default function ProductEdit() {
   const productId = useSelector((state) => state.products.present.selected)
@@ -27,6 +29,14 @@ export default function ProductEdit() {
     if (name && date && month) {
       dispatch(productChanged({ ...product, name, date, month, size, price }))
       dispatch(displayDrawerContent('ProductDetails'))
+      AppToaster.show({
+        message: "Product has been updated.",
+        className: 'toast',
+        action: {
+          text: "Undo",
+          onClick: () => dispatch(ActionCreators.undo()),
+        }
+      })
     }
   }
   const handleCancelClick = () => {
@@ -104,8 +114,8 @@ export default function ProductEdit() {
       )}
 
       <div className="button-container">
-        <Button text="Cancel" isCancel onClick={handleCancelClick} />
-        <Button text="Save" />
+        <Button text="Cancel" isCancel onClick={handleCancelClick} type="button" />
+        <Button text="Save"  type="button" />
       </div>
     </FormStyled>
   )
@@ -130,6 +140,7 @@ const FormStyled = styled.form`
     padding: 5px;
     border: 1px solid var(--primary);
     border-radius: 20px;
+    color: var(--primary);
     
 
     &:hover {
