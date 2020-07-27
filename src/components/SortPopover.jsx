@@ -69,7 +69,6 @@ const CardStyled = styled.div`
   width: 170px;
 
   p {
-    background-color: white;
     margin: 0;
   }
 
@@ -77,14 +76,8 @@ const CardStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: white;
-    color: black;
     padding: 5px 0;
     margin-right: 5px;
-  }
-
-  i {
-    background-color: white;
   }
 `
 
