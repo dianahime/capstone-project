@@ -29,8 +29,16 @@ export default createGlobalStyle`
     background: none;
   }
   
+  .bp3-button-text {
+    color: var(--neutral);
+  }
+  
   .toast {
-    background-color: var(--secondaryLight);
-    color: var( --secondary);
+    background-color: var(--primaryLight);
+    color: var(--neutral);
+    
+    action {
+      color: var(--neutral);
+    }
   }
 `

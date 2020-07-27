@@ -203,6 +203,7 @@ const FormStyled = styled.form`
     border: 1px solid var(--primary);
     border-radius: 20px;
     margin: 10px 0 20px 0;
+    color: var(--primary);
 
     &:hover {
       border-color: var(--secondary);
