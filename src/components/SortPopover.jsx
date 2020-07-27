@@ -2,20 +2,22 @@ import React from 'react'
 import { Popover, Position, Classes } from '@blueprintjs/core'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
-import {productsSortedAlphabetically, productsSortedByRecentlyAdded, productsSortedBySoonToExpire} from '../store/productsSlice'
+import {productsSortedNameAtoZ, productsSortedNameZtoA, productsSortedByRecentlyAdded, productsSortedBySoonToExpire} from '../store/productsSlice'
 
 export default function SortPopover() {
   const dispatch = useDispatch()
-
-  const handleAlphabeticalSort = () => {
-    dispatch(productsSortedAlphabetically())
-  }
 
   const handleRecentSort = () => {
     dispatch(productsSortedByRecentlyAdded())
   }
   const handleExpireSort = () => {
     dispatch(productsSortedBySoonToExpire())
+  }
+  const handleNameSortAtoZ = () => {
+    dispatch(productsSortedNameAtoZ())
+  }
+  const handleNameSortZtoA = () => {
+    dispatch(productsSortedNameZtoA())
   }
 
   return(
@@ -26,10 +28,6 @@ export default function SortPopover() {
         aria-hidden="true"/>
     </ButtonStyled>
     <CardStyled>
-      <div className="item" onClick={handleAlphabeticalSort} >
-        <p>Alphabetically</p>
-        <i className="fas fa-sort-alpha-down" aria-hidden="true" />
-      </div>
       <div className="item" onClick={handleRecentSort}>
         <p>Recently added</p>
         <i className="fas fa-plus" aria-hidden="true" />
@@ -37,6 +35,14 @@ export default function SortPopover() {
       <div className="item" onClick={handleExpireSort}>
         <p>Soon to expire</p>
         <i className="fas fa-exclamation-circle" aria-hidden="true" />
+      </div>
+      <div className="item" onClick={handleNameSortAtoZ} >
+        <p>Name A to Z</p>
+        <i className="fas fa-sort-alpha-down" aria-hidden="true" />
+      </div>
+      <div className="item" onClick={handleNameSortZtoA} >
+        <p>Name Z to A</p>
+        <i className="fas fa-sort-alpha-down-alt" aria-hidden="true" />
       </div>
     </CardStyled>
   </PopoverStyled>

@@ -17,10 +17,17 @@ const productsSlice = createSlice({
       }
     },
 
-    productsSortedAlphabetically(state) {
+    productsSortedNameAtoZ(state) {
       return {
         ...state,
         allProducts: [...state.allProducts].sort((a,b) => a.name.localeCompare(b.name))
+      }
+    },
+
+    productsSortedNameZtoA(state) {
+      return {
+        ...state,
+        allProducts: [...state.allProducts].sort((a,b) => b.name.localeCompare(a.name))
       }
     },
 
@@ -72,7 +79,8 @@ export const {
   productSelected,
   productChanged,
   selectedProductRemoved,
-  productsSortedAlphabetically,
+  productsSortedNameAtoZ,
+  productsSortedNameZtoA,
   productsSortedByRecentlyAdded,
   productsSortedBySoonToExpire,
 } = productsSlice.actions
