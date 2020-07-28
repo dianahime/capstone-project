@@ -2,12 +2,12 @@ import { configureStore } from '@reduxjs/toolkit'
 import productsReducer from './productsSlice'
 import drawerReducer from './drawerSlice'
 
-const store = configureStore({
-  reducer: {
-    products: productsReducer,
-    drawer: drawerReducer,
-  },
-})
+export const reducer = {
+  products: productsReducer,
+  drawer: drawerReducer,
+}
+
+const store = configureStore({ reducer })
 
 store.subscribe(() => {
   const { allProducts } = store.getState().products

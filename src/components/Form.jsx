@@ -50,7 +50,7 @@ export default function Form() {
   }, [isDrawerOpen])
 
   return (
-    <FormStyled onSubmit={(event) => event.preventDefault()}>
+    <FormStyled onSubmit={(event) => event.preventDefault()} data-testid="Form">
       <Card isVisible={visibleCard === 'nameInput'}>
         <label htmlFor="name">1. Add product name:</label>
         <input
