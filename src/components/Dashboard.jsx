@@ -6,7 +6,7 @@ import Greeting from './Greeting'
 import { selectors } from '../store/productsSlice'
 
 export default function Dashboard() {
-  const products = useSelector((state) => state.products.allProducts)
+  const products = useSelector((state) => state.products.present.allProducts)
   const isBlurred = useSelector((state) => state.drawer.isOpen)
 
   const recentProducts = useSelector(selectors.recentProducts).slice(0, 3)

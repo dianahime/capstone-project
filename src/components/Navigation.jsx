@@ -33,8 +33,10 @@ const NavigationStyled = styled.nav`
   bottom: 0;
   font-size: 2.2rem;
   padding: 0 50px;
+  background-color: var(--neutral);
 `
 const NavLinkStyled = styled(NavLink)`
+  color: var(--primary);
   &.${props => props.activeClassName} {
     i {
      color: var(--secondary);
