@@ -36,13 +36,14 @@ const DrawerToggleStyled = styled.button`
   width: 70px;
   height: 70px;
   left: 50%;
-  bottom: 10px;
+  bottom: -5px;
   border: none;
   border-radius: 50px;
   background-color: var(--neutral);
   transform: translate(-50%, -50%);
   transition: 0.8s all ease-out;
   box-shadow: 5px 5px 10px #c9d1d4, -5px -5px 10px #ffffff;
+  z-index: 40;
 
   &:focus {
     outline: none;
