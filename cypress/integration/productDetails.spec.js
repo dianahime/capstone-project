@@ -1,6 +1,6 @@
 describe('Product Details', () => {
   beforeEach(() => {
-    cy.visit('/')
+    cy.visit('/products')
     cy.get('[data-testid=icon]').click()
   })
 
