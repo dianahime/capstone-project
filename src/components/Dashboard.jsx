@@ -1,10 +1,48 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
+import dayjs from 'dayjs'
+import ProductsListItem from './ProductsListItem'
+import Greeting from './Greeting'
 
 export default function Dashboard() {
+  const products = useSelector((state) => state.products.allProducts)
+  const isBlurred = useSelector((state) => state.drawer.isOpen)
+
+  const recentProducts = [...products].sort((a, b) => (dayjs(a.createdAt).isBefore(dayjs(b.createdAt)) ? 1 : -1)).slice(0, 3)
+
+  const soonToExpirePorducts = [...products].sort((a,b) =>
+    (dayjs(a.date).add(a.month, 'M').isAfter(dayjs(b.date).add(b.month, 'M')) ? 1 : -1)).slice(0, 3)
+
   return (
-    <div>
-      Hello world
-    </div>
+    products.length ? (<DashboardStyled className={isBlurred ? 'blurred' : ''}>
+      <h2>Recently added</h2>
+      {products && recentProducts.map(product => (<ProductsListItem key={product.id} product={product} />
+      ))}
+      <h2>Soon to expire</h2>
+      {products && soonToExpirePorducts.map(product => (<ProductsListItem key={product.id} product={product} />
+      ))}
+    </DashboardStyled>) : (
+      <Greeting isBlurred={isBlurred} />
+    )
   )
 }
+
+const DashboardStyled = styled.div`
+  margin-bottom: 80px;
+  filter: blur(0);
+  transition: 0.8s all ease-out;
+  
+  h2 {
+    background-color: transparent; 
+    font-size: 1.5rem;
+  }
+  
+  h2:nth-of-type(2) {
+  margin-top: 40px;
+  }
+  
+  &.blurred {
+    filter: blur(6px);
+  }
+`
