@@ -54,6 +54,7 @@
     "@testing-library/react": "^9.5.0",
     "cypress": "^4.10.0",
     "eslint-plugin-cypress": "^2.11.1",
-    "redux-devtools": "^3.5.0"
+    "redux-devtools": "^3.5.0",
+    "storybook-react-router": "^1.0.8"
   }
 }
