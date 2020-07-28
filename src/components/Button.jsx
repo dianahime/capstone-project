@@ -8,7 +8,8 @@ export default function Button({
   isCancel,
   isDelete,
   className,
-  testid
+  testid,
+  type
 }) {
   return (
     <ButtonStyled
@@ -18,6 +19,7 @@ export default function Button({
       isDelete={isDelete}
       className={className}
       data-testid={testid}
+      type={type}
     >
       {text}
     </ButtonStyled>

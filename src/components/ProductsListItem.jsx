@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
 import { useDispatch } from 'react-redux'

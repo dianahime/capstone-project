@@ -50,6 +50,7 @@ export default function SortPopover() {
 }
 
 const PopoverStyled = styled(Popover)`
+  height: 20px;
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -68,7 +69,6 @@ const CardStyled = styled.div`
   width: 170px;
 
   p {
-    background-color: white;
     margin: 0;
   }
 
@@ -76,7 +76,6 @@ const CardStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: white;
     color: var(--primary);
     padding: 5px 0;
     margin-right: 5px;
