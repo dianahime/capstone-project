@@ -7,7 +7,7 @@ export default function NotFound() {
   const isBlurred = useSelector((state) => state.drawer.isOpen)
 
   return (
-    <NotFoundStyled className={isBlurred && 'blurred'}>
+    <NotFoundStyled className={isBlurred && 'blurred'} data-testid="notFound">
       <ImgStyled src={NotFoundLogo} />
       <p>Page not found.</p>
       <a href="/">Go back to Dashboard</a>

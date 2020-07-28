@@ -21,6 +21,6 @@ describe('ProductsList.test.js', () => {
 
   it('renders the product list when there are products', () => {
     render(<ProductsList />, {products: PRODUCTS_MOCK_DATA})
-    expect(screen.getByText('test product')).toBeInTheDocument()
+    expect(screen.getByText(PRODUCTS_MOCK_DATA.allProducts[0].name)).toBeInTheDocument()
   })
 })
