@@ -6,11 +6,11 @@ import Dashboard from './Dashboard'
 
 describe('Dashboard.test.jsx', () => {
   const PRODUCTS_MOCK_DATA = {
-    allProducts: [
-      {
-        id: '001', name: 'test product', date: '2020-05-27', month: 6, size: '', price: ''
-      },
-    ],
+      allProducts: [
+        {
+          id: '001', name: 'test product', date: '2020-05-27', month: 6, size: '', price: ''
+        },
+      ],
   }
 
   it('shows the greeting when there are no products', () => {

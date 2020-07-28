@@ -35,7 +35,7 @@ const ProductStyled = styled.section`
   height: 100%;
   padding: 0 20px;
   h1 {
-    word-break: break-all;
+    word-break: break-word;
   }
 
   p {
