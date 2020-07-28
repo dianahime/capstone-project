@@ -84,3 +84,9 @@ export const {
   productsSortedByRecentlyAdded,
   productsSortedBySoonToExpire,
 } = productsSlice.actions
+
+export const selectors = {
+  recentProducts: state => [...state.products.allProducts].sort((a, b) => (dayjs(a.createdAt).isBefore(dayjs(b.createdAt)) ? 1 : -1)),
+  soonToExpireProducts: state => [...state.products.allProducts].sort((a, b) =>
+    (dayjs(a.date).add(a.month, 'M').isAfter(dayjs(b.date).add(b.month, 'M')) ? 1 : -1))
+}
