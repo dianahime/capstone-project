@@ -15,7 +15,7 @@ export default function ProductDetails() {
 
   const parsedDate = dayjs(product.date)
   return (
-    <ProductStyled>
+    <ProductStyled data-testid="ProductDetails">
       <div className="titleContainer">
         <h1 className="name">{product.name}</h1>
         <MenuPopover />

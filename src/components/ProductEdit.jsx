@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import dayjs from 'dayjs'
 import Button from './Button'
 import InfoPopover from './InfoPopover'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { productChanged } from '../store/productsSlice'
 import { displayDrawerContent } from '../store/drawerSlice'
 
@@ -17,8 +17,8 @@ export default function ProductEdit() {
   const [name, setName] = useState(product.name)
   const [date, setDate] = useState(product.date)
   const [month, setMonth] = useState(product.month)
-  const [size, setSize] = useState(product.size)
-  const [price, setPrice] = useState(product.price)
+  const [size, setSize] = useState(product.size || '')
+  const [price, setPrice] = useState(product.price || '')
 
   const currentDate = dayjs().format('YYYY-MM-DD')
 
@@ -34,7 +34,7 @@ export default function ProductEdit() {
   }
 
   return (
-    <FormStyled onSubmit={handleSubmit}>
+    <FormStyled onSubmit={handleSubmit} data-testid="ProductEdit">
       <label htmlFor="name">Product Name</label>
       <input
         onChange={(event) => setName(event.target.value)}
@@ -75,7 +75,7 @@ export default function ProductEdit() {
         <p>The product can expire up to 120 months after opening.</p>
       )}
 
-      <label htmlFor="Size">
+      <label htmlFor="size">
         Size of the product <span>(optional)</span>
       </label>
       <input
@@ -89,7 +89,7 @@ export default function ProductEdit() {
         <p>The product size can consist of up to 10 characters.</p>
       )}
 
-      <label htmlFor="Price">
+      <label htmlFor="price">
         Price of the product <span>(optional)</span>
       </label>
       <input
@@ -104,7 +104,7 @@ export default function ProductEdit() {
       )}
 
       <div className="button-container">
-        <Button text="Cancel" isCancel onClick={handleCancelClick} />
+        <Button text="Cancel" type="button" isCancel onClick={handleCancelClick} />
         <Button text="Save" />
       </div>
     </FormStyled>

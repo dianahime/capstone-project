@@ -7,7 +7,7 @@ export default function InfoPopover() {
   return (
     <PopoverStyled usePortal={false} position={Position.LEFT_TOP}>
       <ButtonStyled type="button" className="button">
-        <i className="fa fa-question" aria-hidden="true"></i>
+        <i className="fa fa-question" aria-hidden="true" />
       </ButtonStyled>
       <CardStyled>
         The time in months when the product will remain in good condition after
