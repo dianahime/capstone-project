@@ -5,8 +5,8 @@ import { useSelector } from 'react-redux'
 import MenuPopover from './MenuPopover'
 
 export default function ProductDetails() {
-  const productId = useSelector((state) => state.products.selected)
-  const allProducts = useSelector((state) => state.products.allProducts)
+  const productId = useSelector((state) => state.products.present.selected)
+  const allProducts = useSelector((state) => state.products.present.allProducts)
   const product = allProducts.find((product) => product.id === productId)
 
   if (!product) {
@@ -31,6 +31,8 @@ export default function ProductDetails() {
 }
 
 const ProductStyled = styled.section`
+  background-color: var(--neutral);
+  height: 100%;
   padding: 0 20px;
   h1 {
     word-break: break-all;
@@ -44,6 +46,7 @@ const ProductStyled = styled.section`
   .titleContainer {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 
     p {
       margin: 0;

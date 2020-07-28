@@ -13,14 +13,32 @@ export default createGlobalStyle`
  * {
     box-sizing: border-box;
     font-family: 'Muli', sans-serif;
-	  background-color: var(--neutral);
-    color: var(--primary);
+	  /*background-color: var(--neutral);
+    color: var(--primary);*/
   }
   
   body {
      width: 100%;
-     height: 100vh;
      margin: 0 auto;
      margin-bottom: 80px;
+     color: var(--primary);
+     background-color: var(--neutral);
+  }
+  
+  .bp3-overlay {
+    background: none;
+  }
+  
+  .bp3-button-text {
+    color: var(--neutral);
+  }
+  
+  .toast {
+    background-color: var(--primaryLight);
+    color: var(--neutral);
+    
+    action {
+      color: var(--neutral);
+    }
   }
 `
