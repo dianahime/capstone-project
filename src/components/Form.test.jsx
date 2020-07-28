@@ -5,7 +5,6 @@ import { fireEvent } from '@testing-library/react'
 import { render, screen } from '../test-utils'
 import Form from './Form.jsx'
 import { useDispatch } from 'react-redux'
-import { drawerIsOpened } from '../store/drawerSlice'
 import { productAdded } from '../store/productsSlice'
 
 jest.mock('react-redux', () => {
