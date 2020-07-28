@@ -3,13 +3,15 @@ import styled from 'styled-components'
 import dayjs from 'dayjs'
 import Button from './Button'
 import InfoPopover from './InfoPopover'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { productChanged } from '../store/productsSlice'
 import { displayDrawerContent } from '../store/drawerSlice'
+import { AppToaster } from '../toaster'
+import { ActionCreators } from "redux-undo";
 
 export default function ProductEdit() {
-  const productId = useSelector((state) => state.products.selected)
-  const allProducts = useSelector((state) => state.products.allProducts)
+  const productId = useSelector((state) => state.products.present.selected)
+  const allProducts = useSelector((state) => state.products.present.allProducts)
   const product = allProducts.find((product) => product.id === productId)
 
   const dispatch = useDispatch()
@@ -17,8 +19,8 @@ export default function ProductEdit() {
   const [name, setName] = useState(product.name)
   const [date, setDate] = useState(product.date)
   const [month, setMonth] = useState(product.month)
-  const [size, setSize] = useState(product.size || '')
-  const [price, setPrice] = useState(product.price || '')
+  const [size, setSize] = useState(product.size)
+  const [price, setPrice] = useState(product.price)
 
   const currentDate = dayjs().format('YYYY-MM-DD')
 
@@ -27,6 +29,14 @@ export default function ProductEdit() {
     if (name && date && month) {
       dispatch(productChanged({ ...product, name, date, month, size, price }))
       dispatch(displayDrawerContent('ProductDetails'))
+      AppToaster.show({
+        message: "Product has been updated.",
+        className: 'toast',
+        action: {
+          text: "Undo",
+          onClick: () => dispatch(ActionCreators.undo()),
+        }
+      })
     }
   }
   const handleCancelClick = () => {
@@ -34,7 +44,7 @@ export default function ProductEdit() {
   }
 
   return (
-    <FormStyled onSubmit={handleSubmit} data-testid="ProductEdit">
+    <FormStyled onSubmit={handleSubmit}>
       <label htmlFor="name">Product Name</label>
       <input
         onChange={(event) => setName(event.target.value)}
@@ -75,7 +85,7 @@ export default function ProductEdit() {
         <p>The product can expire up to 120 months after opening.</p>
       )}
 
-      <label htmlFor="size">
+      <label htmlFor="Size">
         Size of the product <span>(optional)</span>
       </label>
       <input
@@ -89,7 +99,7 @@ export default function ProductEdit() {
         <p>The product size can consist of up to 10 characters.</p>
       )}
 
-      <label htmlFor="price">
+      <label htmlFor="Price">
         Price of the product <span>(optional)</span>
       </label>
       <input
@@ -104,7 +114,7 @@ export default function ProductEdit() {
       )}
 
       <div className="button-container">
-        <Button text="Cancel" type="button" isCancel onClick={handleCancelClick} />
+        <Button text="Cancel" isCancel onClick={handleCancelClick} type="button" />
         <Button text="Save" />
       </div>
     </FormStyled>
@@ -114,8 +124,13 @@ export default function ProductEdit() {
 const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
+  overflow: auto;
+  padding: 25px;
+  color: var(--primary);
+  background-color: var(--neutral);
 
   input {
+    flex-shrink: 0;
     font-size: 1.2rem;
     display: block;
     align-self: center;
@@ -125,6 +140,8 @@ const FormStyled = styled.form`
     padding: 5px;
     border: 1px solid var(--primary);
     border-radius: 20px;
+    color: var(--primary);
+    
 
     &:hover {
       border-color: var(--secondary);
@@ -158,6 +175,7 @@ const FormStyled = styled.form`
 
   .button-container {
     display: flex;
+    flex-grow: 1;
     justify-content: space-around;
     width: 100%;
     margin-top: 20px;
@@ -169,6 +187,7 @@ const FormStyled = styled.form`
 
   #date {
     width: 180px;
+    height: 30px;
   }
 
   #month,

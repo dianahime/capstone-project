@@ -5,14 +5,24 @@ import Form from './Form'
 import ProductDetails from './ProductDetails'
 import ProductEdit from './ProductEdit'
 import { useSelector } from 'react-redux'
+import { Drawer as BluePrintDrawer, Position } from '@blueprintjs/core'
 
 export default function Drawer() {
   const { isOpen, visibleComponent } = useSelector((state) => state.drawer)
 
   return (
     <>
-      <DrawerToggle />
-      <DrawerStyled data-testid="section" className={isOpen && 'active'}>
+      {!isOpen && <DrawerToggle />}
+      <DrawerStyled
+        data-testid="section"
+        isOpen={isOpen}
+        position={Position.BOTTOM}
+        size={'70%'}
+        autoFocus={false}
+        lazy={false}
+        hasBackdrop={false}
+      >
+        <DrawerToggle />
         {visibleComponent === 'Form' && <Form />}
         {visibleComponent === 'ProductDetails' && <ProductDetails />}
         {visibleComponent === 'ProductEdit' && <ProductEdit />}
@@ -21,22 +31,8 @@ export default function Drawer() {
   )
 }
 
-const DrawerStyled = styled.section`
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  top: 100vh;
-  height: 100%;
-  width: 100%;
-  max-width: 500px;
-  padding: 10px;
-  border: 1px solid transparent;
-  transition: 0.8s all ease-out;
-
-  &.active {
-    top: 85px;
-    z-index: 10;
-    border: 1px solid var(--primary);
-    margin: 0 auto;
+const DrawerStyled = styled(BluePrintDrawer)`
+  .bp3-drawer {
+    background-color: var(--neutral);
   }
 `

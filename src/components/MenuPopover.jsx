@@ -72,6 +72,10 @@ const CardStyled = styled.div`
     padding-top: 5px;
     color: var(--secondary);
   }
+
+  i {
+    background-color: white;
+  }
 `
 
 const ButtonStyled = styled.button`
@@ -84,4 +88,5 @@ const ButtonStyled = styled.button`
 
 const IconStyled = styled.i`
   font-size: 1.2rem;
+  color: var(--primary);
 `

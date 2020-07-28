@@ -41,7 +41,7 @@ const DrawerToggleStyled = styled.button`
   border-radius: 50px;
   background-color: var(--neutral);
   transform: translate(-50%, -50%);
-  transition: 0.8s all ease-out;
+  transition: 1s all ease-out;
   box-shadow: 5px 5px 10px #c9d1d4, -5px -5px 10px #ffffff;
   z-index: 40;
 
@@ -49,16 +49,18 @@ const DrawerToggleStyled = styled.button`
     outline: none;
   }
   i {
+    color: var(--primary);
     font-size: 2.7rem;
     transition: 0.5s all ease-out;
   }
 
   .cancelIcon {
     color: var(--secondary);
-    transform: rotate(405deg);
+    transform: rotate(45deg);
   }
 
   &.cancelButton {
-    bottom: 83vh;
+    position: absolute;
+    top: -70px;
   }
 `

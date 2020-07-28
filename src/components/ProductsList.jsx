@@ -4,19 +4,22 @@ import ProductsListItem from './ProductsListItem'
 import Greeting from './Greeting'
 import { useSelector } from 'react-redux'
 import SortPopover from './SortPopover'
+import FlipMove from 'react-flip-move'
 
 export default function ProductsList() {
-  const products = useSelector((state) => state.products.allProducts)
+  const products = useSelector((state) => state.products.present.allProducts)
   const isBlurred = useSelector((state) => state.drawer.isOpen)
 
   return products.length ? (
     <UlStyled data-testid="productsList" className={isBlurred ? 'blurred' : ''}>
       <h1>Your products</h1>
       <SortPopover />
+      <FlipMove>
       {products &&
         products.map((product) => (
           <ProductsListItem key={product.id} product={product} />
         ))}
+      </FlipMove>
     </UlStyled>
   ) : (
     <Greeting isBlurred={isBlurred} />
@@ -24,6 +27,7 @@ export default function ProductsList() {
 }
 
 const UlStyled = styled.ul`
+  background-color: var(--neutral);
   display: flex;
   flex-direction: column;
   width: 100%;
