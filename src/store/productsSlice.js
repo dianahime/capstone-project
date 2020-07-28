@@ -20,29 +20,29 @@ const productsSlice = createSlice({
     productsSortedNameAtoZ(state) {
       return {
         ...state,
-        allProducts: [...state.allProducts].sort((a,b) => a.name.localeCompare(b.name))
+        allProducts: [...state.allProducts].sort((a, b) => a.name.localeCompare(b.name)),
       }
     },
 
     productsSortedNameZtoA(state) {
       return {
         ...state,
-        allProducts: [...state.allProducts].sort((a,b) => b.name.localeCompare(a.name))
+        allProducts: [...state.allProducts].sort((a, b) => b.name.localeCompare(a.name)),
       }
     },
 
     productsSortedByRecentlyAdded(state) {
       return {
         ...state,
-        allProducts: [...state.allProducts].sort((a, b) => (dayjs(a.createdAt).isBefore(dayjs(b.createdAt)) ? 1 : -1))
+        allProducts: [...state.allProducts].sort((a, b) => (dayjs(a.createdAt).isBefore(dayjs(b.createdAt)) ? 1 : -1)),
       }
     },
 
     productsSortedBySoonToExpire(state) {
       return {
         ...state,
-        allProducts: [...state.allProducts].sort((a,b) =>
-          (dayjs(a.date).add(a.month, 'M').isAfter(dayjs(b.date).add(b.month, 'M')) ? 1 : -1))
+        allProducts: [...state.allProducts].sort((a, b) =>
+          (dayjs(a.date).add(a.month, 'M').isAfter(dayjs(b.date).add(b.month, 'M')) ? 1 : -1)),
 
       }
     },
@@ -57,7 +57,7 @@ const productsSlice = createSlice({
       return {
         ...state,
         allProducts: state.allProducts.map((product) =>
-          product.id === action.payload.id ? action.payload : product
+          product.id === action.payload.id ? action.payload : product,
         ),
       }
     },
@@ -66,10 +66,18 @@ const productsSlice = createSlice({
         ...state,
         selected: null,
         allProducts: state.allProducts.filter(
-          (product) => product.id !== state.selected
+          (product) => product.id !== state.selected,
         ),
       }
     },
+    productArchived(state, action) {
+      return {
+        ...state,
+        allProducts: state.allProducts.map((product) =>
+          product.id === action.payload.id ? {...product, isArchived: true} : product,
+        )
+      }
+    }
   },
 })
 
@@ -83,10 +91,12 @@ export const {
   productsSortedNameZtoA,
   productsSortedByRecentlyAdded,
   productsSortedBySoonToExpire,
+  productArchived,
 } = productsSlice.actions
 
 export const selectors = {
   recentProducts: state => [...state.products.present.allProducts].sort((a, b) => (dayjs(a.createdAt).isBefore(dayjs(b.createdAt)) ? 1 : -1)),
   soonToExpireProducts: state => [...state.products.present.allProducts].sort((a, b) =>
-    (dayjs(a.date).add(a.month, 'M').isAfter(dayjs(b.date).add(b.month, 'M')) ? 1 : -1))
+    (dayjs(a.date).add(a.month, 'M').isAfter(dayjs(b.date).add(b.month, 'M')) ? 1 : -1)),
+  expiredProducts: state => [...state.products.present.allProducts].filter(product => dayjs(product.date).add(product.month, 'M').isBefore(dayjs())),
 }

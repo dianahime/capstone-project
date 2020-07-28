@@ -3,12 +3,12 @@ import productsReducer from './productsSlice'
 import drawerReducer from './drawerSlice'
 import undoable from 'redux-undo';
 
-const store = configureStore({
-  reducer: {
-    products: undoable(productsReducer),
-    drawer: drawerReducer,
-  },
-})
+export const reducer = {
+  products: undoable(productsReducer),
+  drawer: drawerReducer,
+}
+
+const store = configureStore({ reducer })
 
 store.subscribe(() => {
   const { allProducts } = store.getState().products.present
