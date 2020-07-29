@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import Button from './Button'
 import dayjs from 'dayjs'
 import InfoPopover from './InfoPopover'

@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
-import dayjs from 'dayjs'
+import {
+  sortProductsByCreatedAt,
+  sortProductsByNameAtoZ,
+  sortProductsByNameZtoA,
+  sortProductsBySoonToExpire,
+} from './compareFunctions'
 
 const initialState = {
   allProducts: JSON.parse(localStorage.getItem('products')) || [],
@@ -20,30 +25,28 @@ const productsSlice = createSlice({
     productsSortedNameAtoZ(state) {
       return {
         ...state,
-        allProducts: [...state.allProducts].sort((a, b) => a.name.localeCompare(b.name)),
+        allProducts: [...state.allProducts].sort(sortProductsByNameAtoZ)
       }
     },
 
     productsSortedNameZtoA(state) {
       return {
         ...state,
-        allProducts: [...state.allProducts].sort((a, b) => b.name.localeCompare(a.name)),
+        allProducts: [...state.allProducts].sort(sortProductsByNameZtoA)
       }
     },
 
     productsSortedByRecentlyAdded(state) {
       return {
         ...state,
-        allProducts: [...state.allProducts].sort((a, b) => (dayjs(a.createdAt).isBefore(dayjs(b.createdAt)) ? 1 : -1)),
+        allProducts: [...state.allProducts].sort(sortProductsByCreatedAt)
       }
     },
 
     productsSortedBySoonToExpire(state) {
       return {
         ...state,
-        allProducts: [...state.allProducts].sort((a, b) =>
-          (dayjs(a.date).add(a.month, 'M').isAfter(dayjs(b.date).add(b.month, 'M')) ? 1 : -1)),
-
+        allProducts: [...state.allProducts].sort(sortProductsBySoonToExpire)
       }
     },
 
@@ -57,7 +60,7 @@ const productsSlice = createSlice({
       return {
         ...state,
         allProducts: state.allProducts.map((product) =>
-          product.id === action.payload.id ? action.payload : product,
+          product.id === action.payload.id ? action.payload : product
         ),
       }
     },
@@ -66,7 +69,7 @@ const productsSlice = createSlice({
         ...state,
         selected: null,
         allProducts: state.allProducts.filter(
-          (product) => product.id !== state.selected,
+          (product) => product.id !== state.selected
         ),
       }
     },
@@ -95,8 +98,6 @@ export const {
 } = productsSlice.actions
 
 export const selectors = {
-  recentProducts: state => [...state.products.present.allProducts].sort((a, b) => (dayjs(a.createdAt).isBefore(dayjs(b.createdAt)) ? 1 : -1)),
-  soonToExpireProducts: state => [...state.products.present.allProducts].sort((a, b) =>
-    (dayjs(a.date).add(a.month, 'M').isAfter(dayjs(b.date).add(b.month, 'M')) ? 1 : -1)),
-  expiredProducts: state => [...state.products.present.allProducts].filter(product => dayjs(product.date).add(product.month, 'M').isBefore(dayjs())),
+  recentProducts: state => [...state.products.present.allProducts].sort(sortProductsByCreatedAt),
+  soonToExpireProducts: state => [...state.products.present.allProducts].sort(sortProductsBySoonToExpire)
 }
