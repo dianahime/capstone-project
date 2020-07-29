@@ -4,7 +4,7 @@ describe('Sort Popover', () => {
     const itemOpeningDate = '2020-05-27'
     const itemMonth = 3
 
-    cy.visit('/')
+    cy.visit('/products')
     cy.get('[data-testid=icon]').click()
 
     cy.get('#name').type(itemText)
@@ -44,7 +44,6 @@ describe('Sort Popover', () => {
     cy.get('.fa-sort-alpha-down').click()
 
     cy.get('li').first().should('contain', 'Balea night face cream long product name')
-
   })
 
   it('opens sort popover and sorts by recently added', () => {

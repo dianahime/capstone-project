@@ -31,7 +31,7 @@ const UlStyled = styled.ul`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 0 10%;
+  padding: 0;
   margin-bottom: 100px;
   filter: blur(0);
   transition: 0.8s all ease-out;

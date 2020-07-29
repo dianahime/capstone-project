@@ -1,6 +1,6 @@
 describe('Input form', () => {
   beforeEach(() => {
-    cy.visit('/')
+    cy.visit('/products')
     cy.get('[data-testid=icon]').click()
   })
 
@@ -103,7 +103,7 @@ describe('Input form', () => {
       cy.get('[data-testid=save]').click()
       cy.get('[data-testid=close]').click()
 
-      cy.visit('/')
+      cy.visit('/products')
 
       cy.get('li').should('have.length', 1).and('contain', itemText)
       cy.get('.expiring-date').should('contain', 'Expires: 27.11.2020')

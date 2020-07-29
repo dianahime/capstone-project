@@ -4,7 +4,7 @@ describe('Menu Popover', () => {
     const itemOpeningDate = '2020-05-27'
     const itemMonth = 6
 
-    cy.visit('/')
+    cy.visit('/products')
     cy.get('[data-testid=icon]').click()
     cy.get('#name').type(itemText)
     cy.get('[data-testid=nameNext]').click()
