@@ -1,13 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
-import { useSelector } from 'react-redux'
 import MenuPopover from './MenuPopover'
+import { selectors } from '../store/productsSlice'
+import { useSelector } from 'react-redux'
 
 export default function ProductDetails() {
-  const productId = useSelector((state) => state.products.present.selected)
-  const allProducts = useSelector((state) => state.products.present.allProducts)
-  const product = allProducts.find((product) => product.id === productId)
+  const product = useSelector(selectors.selectedProduct)
 
   if (!product) {
     return <></>
