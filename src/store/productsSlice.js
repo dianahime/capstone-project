@@ -5,6 +5,7 @@ import {
   sortProductsByNameZtoA,
   sortProductsBySoonToExpire,
 } from './compareFunctions'
+import { isProductExpired } from './filterFunctions'
 
 const initialState = {
   allProducts: JSON.parse(localStorage.getItem('products')) || [],
@@ -80,6 +81,14 @@ const productsSlice = createSlice({
           product.id === action.payload.id ? {...product, isArchived: true} : product,
         )
       }
+    },
+    productExpirationIgnored(state, action) {
+      return {
+        ...state,
+        allProducts: state.allProducts.map((product) =>
+          product.id === action.payload.id ? {...product, isExpirationIgnored: true} : product,
+        )
+      }
     }
   },
 })
@@ -95,9 +104,14 @@ export const {
   productsSortedByRecentlyAdded,
   productsSortedBySoonToExpire,
   productArchived,
+  productExpirationIgnored,
 } = productsSlice.actions
 
 export const selectors = {
-  recentProducts: state => [...state.products.present.allProducts].sort(sortProductsByCreatedAt),
-  soonToExpireProducts: state => [...state.products.present.allProducts].sort(sortProductsBySoonToExpire)
+  selectedProduct: state => [...state.products.present.allProducts].find(product => product.id === state.products.present.selected),
+  products: state => [...state.products.present.allProducts].filter(product => !product.isArchived),
+  archivedProducts: state => [...state.products.present.allProducts].filter(product => product.isArchived),
+  recentProducts: state => [...state.products.present.allProducts].filter(product => !product.isArchived).sort(sortProductsByCreatedAt),
+  soonToExpireProducts: state => [...state.products.present.allProducts].filter(product => !product.isArchived).sort(sortProductsBySoonToExpire),
+  expiredProducts: state => [...state.products.present.allProducts].filter(isProductExpired)
 }
