@@ -1,14 +1,15 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React from 'react'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 export default function Navigation() {
-  return(
+  return (
     <NavigationStyled>
       <NavLinkStyled
         activeClassName="navigationLinkActive"
         className="navigationLink"
-        exact to="/"
+        exact
+        to="/"
       >
         <i className="fas fa-home" />
       </NavLinkStyled>
@@ -37,9 +38,9 @@ const NavigationStyled = styled.nav`
 `
 const NavLinkStyled = styled(NavLink)`
   color: var(--primary);
-  &.${props => props.activeClassName} {
+  &.${(props) => props.activeClassName} {
     i {
-     color: var(--secondary);
+      color: var(--secondary);
     }
   }
 `

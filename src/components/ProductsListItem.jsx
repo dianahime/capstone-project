@@ -36,7 +36,7 @@ const LiStyled = styled.li`
   width: 300px;
   margin: 20px auto 0 auto;
   overflow: hidden;
-  background: var(--white, #edf6f9);
+  background: var(--neutral);
   border-radius: 20px;
   box-shadow: 10px 10px 20px 0 #c9d1d4, -10px -10px 20px 0 #fff;
   transition: box-shadow 0.2s linear;
@@ -48,7 +48,7 @@ const LiStyled = styled.li`
   p {
     font-size: 1.1rem;
     margin: 0;
-    word-break: break-all;
+    word-break: break-word;
   }
 
   p:first-of-type {

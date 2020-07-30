@@ -1,5 +1,4 @@
 import React from 'react'
-import ProductsList from './components/ProductsList'
 import Drawer from './components/Drawer'
 import styled from 'styled-components'
 import '@blueprintjs/core/lib/css/blueprint.css'
@@ -7,6 +6,7 @@ import { Route, Switch } from "react-router-dom";
 import Dashboard from './components/Dashboard'
 import NotFound from './components/NotFound'
 import Navigation from './components/Navigation'
+import ProductsPage from './components/ProductsPage'
 
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
       <main>
         <Switch>
           <Route exact path="/" component={Dashboard}/>
-          <Route exact path="/products" component={ProductsList}/>
+          <Route path="/products" component={ProductsPage}/>
           <Route component={NotFound} />
         </Switch>
       </main>
