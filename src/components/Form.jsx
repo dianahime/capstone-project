@@ -10,6 +10,8 @@ import { v4 as uuid } from 'uuid'
 import zenscroll from 'zenscroll'
 import StepIndicator from './StepIndicator'
 import ReactSwipe from 'react-swipe'
+import { AppToaster } from '../toaster'
+import { ActionCreators } from "redux-undo"
 
 export default function Form() {
   const [name, setName] = useState('')
@@ -17,8 +19,6 @@ export default function Form() {
   const [month, setMonth] = useState('')
   const [size, setSize] = useState('')
   const [price, setPrice] = useState('')
-
-  const [isCompleted, setIsCompleted] = useState(false)
 
   const isDrawerOpen = useSelector((state) => state.drawer.isOpen)
 
@@ -31,19 +31,22 @@ export default function Form() {
     setMonth('')
     setSize('')
     setPrice('')
-    setIsCompleted(false)
   }
   const handleSubmit = () => {
     if (name && date && month) {
       dispatch(productAdded({ id: uuid(), createdAt: dayjs().format(), name, date, month, size, price }))
-      setIsCompleted(true)
+      dispatch(drawerIsOpened(false))
+      resetForm()
+      zenscroll.toY(0, 1000)
+      AppToaster.show({
+        message: "Product has been added.",
+        className: 'toast',
+        action: {
+          text: "Undo",
+          onClick: () => dispatch(ActionCreators.undo()),
+        }
+      })
     }
-  }
-
-  const handleCloseClick = () => {
-    dispatch(drawerIsOpened(false))
-    resetForm()
-    zenscroll.toY(0, 1000)
   }
 
   useEffect(() => {
@@ -57,7 +60,6 @@ export default function Form() {
 
   return (
     <FormStyled onSubmit={(event) => event.preventDefault()}>
-      {!isCompleted &&
       <ReactSwipe ref={swipe} swipeOptions={{ continuous: false }}>
         <Card>
           <label htmlFor="name">1. Add product name:</label>
@@ -177,14 +179,6 @@ export default function Form() {
           <StepIndicator step={4}/>
         </Card>
       </ReactSwipe>
-      }
-      {isCompleted &&
-        <Card>
-          <h2>The product has been successfully saved.</h2>
-          <i className="far fa-check-circle" aria-hidden="true"/>
-          <Button testid="close" text="Close" type="button" onClick={handleCloseClick}/>
-        </Card>
-      }
     </FormStyled>
   )
 }
