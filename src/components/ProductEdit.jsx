@@ -44,7 +44,7 @@ export default function ProductEdit() {
   }
 
   return (
-    <FormStyled onSubmit={handleSubmit}>
+    <FormStyled onSubmit={handleSubmit} data-testid="ProductEdit">
       <label htmlFor="name">Product Name</label>
       <input
         onChange={(event) => setName(event.target.value)}

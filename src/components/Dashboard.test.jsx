@@ -4,7 +4,9 @@ import '@testing-library/jest-dom/extend-expect'
 import { render, screen } from '../test-utils'
 import Dashboard from './Dashboard'
 
+
 describe('Dashboard.test.jsx', () => {
+
   const PRODUCTS_MOCK_DATA = {
       allProducts: [
         {

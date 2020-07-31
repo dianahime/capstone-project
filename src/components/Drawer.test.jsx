@@ -26,10 +26,6 @@ describe('Drawer.test.js', () => {
     expect(screen.getByTestId('icon')).toBeInTheDocument()
   })
 
-  it('renders a section element', () => {
-    render(<Drawer/>)
-    expect(screen.queryByTestId('section')).toBeInTheDocument()
-  })
 
   it('renders the form component inside the drawer', () => {
     render(<Drawer/>, {

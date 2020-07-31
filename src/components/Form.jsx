@@ -59,7 +59,7 @@ export default function Form() {
   const back = () => swipe.current.prev()
 
   return (
-    <FormStyled onSubmit={(event) => event.preventDefault()}>
+    <FormStyled onSubmit={(event) => event.preventDefault()} data-testid="Form">
       <ReactSwipe ref={swipe} swipeOptions={{ continuous: false }}>
         <Card>
           <label htmlFor="name">1. Add product name:</label>

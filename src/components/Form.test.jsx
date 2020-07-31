@@ -6,6 +6,7 @@ import { render, screen } from '../test-utils'
 import Form from './Form.jsx'
 import { useDispatch } from 'react-redux'
 import { productAdded } from '../store/productsSlice'
+import dayjs from 'dayjs'
 
 jest.mock('react-redux', () => {
   const dispatch = jest.fn()
@@ -17,6 +18,10 @@ jest.mock('react-redux', () => {
 })
 jest.mock('uuid', () => ({
     v4: () => 'jujuid',
+}))
+
+jest.mock('dayjs', () => ({
+  dayjs: () => '2020-07-31',
 }))
 
 describe('Form.test.js', () => {
@@ -103,7 +108,7 @@ describe('Form submit', () => {
 
     screen.getByText('Save').click()
     expect(dispatch.mock.calls).toEqual([
-      [productAdded({ id: 'jujuid', ...PRODUCT_MOCK_DATA })],
+      [productAdded({ id: 'jujuid', createdAt: '2020-07-31' ,...PRODUCT_MOCK_DATA })],
     ])
   })
 })
