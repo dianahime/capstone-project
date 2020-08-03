@@ -1,14 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit'
-import productsReducer from './productsSlice'
+import { createProductsSlice } from './productsSlice'
 import drawerReducer from './drawerSlice'
-import undoable from 'redux-undo';
+import undoable from 'redux-undo'
 
-export const reducer = {
-  products: undoable(productsReducer),
+export const createReducer = (initialState) => ({
+  products: undoable(
+    createProductsSlice(initialState && initialState.products).reducer
+  ),
   drawer: drawerReducer,
-}
+})
 
-const store = configureStore({ reducer })
+const store = configureStore({ reducer: createReducer() })
 
 store.subscribe(() => {
   const { allProducts } = store.getState().products.present
