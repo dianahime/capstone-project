@@ -43,7 +43,9 @@ describe('Sort Popover', () => {
     cy.get('.fa-sort-amount-down').click()
     cy.get('.fa-sort-alpha-down').click()
 
-    cy.get('li').first().should('contain', 'Balea night face cream long product name')
+    cy.get('li')
+      .first()
+      .should('contain', 'Balea night face cream long product name')
   })
 
   it('opens sort popover and sorts by recently added', () => {
@@ -59,5 +61,4 @@ describe('Sort Popover', () => {
 
     cy.get('li').first().should('contain', 'Nivea body lotion')
   })
-
 })

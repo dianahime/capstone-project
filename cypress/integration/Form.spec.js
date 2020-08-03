@@ -63,7 +63,6 @@ describe('Input form', () => {
     })
 
     it('adds multiple products', () => {
-
       cy.get('[data-testid=save]').click()
       cy.get('[data-testid=close]').click()
 
