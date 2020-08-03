@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import Button from './Button'
 import dayjs from 'dayjs'
@@ -43,7 +43,7 @@ export default function Form() {
           month,
           size,
           price,
-        })
+        }),
       )
       dispatch(drawerIsOpened(false))
       resetForm()
@@ -72,7 +72,7 @@ export default function Form() {
     <FormStyled onSubmit={(event) => event.preventDefault()} data-testid="Form">
       <ReactSwipe ref={swipe} swipeOptions={{ continuous: false }}>
         <Card>
-          <label htmlFor="name">1. Add product name:</label>
+          <label htmlFor="name">Add product name:</label>
           <input
             onChange={(event) => setName(event.target.value)}
             value={name}
@@ -85,12 +85,12 @@ export default function Form() {
             <p>The product name can consist of up to 40 characters.</p>
           )}
 
-          <Button testid="nameNext" text="Next" onClick={next} />
-          <StepIndicator step={1} />
+          <Button testid="nameNext" text="Next" onClick={next}/>
+          <StepIndicator step={1}/>
         </Card>
 
         <Card>
-          <label htmlFor="date">2. When did you open the product?</label>
+          <label htmlFor="date">When did you open the product?</label>
           <input
             onChange={(event) => setDate(event.target.value)}
             value={date}
@@ -100,15 +100,15 @@ export default function Form() {
             id="date"
           />
           <div className="button-container">
-            <Button text="Back" isCancel onClick={back} />
-            <Button testid="dateNext" text="Next" onClick={next} />
+            <Button text="Back" isCancel onClick={back}/>
+            <Button testid="dateNext" text="Next" onClick={next}/>
           </div>
-          <StepIndicator step={2} />
+          <StepIndicator step={2}/>
         </Card>
 
         <Card>
           <label htmlFor="month">
-            3. In how many months does the product expire?
+            In how many months does the product expire?
           </label>
           <ContainerStyled>
             <input
@@ -120,21 +120,21 @@ export default function Form() {
               id="month"
               placeholder="E.g. 12"
             />
-            <InfoPopover />
+            <InfoPopover/>
           </ContainerStyled>
           {month > 120 && (
             <p>The product can expire up to 120 months after opening.</p>
           )}
           <div className="button-container">
-            <Button text="Back" isCancel onClick={back} />
-            <Button testid="monthNext" text="Next" onClick={next} />
+            <Button text="Back" isCancel onClick={back}/>
+            <Button testid="monthNext" text="Next" onClick={next}/>
           </div>
-          <StepIndicator step={3} />
+          <StepIndicator step={3}/>
         </Card>
 
         <Card>
           <label htmlFor="Size">
-            4. Size of the product <span>(optional)</span>
+            Size of the product <span>(optional)</span>
           </label>
           <input
             onChange={(event) => setSize(event.target.value)}
@@ -148,7 +148,7 @@ export default function Form() {
           )}
 
           <label htmlFor="Price">
-            5. Price of the product <span>(optional)</span>
+            Price of the product <span>(optional)</span>
           </label>
           <input
             onChange={(event) => setPrice(event.target.value)}
@@ -161,7 +161,7 @@ export default function Form() {
             <p>The product price can consist of up to 10 characters.</p>
           )}
           <div className="button-container">
-            <Button text="Back" isCancel onClick={back} />
+            <Button text="Back" isCancel onClick={back}/>
             <Button
               testid="save"
               text="Save"
@@ -170,7 +170,7 @@ export default function Form() {
               onClick={handleSubmit}
             />
           </div>
-          <StepIndicator step={4} />
+          <StepIndicator step={4}/>
         </Card>
       </ReactSwipe>
     </FormStyled>
