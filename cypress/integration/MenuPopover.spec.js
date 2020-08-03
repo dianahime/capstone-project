@@ -13,7 +13,6 @@ describe('Menu Popover', () => {
     cy.get('#month').type(itemMonth)
     cy.get('[data-testid=monthNext]').click()
     cy.get('[data-testid=save]').click()
-    cy.get('[data-testid=close]').click()
 
     cy.get('li').click()
   })

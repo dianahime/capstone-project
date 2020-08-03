@@ -13,7 +13,6 @@ describe('Dashboard', () => {
     cy.get('#month').type(itemMonth)
     cy.get('[data-testid=monthNext]').click()
     cy.get('[data-testid=save]').click()
-    cy.get('[data-testid=close]').click()
   })
 
   it('shows new product in two lists', () => {
@@ -25,6 +24,7 @@ describe('Dashboard', () => {
     const secondOpeningDate = '2020-05-27'
     const secondMonth = 12
 
+    cy.wait(500)
     cy.get('[data-testid=icon]').click()
     cy.get('#name').type(secondItemName)
     cy.get('[data-testid=nameNext]').click()
@@ -33,7 +33,6 @@ describe('Dashboard', () => {
     cy.get('#month').type(secondMonth)
     cy.get('[data-testid=monthNext]').click()
     cy.get('[data-testid=save]').click()
-    cy.get('[data-testid=close]').click()
 
     cy.get('li').should('have.length', 4)
     cy.get('li').first().should('contain', secondItemName)

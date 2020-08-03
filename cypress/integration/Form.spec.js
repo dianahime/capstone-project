@@ -36,7 +36,6 @@ describe('Input form', () => {
 
     it('adds a new product on submit', () => {
       cy.get('[data-testid=save]').click()
-      cy.get('[data-testid=close]').click()
 
       cy.get('#name').should('have.value', '')
       cy.get('#date').should('have.value', '')
@@ -50,7 +49,6 @@ describe('Input form', () => {
       cy.get('#size').type('50ml')
       cy.get('#price').type('3,55$')
       cy.get('[data-testid=save]').click()
-      cy.get('[data-testid=close]').click()
 
       cy.get('#name').should('have.value', '')
       cy.get('#date').should('have.value', '')
@@ -64,8 +62,8 @@ describe('Input form', () => {
 
     it('adds multiple products', () => {
       cy.get('[data-testid=save]').click()
-      cy.get('[data-testid=close]').click()
 
+      cy.wait(500)
       cy.get('[data-testid=icon]').click()
       cy.get('#name').type('Nivea night face cream long product name')
       cy.get('[data-testid=nameNext]').click()
@@ -74,8 +72,8 @@ describe('Input form', () => {
       cy.get('#month').type(itemMonth)
       cy.get('[data-testid=monthNext]').click()
       cy.get('[data-testid=save]').click()
-      cy.get('[data-testid=close]').click()
 
+      cy.wait(500)
       cy.get('[data-testid=icon]').click()
       cy.get('#name').type('Hairspray')
       cy.get('[data-testid=nameNext]').click()
@@ -84,14 +82,14 @@ describe('Input form', () => {
       cy.get('#month').type(itemMonth)
       cy.get('[data-testid=monthNext]').click()
       cy.get('[data-testid=save]').click()
-      cy.get('[data-testid=close]').click()
 
       cy.get('li').should('have.length', 3)
     })
 
     it('has an info popover', () => {
       cy.get('[data-testid=save]').click()
-      cy.get('[data-testid=close]').click()
+      
+      cy.wait(500)
       cy.get('[data-testid=icon]').click()
       cy.get('[data-testid=nameNext]').click()
       cy.get('[data-testid=dateNext]').click()
@@ -100,7 +98,6 @@ describe('Input form', () => {
 
     it('saves products to localStorage', () => {
       cy.get('[data-testid=save]').click()
-      cy.get('[data-testid=close]').click()
 
       cy.visit('/products')
 
