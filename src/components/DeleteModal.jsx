@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import { selectedProductRemoved } from '../store/productsSlice'
 import { drawerIsOpened } from '../store/drawerSlice'
 import { AppToaster } from '../toaster'
-import { ActionCreators } from "redux-undo";
+import { ActionCreators } from 'redux-undo'
 
 export default function DeleteModal({ isOpen, onClose }) {
   const dispatch = useDispatch()
@@ -15,12 +15,12 @@ export default function DeleteModal({ isOpen, onClose }) {
     dispatch(selectedProductRemoved())
     dispatch(drawerIsOpened(false))
     AppToaster.show({
-      message: "Product has been deleted.",
+      message: 'Product has been deleted.',
       className: 'toast',
       action: {
-        text: "Undo",
+        text: 'Undo',
         onClick: () => dispatch(ActionCreators.undo()),
-      }
+      },
     })
   }
 
@@ -29,7 +29,12 @@ export default function DeleteModal({ isOpen, onClose }) {
       <h2>Are you sure you want to delete this product?</h2>
       <div>
         <Button text="Cancel" isCancel onClick={onClose} />
-        <Button text="Delete" testid="delete" isDelete onClick={handleDeleteClick} />
+        <Button
+          text="Delete"
+          testid="delete"
+          isDelete
+          onClick={handleDeleteClick}
+        />
       </div>
     </DialogStyled>
   )

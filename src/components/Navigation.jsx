@@ -1,14 +1,15 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React from 'react'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 export default function Navigation() {
-  return(
+  return (
     <NavigationStyled>
       <NavLinkStyled
         activeClassName="navigationLinkActive"
         className="navigationLink"
-        exact to="/"
+        exact
+        to="/"
       >
         <i className="fas fa-home" />
       </NavLinkStyled>
@@ -26,6 +27,7 @@ export default function Navigation() {
 const NavigationStyled = styled.nav`
   height: 70px;
   width: 100%;
+  max-width: 500px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -37,9 +39,9 @@ const NavigationStyled = styled.nav`
 `
 const NavLinkStyled = styled(NavLink)`
   color: var(--primary);
-  &.${props => props.activeClassName} {
+  &.${(props) => props.activeClassName} {
     i {
-     color: var(--secondary);
+      color: var(--secondary);
     }
   }
 `

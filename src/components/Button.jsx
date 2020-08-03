@@ -9,7 +9,7 @@ export default function Button({
   isDelete,
   className,
   testid,
-  type
+  type,
 }) {
   return (
     <ButtonStyled

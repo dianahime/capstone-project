@@ -13,7 +13,6 @@ describe('Menu Popover', () => {
     cy.get('#month').type(itemMonth)
     cy.get('[data-testid=monthNext]').click()
     cy.get('[data-testid=save]').click()
-    cy.get('[data-testid=close]').click()
 
     cy.get('li').click()
   })
@@ -31,9 +30,9 @@ describe('Menu Popover', () => {
     cy.get('.fa-ellipsis-v').click()
     cy.get('.fa-pen').click()
 
-    cy.get('#name').focus().clear();
+    cy.get('#name').focus().clear()
     cy.get('#name').type('Nivea face cream')
-    cy.get('#month').focus().clear();
+    cy.get('#month').focus().clear()
     cy.get('#month').type(12)
 
     cy.contains('Save').click()

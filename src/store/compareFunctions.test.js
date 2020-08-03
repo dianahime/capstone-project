@@ -31,34 +31,26 @@ describe('compareFunctions.test.js', () => {
   ]
 
   it('sorts products by creation date', () => {
-    const expected = [
-      products[0], products[2], products[1],
-    ]
-    const actual = products.sort(sortProductsByCreatedAt)
+    const expected = [products[0], products[2], products[1]]
+    const actual = [...products].sort(sortProductsByCreatedAt)
     expect(actual).toEqual(expected)
   })
 
   it('sorts products by soon to expire', () => {
-    const expected = [
-      products[1], products[2], products[0],
-    ]
-    const actual = products.sort(sortProductsBySoonToExpire)
+    const expected = [products[1], products[2], products[0]]
+    const actual = [...products].sort(sortProductsBySoonToExpire)
     expect(actual).toEqual(expected)
   })
 
   it('sorts products by name A to Z', () => {
-    const expected = [
-      products[0], products[1], products[2],
-    ]
-    const actual = products.sort(sortProductsByNameAtoZ)
+    const expected = [products[0], products[1], products[2]]
+    const actual = [...products].sort(sortProductsByNameAtoZ)
     expect(actual).toEqual(expected)
   })
 
   it('sorts products by name Z to A', () => {
-    const expected = [
-      products[2], products[1], products[0],
-    ]
-    const actual = products.sort(sortProductsByNameZtoA)
+    const expected = [products[2], products[1], products[0]]
+    const actual = [...products].sort(sortProductsByNameZtoA)
     expect(actual).toEqual(expected)
   })
 })

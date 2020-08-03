@@ -13,8 +13,6 @@ export default createGlobalStyle`
  * {
     box-sizing: border-box;
     font-family: 'Muli', sans-serif;
-	  /*background-color: var(--neutral);
-    color: var(--primary);*/
   }
   
   body {
@@ -29,6 +27,10 @@ export default createGlobalStyle`
     background: none;
   }
   
+  .bp3-drawer {
+    background-color: var(--neutral);
+  }
+  
   .bp3-button-text {
     color: var(--neutral);
   }
@@ -41,4 +43,16 @@ export default createGlobalStyle`
       color: var(--neutral);
     }
   }
+  
+  a {
+  color: inherit; 
+  text-decoration: inherit;
+  &:hover {
+    color: inherit; 
+    text-decoration: none;
+  }
+  &:focus {
+    outline: none;
+  }
+}
 `

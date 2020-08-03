@@ -23,9 +23,11 @@ export default function Drawer() {
         hasBackdrop={false}
       >
         <DrawerToggle />
-        {visibleComponent === 'Form' && <Form />}
-        {visibleComponent === 'ProductDetails' && <ProductDetails />}
-        {visibleComponent === 'ProductEdit' && <ProductEdit />}
+        <DrawerContainer>
+          {visibleComponent === 'Form' && <Form />}
+          {visibleComponent === 'ProductDetails' && <ProductDetails />}
+          {visibleComponent === 'ProductEdit' && <ProductEdit />}
+        </DrawerContainer>
       </DrawerStyled>
     </>
   )
@@ -35,4 +37,9 @@ const DrawerStyled = styled(BluePrintDrawer)`
   .bp3-drawer {
     background-color: var(--neutral);
   }
+`
+const DrawerContainer = styled.div`
+  max-width: 500px;
+  overflow: scroll;
+  margin: 0 auto;
 `

@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
-import { useSelector } from 'react-redux'
 import MenuPopover from './MenuPopover'
+import { selectors } from '../store/productsSlice'
+import { useSelector } from 'react-redux'
+import { isProductExpired } from '../store/filterFunctions'
 
 export default function ProductDetails() {
-  const productId = useSelector((state) => state.products.present.selected)
-  const allProducts = useSelector((state) => state.products.present.allProducts)
-  const product = allProducts.find((product) => product.id === productId)
+  const product = useSelector(selectors.selectedProduct)
 
   if (!product) {
     return <></>
@@ -22,7 +22,8 @@ export default function ProductDetails() {
       </div>
       <p className="opening-date">Opened: {parsedDate.format('DD.MM.YYYY')}</p>
       <p className="expiring-date">
-        Expires: {parsedDate.add(product.month, 'M').format('DD.MM.YYYY')}
+        {isProductExpired(product) ? 'Expired: ' : 'Expires: '}
+        {parsedDate.add(product.month, 'M').format('DD.MM.YYYY')}
       </p>
       {product.size && <p className="size">Size: {product.size}</p>}
       {product.price && <p className="price">Price: {product.price}</p>}
@@ -35,7 +36,7 @@ const ProductStyled = styled.section`
   height: 100%;
   padding: 0 20px;
   h1 {
-    word-break: break-all;
+    word-break: break-word;
   }
 
   p {
@@ -57,6 +58,7 @@ const ProductStyled = styled.section`
     color: var(--secondary);
     margin-bottom: 20px;
   }
+
   .name {
     font-size: 1.8rem;
     width: 300px;

@@ -14,7 +14,7 @@ describe('Sort Popover', () => {
     cy.get('#month').type(itemMonth)
     cy.get('[data-testid=monthNext]').click()
     cy.get('[data-testid=save]').click()
-    cy.get('[data-testid=close]').click()
+    cy.wait(500)
 
     cy.get('[data-testid=icon]').click()
     cy.get('#name').type('Balea night face cream long product name')
@@ -24,7 +24,7 @@ describe('Sort Popover', () => {
     cy.get('#month').type(12)
     cy.get('[data-testid=monthNext]').click()
     cy.get('[data-testid=save]').click()
-    cy.get('[data-testid=close]').click()
+    cy.wait(500)
 
     cy.get('[data-testid=icon]').click()
     cy.get('#name').type('Hairspray')
@@ -34,7 +34,7 @@ describe('Sort Popover', () => {
     cy.get('#month').type(6)
     cy.get('[data-testid=monthNext]').click()
     cy.get('[data-testid=save]').click()
-    cy.get('[data-testid=close]').click()
+    cy.wait(500)
 
     cy.get('li').should('have.length', 3)
   })
@@ -43,7 +43,9 @@ describe('Sort Popover', () => {
     cy.get('.fa-sort-amount-down').click()
     cy.get('.fa-sort-alpha-down').click()
 
-    cy.get('li').first().should('contain', 'Balea night face cream long product name')
+    cy.get('li')
+      .first()
+      .should('contain', 'Balea night face cream long product name')
   })
 
   it('opens sort popover and sorts by recently added', () => {
@@ -59,5 +61,4 @@ describe('Sort Popover', () => {
 
     cy.get('li').first().should('contain', 'Nivea body lotion')
   })
-
 })

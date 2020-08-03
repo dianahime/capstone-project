@@ -1,29 +1,13 @@
 import React from 'react'
 import { Classes, Popover, Position } from '@blueprintjs/core'
 import styled from 'styled-components'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-  productsSortedByRecentlyAdded,
-  productsSortedBySoonToExpire,
-  productsSortedNameAtoZ,
-  productsSortedNameZtoA,
-} from '../store/productsSlice'
 
-export default function SortPopover() {
-  const dispatch = useDispatch()
-  const currentSorting = useSelector((state) => state.products.present.sorting)
-
-  const handleRecentSort = () => {
-    dispatch(productsSortedByRecentlyAdded())
-  }
-  const handleExpireSort = () => {
-    dispatch(productsSortedBySoonToExpire())
-  }
+export default function ArchiveSortPopover({ setIsAtoZ, isAtoZ }) {
   const handleNameSortAtoZ = () => {
-    dispatch(productsSortedNameAtoZ())
+    setIsAtoZ(true)
   }
   const handleNameSortZtoA = () => {
-    dispatch(productsSortedNameZtoA())
+    setIsAtoZ(false)
   }
 
   return (
@@ -37,30 +21,14 @@ export default function SortPopover() {
       </ButtonStyled>
       <CardStyled>
         <div
-          className={
-            currentSorting === 'recentlyAdded' ? 'active item' : 'item'
-          }
-          onClick={handleRecentSort}
-        >
-          <p>Recently added</p>
-          <i className="fas fa-plus" aria-hidden="true" />
-        </div>
-        <div
-          className={currentSorting === 'soonToExpire' ? 'active item' : 'item'}
-          onClick={handleExpireSort}
-        >
-          <p>Soon to expire</p>
-          <i className="fas fa-exclamation-circle" aria-hidden="true" />
-        </div>
-        <div
-          className={currentSorting === 'nameAtoZ' ? 'active item' : 'item'}
+          className={isAtoZ ? 'active item' : 'item'}
           onClick={handleNameSortAtoZ}
         >
           <p>Name A to Z</p>
           <i className="fas fa-sort-alpha-down" aria-hidden="true" />
         </div>
         <div
-          className={currentSorting === 'nameZtoA' ? 'active item' : 'item'}
+          className={!isAtoZ ? 'active item' : 'item'}
           onClick={handleNameSortZtoA}
         >
           <p>Name Z to A</p>
@@ -88,7 +56,7 @@ const PopoverStyled = styled(Popover)`
 const CardStyled = styled.div`
   background-color: white;
   padding: 10px;
-  width: 170px;
+  width: 150px;
 
   p {
     margin: 0;

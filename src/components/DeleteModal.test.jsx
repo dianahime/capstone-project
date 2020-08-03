@@ -9,47 +9,51 @@ import { useDispatch } from 'react-redux'
 jest.mock('react-redux', () => {
   const dispatch = jest.fn()
 
-  return ({
+  return {
     ...jest.requireActual('react-redux'),
     useDispatch: () => dispatch,
-  })
+  }
 })
 
 describe('DeleteModal.test.jsx', () => {
   it('renders a h2', () => {
-    render(<DeleteModal isOpen={true}/>)
-    expect(screen.getByText('Are you sure you want to delete this product?')).toBeInTheDocument()
+    render(<DeleteModal isOpen={true} />)
+    expect(
+      screen.getByText('Are you sure you want to delete this product?')
+    ).toBeInTheDocument()
   })
 
   it('renders a cancel button', () => {
-    render(<DeleteModal isOpen={true}/>)
+    render(<DeleteModal isOpen={true} />)
     expect(screen.getByText('Cancel')).toBeInTheDocument()
   })
 
   it('renders a delete button', () => {
-    render(<DeleteModal isOpen={true}/>)
+    render(<DeleteModal isOpen={true} />)
     expect(screen.getByText('Delete')).toBeInTheDocument()
   })
 
   it('it does not render when isOpen is false', () => {
-    render(<DeleteModal isOpen={false}/>)
-    expect(screen.queryByText('Are you sure you want to delete this product?')).not.toBeInTheDocument()
+    render(<DeleteModal isOpen={false} />)
+    expect(
+      screen.queryByText('Are you sure you want to delete this product?')
+    ).not.toBeInTheDocument()
   })
 
   it('it closes the modal when cancel is clicked', () => {
     const close = jest.fn()
-    const { getByText } = render(<DeleteModal isOpen onClose={close}/>)
+    const { getByText } = render(<DeleteModal isOpen onClose={close} />)
     getByText('Cancel').click()
     expect(close).toHaveBeenCalled()
   })
 
   it('it dispatches actions when delete is clicked', () => {
     const dispatch = useDispatch()
-    const { getByText } = render(<DeleteModal isOpen/>)
+    const { getByText } = render(<DeleteModal isOpen />)
     getByText('Delete').click()
     expect(dispatch.mock.calls).toEqual([
       [selectedProductRemoved()],
-      [drawerIsOpened(false)]
+      [drawerIsOpened(false)],
     ])
   })
 })
