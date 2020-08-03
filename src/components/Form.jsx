@@ -207,6 +207,7 @@ const FormStyled = styled.form`
     font-size: 1.3rem;
     margin-top: 10px;
     margin-bottom: 20px;
+    padding: 0 10px;
   }
 
   p {
