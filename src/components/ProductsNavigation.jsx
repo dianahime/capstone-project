@@ -11,7 +11,8 @@ export default function ProductsNavigation() {
       <NavLinkStyled
         activeClassName={archivedProducts.length ? 'navigationLinkActive' : ''}
         className="navigationLink"
-        exact to="/products"
+        exact
+        to="/products"
       >
         Your Products
       </NavLinkStyled>
@@ -21,13 +22,12 @@ export default function ProductsNavigation() {
           <NavLinkStyled
             activeClassName="navigation--link__active"
             className="navigation--link"
-            to='/products/archive'
+            to="/products/archive"
           >
             Archive
           </NavLinkStyled>
         </>
       )}
-
     </NavigationStyled>
   )
 }
@@ -42,7 +42,7 @@ const NavigationStyled = styled.nav`
   font-weight: bold;
   padding: 0 40px;
   background-color: var(--neutral);
-  
+
   span {
     font-size: 1.5rem;
   }
@@ -51,10 +51,8 @@ const NavLinkStyled = styled(NavLink)`
   color: var(--primary);
   font-size: 1.5rem;
   padding: 0 8px;
-  &.${props => props.activeClassName} {
-   
-     color: var(--secondary);
-     text-decoration: none;
-    
+  &.${(props) => props.activeClassName} {
+    color: var(--secondary);
+    text-decoration: none;
   }
 `

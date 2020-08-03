@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export default function StepIndicator({step}) {
+export default function StepIndicator({ step }) {
   return (
     <StepIndicatorStyled>
-      <Circle className = {step === 1 && 'active'}/>
-      <Circle className = {step === 2 && 'active'}/>
-      <Circle className = {step === 3 && 'active'}/>
-      <Circle className = {step === 4 && 'active'}/>
+      <Circle className={step === 1 && 'active'} />
+      <Circle className={step === 2 && 'active'} />
+      <Circle className={step === 3 && 'active'} />
+      <Circle className={step === 4 && 'active'} />
     </StepIndicatorStyled>
   )
 }

@@ -10,14 +10,20 @@ describe('Drawer.test.js', () => {
     PRODUCTS_MOCK_DATA = {
       allProducts: [
         {
-          id: '001', name: 'test product', date: '2020-05-27', month: 6, size: '', price: ''
+          id: '001',
+          name: 'test product',
+          date: '2020-05-27',
+          month: 6,
+          size: '',
+          price: '',
         },
-      ], selected: '001',
+      ],
+      selected: '001',
     }
   })
 
   it('renders a button element', () => {
-    render(<Drawer/>, {
+    render(<Drawer />, {
       drawer: {
         isOpen: true,
         visibleComponent: 'Form',
@@ -26,9 +32,8 @@ describe('Drawer.test.js', () => {
     expect(screen.getByTestId('icon')).toBeInTheDocument()
   })
 
-
   it('renders the form component inside the drawer', () => {
-    render(<Drawer/>, {
+    render(<Drawer />, {
       drawer: {
         isOpen: true,
         visibleComponent: 'Form',
@@ -40,12 +45,12 @@ describe('Drawer.test.js', () => {
   })
 
   it('renders the productDetails component inside the drawer', () => {
-    render(<Drawer/>, {
+    render(<Drawer />, {
       drawer: {
         isOpen: true,
         visibleComponent: 'ProductDetails',
       },
-      products: PRODUCTS_MOCK_DATA
+      products: PRODUCTS_MOCK_DATA,
     })
     expect(screen.getByTestId('ProductDetails')).toBeInTheDocument()
     expect(screen.queryByTestId('Form')).not.toBeInTheDocument()
@@ -53,16 +58,15 @@ describe('Drawer.test.js', () => {
   })
 
   it('renders the productEdit component inside the drawer', () => {
-    render(<Drawer/>, {
+    render(<Drawer />, {
       drawer: {
         isOpen: true,
         visibleComponent: 'ProductEdit',
       },
-      products: PRODUCTS_MOCK_DATA
+      products: PRODUCTS_MOCK_DATA,
     })
     expect(screen.getByTestId('ProductEdit')).toBeInTheDocument()
     expect(screen.queryByTestId('Form')).not.toBeInTheDocument()
     expect(screen.queryByTestId('ProductDetails')).not.toBeInTheDocument()
-
   })
 })

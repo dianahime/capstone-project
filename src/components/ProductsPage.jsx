@@ -14,11 +14,13 @@ export default function ProductsPage() {
 
   return (
     <ContainerStyled className={isBlurred && 'blurred'}>
-      {products.length + archivedProducts.length ? <ProductsNavigation/> : null}
+      {products.length + archivedProducts.length ? (
+        <ProductsNavigation />
+      ) : null}
       <main>
         <Switch>
-          <Route exact path="/products" component={ProductsList}/>
-          <Route path="/products/archive" component={ArchivedProductsList}/>
+          <Route exact path="/products" component={ProductsList} />
+          <Route path="/products/archive" component={ArchivedProductsList} />
         </Switch>
       </main>
     </ContainerStyled>
@@ -32,7 +34,7 @@ const ContainerStyled = styled.div`
   flex-direction: column;
   filter: blur(0);
   transition: 0.8s all ease-out;
-  
+
   &.blurred {
     filter: blur(6px);
   }

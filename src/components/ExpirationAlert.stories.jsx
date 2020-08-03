@@ -6,8 +6,10 @@ export default {
   component: ExpirationAlert,
 }
 const product = {
-  name: "test",
-  date: "2020-05-01",
-  month: 1
+  name: 'test',
+  date: '2020-05-01',
+  month: 1,
 }
-export const ExpirationAlertDefault = () => <ExpirationAlert product={product}/>
+export const ExpirationAlertDefault = () => (
+  <ExpirationAlert product={product} />
+)

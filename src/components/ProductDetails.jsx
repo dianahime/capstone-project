@@ -4,6 +4,7 @@ import dayjs from 'dayjs'
 import MenuPopover from './MenuPopover'
 import { selectors } from '../store/productsSlice'
 import { useSelector } from 'react-redux'
+import { isProductExpired } from '../store/filterFunctions'
 
 export default function ProductDetails() {
   const product = useSelector(selectors.selectedProduct)
@@ -21,7 +22,8 @@ export default function ProductDetails() {
       </div>
       <p className="opening-date">Opened: {parsedDate.format('DD.MM.YYYY')}</p>
       <p className="expiring-date">
-        Expires: {parsedDate.add(product.month, 'M').format('DD.MM.YYYY')}
+        {isProductExpired(product) ? 'Expired: ' : 'Expires: '}
+        {parsedDate.add(product.month, 'M').format('DD.MM.YYYY')}
       </p>
       {product.size && <p className="size">Size: {product.size}</p>}
       {product.price && <p className="price">Price: {product.price}</p>}
@@ -56,6 +58,7 @@ const ProductStyled = styled.section`
     color: var(--secondary);
     margin-bottom: 20px;
   }
+
   .name {
     font-size: 1.8rem;
     width: 300px;

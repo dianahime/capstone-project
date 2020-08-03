@@ -27,7 +27,7 @@ const NotFoundStyled = styled.div`
   &.blurred {
     filter: blur(6px);
   }
-  
+
   p {
     font-size: 1.5rem;
     text-align: center;

@@ -22,7 +22,7 @@ export default function InfoPopover() {
 
 const PopoverStyled = styled(Popover)`
   margin-left: 10px;
-  
+
   * {
     background: none;
   }

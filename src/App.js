@@ -10,7 +10,6 @@ import ProductsPage from './components/ProductsPage'
 import { useSelector } from 'react-redux'
 import { selectors } from './store/productsSlice'
 
-
 function App() {
   const products = useSelector(selectors.products)
   const archivedProducts = useSelector(selectors.archivedProducts)
@@ -18,13 +17,13 @@ function App() {
     <ContainerStyled>
       <main>
         <Switch>
-          <Route exact path="/" component={Dashboard}/>
-          <Route path="/products" component={ProductsPage}/>
-          <Route component={NotFound}/>
+          <Route exact path="/" component={Dashboard} />
+          <Route path="/products" component={ProductsPage} />
+          <Route component={NotFound} />
         </Switch>
       </main>
-      <Drawer/>
-      {products.length + archivedProducts.length > 0 && <Navigation/>}
+      <Drawer />
+      {products.length + archivedProducts.length > 0 && <Navigation />}
     </ContainerStyled>
   )
 }

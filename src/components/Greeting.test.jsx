@@ -11,7 +11,7 @@ describe('Greeting.test.js', () => {
   })
 
   it('has blurred class if drawer is opened', () => {
-    render (<Greeting />, { drawer: { isOpen: true }, })
+    render(<Greeting />, { drawer: { isOpen: true } })
     expect(screen.getByTestId('greeting')).toHaveClass('blurred')
   })
 })

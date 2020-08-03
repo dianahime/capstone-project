@@ -3,11 +3,11 @@ import styled from 'styled-components'
 import dayjs from 'dayjs'
 import Button from './Button'
 import InfoPopover from './InfoPopover'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { productChanged } from '../store/productsSlice'
 import { displayDrawerContent } from '../store/drawerSlice'
 import { AppToaster } from '../toaster'
-import { ActionCreators } from "redux-undo";
+import { ActionCreators } from 'redux-undo'
 
 export default function ProductEdit() {
   const productId = useSelector((state) => state.products.present.selected)
@@ -30,12 +30,12 @@ export default function ProductEdit() {
       dispatch(productChanged({ ...product, name, date, month, size, price }))
       dispatch(displayDrawerContent('ProductDetails'))
       AppToaster.show({
-        message: "Product has been updated.",
+        message: 'Product has been updated.',
         className: 'toast',
         action: {
-          text: "Undo",
+          text: 'Undo',
           onClick: () => dispatch(ActionCreators.undo()),
-        }
+        },
       })
     }
   }
@@ -85,7 +85,7 @@ export default function ProductEdit() {
         <p>The product can expire up to 120 months after opening.</p>
       )}
 
-      <label htmlFor="Size">
+      <label htmlFor="size">
         Size of the product <span>(optional)</span>
       </label>
       <input
@@ -114,7 +114,12 @@ export default function ProductEdit() {
       )}
 
       <div className="button-container">
-        <Button text="Cancel" isCancel onClick={handleCancelClick} type="button" />
+        <Button
+          text="Cancel"
+          isCancel
+          onClick={handleCancelClick}
+          type="button"
+        />
         <Button text="Save" />
       </div>
     </FormStyled>
@@ -124,7 +129,6 @@ export default function ProductEdit() {
 const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
-  overflow: auto;
   padding: 25px;
   color: var(--primary);
   background-color: var(--neutral);
@@ -141,7 +145,6 @@ const FormStyled = styled.form`
     border: 1px solid var(--primary);
     border-radius: 20px;
     color: var(--primary);
-    
 
     &:hover {
       border-color: var(--secondary);

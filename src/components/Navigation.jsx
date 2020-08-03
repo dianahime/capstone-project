@@ -27,6 +27,7 @@ export default function Navigation() {
 const NavigationStyled = styled.nav`
   height: 70px;
   width: 100%;
+  max-width: 500px;
   display: flex;
   justify-content: space-between;
   align-items: center;

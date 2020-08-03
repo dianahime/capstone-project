@@ -16,10 +16,10 @@ export default function ProductsList() {
     <UlStyled data-testid="productsList" className={isBlurred ? 'blurred' : ''}>
       <SortPopover />
       <FlipMove>
-      {products &&
-        products.map((product) => (
-          <ProductsListItem key={product.id} product={product} />
-        ))}
+        {products &&
+          products.map((product) => (
+            <ProductsListItem key={product.id} product={product} />
+          ))}
       </FlipMove>
     </UlStyled>
   ) : (

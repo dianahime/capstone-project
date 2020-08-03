@@ -11,20 +11,28 @@ export default function ArchiveSortPopover({ setIsAtoZ, isAtoZ }) {
   }
 
   return (
-    <PopoverStyled usePortal={false} position={Position.LEFT_TOP} popoverClassName={Classes.POPOVER_DISMISS}>
+    <PopoverStyled
+      usePortal={false}
+      position={Position.LEFT_TOP}
+      popoverClassName={Classes.POPOVER_DISMISS}
+    >
       <ButtonStyled type="button" className="button">
-        <IconStyled
-          className="fas fa-sort-amount-down"
-          aria-hidden="true"/>
+        <IconStyled className="fas fa-sort-amount-down" aria-hidden="true" />
       </ButtonStyled>
       <CardStyled>
-        <div className={isAtoZ ? 'active item' : 'item'} onClick={handleNameSortAtoZ}>
+        <div
+          className={isAtoZ ? 'active item' : 'item'}
+          onClick={handleNameSortAtoZ}
+        >
           <p>Name A to Z</p>
-          <i className="fas fa-sort-alpha-down" aria-hidden="true"/>
+          <i className="fas fa-sort-alpha-down" aria-hidden="true" />
         </div>
-        <div className={!isAtoZ ? 'active item' : 'item'} onClick={handleNameSortZtoA}>
+        <div
+          className={!isAtoZ ? 'active item' : 'item'}
+          onClick={handleNameSortZtoA}
+        >
           <p>Name Z to A</p>
-          <i className="fas fa-sort-alpha-down-alt" aria-hidden="true"/>
+          <i className="fas fa-sort-alpha-down-alt" aria-hidden="true" />
         </div>
       </CardStyled>
     </PopoverStyled>
@@ -49,7 +57,7 @@ const CardStyled = styled.div`
   background-color: white;
   padding: 10px;
   width: 150px;
- 
+
   p {
     margin: 0;
   }
@@ -61,8 +69,8 @@ const CardStyled = styled.div`
     color: var(--primary);
     padding: 5px 0;
     margin-right: 5px;
-    
-     &.active{
+
+    &.active {
       color: var(--secondary);
     }
   }

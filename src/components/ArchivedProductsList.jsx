@@ -6,7 +6,10 @@ import { selectors } from '../store/productsSlice'
 import ProductsListItem from './ProductsListItem'
 import ArchiveSortPopover from './ArchiveSortPopover'
 import FlipMove from 'react-flip-move'
-import { sortProductsByNameAtoZ, sortProductsByNameZtoA } from '../store/compareFunctions'
+import {
+  sortProductsByNameAtoZ,
+  sortProductsByNameZtoA,
+} from '../store/compareFunctions'
 
 export default function ArchivedProductsList() {
   const archivedProducts = useSelector(selectors.archivedProducts)
@@ -22,12 +25,14 @@ export default function ArchivedProductsList() {
 
   return (
     <UlStyled className={isBlurred && 'blurred'}>
-      <ArchiveSortPopover isAtoZ={isAtoZ} setIsAtoZ={setIsAtoZ}/>
+      <ArchiveSortPopover isAtoZ={isAtoZ} setIsAtoZ={setIsAtoZ} />
       <FlipMove>
         {archivedProducts &&
-        archivedProducts.sort(isAtoZ ? sortProductsByNameAtoZ : sortProductsByNameZtoA).map(product => (
-          <ProductsListItem key={product.id} product={product}/>
-        ))}
+          archivedProducts
+            .sort(isAtoZ ? sortProductsByNameAtoZ : sortProductsByNameZtoA)
+            .map((product) => (
+              <ProductsListItem key={product.id} product={product} />
+            ))}
       </FlipMove>
     </UlStyled>
   )
@@ -38,7 +43,7 @@ const UlStyled = styled.ul`
   padding: 0;
   filter: blur(0);
   transition: 0.8s all ease-out;
-  
+
   &.blurred {
     filter: blur(6px);
   }

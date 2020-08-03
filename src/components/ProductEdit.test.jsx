@@ -5,16 +5,16 @@ import { fireEvent } from '@testing-library/react'
 import { render, screen } from '../test-utils'
 import ProductEdit from './ProductEdit'
 import { useDispatch } from 'react-redux'
-import { displayDrawerContent} from '../store/drawerSlice'
+import { displayDrawerContent } from '../store/drawerSlice'
 import { productChanged } from '../store/productsSlice'
 
 jest.mock('react-redux', () => {
   const dispatch = jest.fn()
 
-  return ({
+  return {
     ...jest.requireActual('react-redux'),
     useDispatch: () => dispatch,
-  })
+  }
 })
 
 describe('ProductEdit.test.jsx', () => {
@@ -26,13 +26,19 @@ describe('ProductEdit.test.jsx', () => {
   const PRODUCTS_MOCK_DATA = {
     allProducts: [
       {
-        id: '001', name: 'test product', date: '2020-05-27', month: 6, size: '', price: '',
+        id: '001',
+        name: 'test product',
+        date: '2020-05-27',
+        month: 6,
+        size: '',
+        price: '',
       },
-    ], selected: '001',
+    ],
+    selected: '001',
   }
 
   beforeEach(() => {
-    render(<ProductEdit/>, { products: PRODUCTS_MOCK_DATA })
+    render(<ProductEdit />, { products: PRODUCTS_MOCK_DATA })
   })
 
   it('renders the name of the product into the name input field', () => {
@@ -47,7 +53,9 @@ describe('ProductEdit.test.jsx', () => {
 
   it('renders the amount of months of the product into the month input field', () => {
     const monthInput = screen.getByLabelText('Months until expiration')
-    expect(monthInput.value).toBe(PRODUCTS_MOCK_DATA.allProducts[0].month.toString())
+    expect(monthInput.value).toBe(
+      PRODUCTS_MOCK_DATA.allProducts[0].month.toString()
+    )
   })
 
   it('changes the value of the product name', () => {
@@ -72,7 +80,7 @@ describe('ProductEdit.test.jsx', () => {
     const dispatch = useDispatch()
     screen.getByText('Cancel').click()
     expect(dispatch.mock.calls).toEqual([
-      [displayDrawerContent('ProductDetails')]
+      [displayDrawerContent('ProductDetails')],
     ])
   })
 

@@ -4,6 +4,7 @@ import dayjs from 'dayjs'
 import { useDispatch } from 'react-redux'
 import { productSelected } from '../store/productsSlice'
 import { displayDrawerContent } from '../store/drawerSlice'
+import { isProductExpired } from '../store/filterFunctions'
 
 const ProductsListItem = forwardRef(({ product }, ref) => {
   const dispatch = useDispatch()
@@ -15,14 +16,19 @@ const ProductsListItem = forwardRef(({ product }, ref) => {
   }
 
   return (
-    <LiStyled onClick={handleClick} ref={ref}>
+    <LiStyled
+      onClick={handleClick}
+      ref={ref}
+      className={isProductExpired(product) && 'expired'}
+    >
       <p className="name">{product.name}</p>
       <p className="expiring-date">
-        Expires: {parsedDate.add(product.month, 'M').format('DD.MM.YYYY')}
+        {isProductExpired(product) ? 'Expired: ' : 'Expires: '}
+        {parsedDate.add(product.month, 'M').format('DD.MM.YYYY')}
       </p>
     </LiStyled>
   )
-});
+})
 
 export default ProductsListItem
 
@@ -34,7 +40,7 @@ const LiStyled = styled.li`
   padding: 20px;
   min-height: 100px;
   width: 300px;
-  margin: 20px auto 0 auto;
+  margin: 30px auto 0 auto;
   overflow: hidden;
   background: var(--neutral);
   border-radius: 20px;
@@ -59,5 +65,9 @@ const LiStyled = styled.li`
 
   .expiring-date {
     color: var(--secondary);
+  }
+
+  &.expired {
+    background-color: var(--secondaryLight);
   }
 `

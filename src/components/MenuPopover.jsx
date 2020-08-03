@@ -4,10 +4,13 @@ import styled from 'styled-components'
 import DeleteModal from './DeleteModal'
 import { useDispatch, useSelector } from 'react-redux'
 import { displayDrawerContent, drawerIsOpened } from '../store/drawerSlice'
-import { productArchived, productUnarchived, selectors } from '../store/productsSlice'
+import {
+  productArchived,
+  productUnarchived,
+  selectors,
+} from '../store/productsSlice'
 import { AppToaster } from '../toaster'
 import { ActionCreators } from 'redux-undo'
-
 
 export default function MenuPopover() {
   const dispatch = useDispatch()
@@ -49,30 +52,27 @@ export default function MenuPopover() {
   return (
     <PopoverStyled usePortal={false} position={Position.LEFT_TOP}>
       <ButtonStyled type="button" className="button">
-        <IconStyled
-          className="fa fa-ellipsis-v"
-          aria-hidden="true"
-        />
+        <IconStyled className="fa fa-ellipsis-v" aria-hidden="true" />
       </ButtonStyled>
       <CardStyled>
         <div className="item" onClick={handleEditClick}>
           <p>Edit</p>
-          <i className="fas fa-pen" aria-hidden="true"/>
+          <i className="fas fa-pen" aria-hidden="true" />
         </div>
         {product.isArchived ? (
           <div className="item" onClick={handleUnarchiveClick}>
             <p>Unarchive</p>
-            <i className="fas fa-undo" aria-hidden="true"/>
+            <i className="fas fa-undo" aria-hidden="true" />
           </div>
         ) : (
           <div className="item" onClick={handleArchiveClick}>
             <p>Archive</p>
-            <i className="fas fa-archive" aria-hidden="true"/>
+            <i className="fas fa-archive" aria-hidden="true" />
           </div>
         )}
         <div className="item" onClick={handleDeleteClick}>
           <p className="delete">Delete</p>
-          <i className="fa fa-trash delete" aria-hidden="true"/>
+          <i className="fa fa-trash delete" aria-hidden="true" />
         </div>
         <DeleteModal
           isOpen={isDeleteModalOpen}

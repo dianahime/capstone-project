@@ -5,17 +5,23 @@ import { render, screen } from '../test-utils'
 import ProductDetails from './ProductDetails'
 
 describe('ProductDetails.test.jsx', () => {
- const PRODUCTS_MOCK_DATA = {
+  const PRODUCTS_MOCK_DATA = {
     allProducts: [
       {
-        id: '001', name: 'test product', date: '2020-05-27', month: 6, size: '', price: ''
+        id: '001',
+        name: 'test product',
+        date: '2020-05-27',
+        month: 6,
+        size: '',
+        price: '',
       },
-    ], selected: '001',
+    ],
+    selected: '001',
   }
 
   beforeEach(() => {
-    render(<ProductDetails />, {products: PRODUCTS_MOCK_DATA})
-  });
+    render(<ProductDetails />, { products: PRODUCTS_MOCK_DATA })
+  })
 
   it('renders a section element', () => {
     expect(screen.getByTestId('ProductDetails')).toBeInTheDocument()
@@ -49,14 +55,20 @@ describe('ProductDetails with different product or no product', () => {
   })
 
   it('does render a p element with size', () => {
-    render(<ProductDetails />, {products: {
+    render(<ProductDetails />, {
+      products: {
         allProducts: [
           {
-            id: '001', name: 'test product', date: '2020-05-27', month: 6, size:'50ml',
+            id: '001',
+            name: 'test product',
+            date: '2020-05-27',
+            month: 6,
+            size: '50ml',
           },
-        ], selected: '001',
-      },})
+        ],
+        selected: '001',
+      },
+    })
     expect(screen.getByText('Size: 50ml')).toBeInTheDocument()
   })
-
 })

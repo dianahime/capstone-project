@@ -11,7 +11,7 @@ import zenscroll from 'zenscroll'
 import StepIndicator from './StepIndicator'
 import ReactSwipe from 'react-swipe'
 import { AppToaster } from '../toaster'
-import { ActionCreators } from "redux-undo"
+import { ActionCreators } from 'redux-undo'
 
 export default function Form() {
   const [name, setName] = useState('')
@@ -34,17 +34,27 @@ export default function Form() {
   }
   const handleSubmit = () => {
     if (name && date && month) {
-      dispatch(productAdded({ id: uuid(), createdAt: dayjs().format(), name, date, month, size, price }))
+      dispatch(
+        productAdded({
+          id: uuid(),
+          createdAt: dayjs().format(),
+          name,
+          date,
+          month,
+          size,
+          price,
+        })
+      )
       dispatch(drawerIsOpened(false))
       resetForm()
       zenscroll.toY(0, 1000)
       AppToaster.show({
-        message: "Product has been added.",
+        message: 'Product has been added.',
         className: 'toast',
         action: {
-          text: "Undo",
+          text: 'Undo',
           onClick: () => dispatch(ActionCreators.undo()),
-        }
+        },
       })
     }
   }
@@ -75,8 +85,8 @@ export default function Form() {
             <p>The product name can consist of up to 40 characters.</p>
           )}
 
-          <Button testid="nameNext" text="Next" onClick={next}/>
-          <StepIndicator step={1}/>
+          <Button testid="nameNext" text="Next" onClick={next} />
+          <StepIndicator step={1} />
         </Card>
 
         <Card>
@@ -90,14 +100,10 @@ export default function Form() {
             id="date"
           />
           <div className="button-container">
-            <Button
-              text="Back"
-              isCancel
-              onClick={back}
-            />
-            <Button testid="dateNext" text="Next" onClick={next}/>
+            <Button text="Back" isCancel onClick={back} />
+            <Button testid="dateNext" text="Next" onClick={next} />
           </div>
-          <StepIndicator step={2}/>
+          <StepIndicator step={2} />
         </Card>
 
         <Card>
@@ -114,24 +120,16 @@ export default function Form() {
               id="month"
               placeholder="E.g. 12"
             />
-            <InfoPopover/>
+            <InfoPopover />
           </ContainerStyled>
           {month > 120 && (
             <p>The product can expire up to 120 months after opening.</p>
           )}
           <div className="button-container">
-            <Button
-              text="Back"
-              isCancel
-              onClick={back}
-            />
-            <Button
-              testid="monthNext"
-              text="Next"
-              onClick={next}
-            />
+            <Button text="Back" isCancel onClick={back} />
+            <Button testid="monthNext" text="Next" onClick={next} />
           </div>
-          <StepIndicator step={3}/>
+          <StepIndicator step={3} />
         </Card>
 
         <Card>
@@ -163,11 +161,7 @@ export default function Form() {
             <p>The product price can consist of up to 10 characters.</p>
           )}
           <div className="button-container">
-            <Button
-              text="Back"
-              isCancel
-              onClick={back}
-            />
+            <Button text="Back" isCancel onClick={back} />
             <Button
               testid="save"
               text="Save"
@@ -176,7 +170,7 @@ export default function Form() {
               onClick={handleSubmit}
             />
           </div>
-          <StepIndicator step={4}/>
+          <StepIndicator step={4} />
         </Card>
       </ReactSwipe>
     </FormStyled>

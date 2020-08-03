@@ -11,7 +11,7 @@ import {
 
 export default function SortPopover() {
   const dispatch = useDispatch()
-  const currentSorting = useSelector(state => state.products.present.sorting)
+  const currentSorting = useSelector((state) => state.products.present.sorting)
 
   const handleRecentSort = () => {
     dispatch(productsSortedByRecentlyAdded())
@@ -27,28 +27,44 @@ export default function SortPopover() {
   }
 
   return (
-    <PopoverStyled usePortal={false} position={Position.LEFT_TOP} popoverClassName={Classes.POPOVER_DISMISS}>
+    <PopoverStyled
+      usePortal={false}
+      position={Position.LEFT_TOP}
+      popoverClassName={Classes.POPOVER_DISMISS}
+    >
       <ButtonStyled type="button" className="button">
-        <IconStyled
-          className="fas fa-sort-amount-down"
-          aria-hidden="true"/>
+        <IconStyled className="fas fa-sort-amount-down" aria-hidden="true" />
       </ButtonStyled>
       <CardStyled>
-        <div className={currentSorting === 'recentlyAdded' ? 'active item' : 'item'} onClick={handleRecentSort}>
+        <div
+          className={
+            currentSorting === 'recentlyAdded' ? 'active item' : 'item'
+          }
+          onClick={handleRecentSort}
+        >
           <p>Recently added</p>
-          <i className="fas fa-plus" aria-hidden="true"/>
+          <i className="fas fa-plus" aria-hidden="true" />
         </div>
-        <div className={currentSorting === 'soonToExpire' ? 'active item' : 'item'} onClick={handleExpireSort}>
+        <div
+          className={currentSorting === 'soonToExpire' ? 'active item' : 'item'}
+          onClick={handleExpireSort}
+        >
           <p>Soon to expire</p>
-          <i className="fas fa-exclamation-circle" aria-hidden="true"/>
+          <i className="fas fa-exclamation-circle" aria-hidden="true" />
         </div>
-        <div className={currentSorting === 'nameAtoZ' ? 'active item' : 'item'} onClick={handleNameSortAtoZ}>
+        <div
+          className={currentSorting === 'nameAtoZ' ? 'active item' : 'item'}
+          onClick={handleNameSortAtoZ}
+        >
           <p>Name A to Z</p>
-          <i className="fas fa-sort-alpha-down" aria-hidden="true"/>
+          <i className="fas fa-sort-alpha-down" aria-hidden="true" />
         </div>
-        <div className={currentSorting === 'nameZtoA' ? 'active item' : 'item'} onClick={handleNameSortZtoA}>
+        <div
+          className={currentSorting === 'nameZtoA' ? 'active item' : 'item'}
+          onClick={handleNameSortZtoA}
+        >
           <p>Name Z to A</p>
-          <i className="fas fa-sort-alpha-down-alt" aria-hidden="true"/>
+          <i className="fas fa-sort-alpha-down-alt" aria-hidden="true" />
         </div>
       </CardStyled>
     </PopoverStyled>
@@ -85,8 +101,8 @@ const CardStyled = styled.div`
     color: var(--primary);
     padding: 5px 0;
     margin-right: 5px;
-    
-    &.active{
+
+    &.active {
       color: var(--secondary);
     }
   }
@@ -109,4 +125,3 @@ const IconStyled = styled.i`
   margin-bottom: 5px;
   color: var(--primary);
 `
-
