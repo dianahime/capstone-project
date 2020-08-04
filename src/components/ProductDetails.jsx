@@ -6,34 +6,43 @@ import { productChanged, selectors } from '../store/productsSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { isProductExpired } from '../store/filterFunctions'
 import StarRating from './StarRating'
+import ProductCommentForm from './ProductCommentForm'
+import ProductComment from './ProductComment'
 
 export default function ProductDetails() {
   const product = useSelector(selectors.selectedProduct)
   const dispatch = useDispatch()
-  const handleRatingChange = rating => dispatch(productChanged({ ...product, rating }))
+  const handleRatingChange = (rating) =>
+    dispatch(productChanged({ ...product, rating }))
 
   if (!product) {
     return <></>
   }
-
   const parsedDate = dayjs(product.date)
   return (
     <ProductStyled data-testid="ProductDetails">
       <div className="titleContainer">
         <h1 className="name">{product.name}</h1>
-        <MenuPopover/>
+        <MenuPopover />
       </div>
+
       <p className="opening-date">Opened: {parsedDate.format('DD.MM.YYYY')}</p>
       <p className="expiring-date">
         {isProductExpired(product) ? 'Expired: ' : 'Expires: '}
         {parsedDate.add(product.month, 'M').format('DD.MM.YYYY')}
       </p>
+
       {product.size && <p className="size">Size: {product.size}</p>}
       {product.price && <p className="price">Price: {product.price}</p>}
-      <ContainerStyled>
-        <StarRating rating={product.rating} onChange={handleRatingChange}/>
-      </ContainerStyled>
 
+      <ContainerStyled>
+        <StarRating rating={product.rating} onChange={handleRatingChange} />
+        {product.comment ? (
+          <ProductComment product={product} />
+        ) : (
+          <ProductCommentForm />
+        )}
+      </ContainerStyled>
     </ProductStyled>
   )
 }
@@ -41,8 +50,7 @@ export default function ProductDetails() {
 const ProductStyled = styled.section`
   background-color: var(--neutral);
   height: 100%;
-  padding: 0 20px;
-  
+
   h1 {
     word-break: break-word;
   }
@@ -74,7 +82,9 @@ const ProductStyled = styled.section`
 `
 
 const ContainerStyled = styled.div`
+  width: 100%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `
-

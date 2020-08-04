@@ -84,6 +84,17 @@ export const createProductsSlice = (initialState) =>
         }
       },
 
+      selectedProductCommentRemoved(state, action) {
+        return {
+          ...state,
+          allProducts: state.allProducts.map((product) =>
+            product.id === action.payload.id
+              ? { ...product, title: '', comment: '' }
+              : product
+          ),
+        }
+      },
+
       productArchived(state, action) {
         return {
           ...state,
@@ -134,6 +145,7 @@ export const {
   productArchived,
   productUnarchived,
   productExpirationIgnored,
+  selectedProductCommentRemoved,
 } = productsSlice.actions
 
 export const selectors = {
