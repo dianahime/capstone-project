@@ -2,9 +2,10 @@ import React, { forwardRef } from 'react'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
 import { useDispatch } from 'react-redux'
-import { productSelected } from '../store/productsSlice'
+import { productChanged, productSelected } from '../store/productsSlice'
 import { displayDrawerContent } from '../store/drawerSlice'
 import { isProductExpired } from '../store/filterFunctions'
+import StarRating from './StarRating'
 
 const ProductsListItem = forwardRef(({ product }, ref) => {
   const dispatch = useDispatch()
@@ -14,6 +15,7 @@ const ProductsListItem = forwardRef(({ product }, ref) => {
     dispatch(productSelected(product.id))
     dispatch(displayDrawerContent('ProductDetails'))
   }
+  const handleRatingChange = rating => dispatch(productChanged({ ...product, rating }))
 
   return (
     <LiStyled
@@ -26,6 +28,7 @@ const ProductsListItem = forwardRef(({ product }, ref) => {
         {isProductExpired(product) ? 'Expired: ' : 'Expires: '}
         {parsedDate.add(product.month, 'M').format('DD.MM.YYYY')}
       </p>
+      <StarRating rating={product.rating} onChange={handleRatingChange}/>
     </LiStyled>
   )
 })
@@ -37,7 +40,7 @@ const LiStyled = styled.li`
   align-self: center;
   flex-direction: column;
   list-style-type: none;
-  padding: 20px;
+  padding: 15px 20px 5px 20px;
   min-height: 100px;
   width: 300px;
   margin: 30px auto 0 auto;
