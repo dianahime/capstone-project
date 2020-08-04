@@ -48,6 +48,7 @@ const ButtonStyled = styled.button`
   }
   i {
     color: var(--primary);
+    font-size: 1.3rem;
   }
 `
 const ImgStyled = styled.img`

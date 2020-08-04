@@ -42,14 +42,10 @@ export default function DeleteModal({ isOpen, onClose }) {
 
 const DialogStyled = styled(Dialog)`
   width: 90%;
+  max-width: 500px;
   border-radius: 15px;
   padding: 10px;
   background-color: white;
-
-  h2,
-  div {
-    background-color: white;
-  }
 
   h2 {
     text-align: center;

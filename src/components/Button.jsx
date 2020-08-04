@@ -27,6 +27,7 @@ export default function Button({
 }
 
 const ButtonStyled = styled.button`
+  font-size: 1.2rem;
   background-color: var(--primary);
   color: var(--neutral);
   width: 100px;
@@ -39,11 +40,6 @@ const ButtonStyled = styled.button`
     outline: none;
   }
 
-  &:hover {
-    background-color: var(--primaryLight);
-    color: var(--primary);
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
-  }
 
   ${(props) =>
     props.disabled &&
@@ -52,13 +48,6 @@ const ButtonStyled = styled.button`
       color: var(--secondary);
       border: 1px solid var(--secondary);
       box-shadow: none;
-
-      &:hover {
-        background: white;
-        color: var(--secondary);
-        border: 1px solid var(--secondary);
-        box-shadow: none;
-      }
     `}
 
   ${(props) =>
@@ -66,11 +55,6 @@ const ButtonStyled = styled.button`
     css`
       background: white;
       color: var(--secondary);
-
-      &:hover {
-        background: var(--secondary);
-        color: white;
-      }
     `}
 
     ${(props) =>
@@ -78,10 +62,5 @@ const ButtonStyled = styled.button`
       css`
         background: var(--secondary);
         color: white;
-
-        &:hover {
-          background: white;
-          color: var(--secondary);
-        }
       `}
 `
