@@ -2,12 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
 import MenuPopover from './MenuPopover'
-import { selectors } from '../store/productsSlice'
-import { useSelector } from 'react-redux'
+import { productChanged, selectors } from '../store/productsSlice'
+import { useDispatch, useSelector } from 'react-redux'
 import { isProductExpired } from '../store/filterFunctions'
+import StarRating from './StarRating'
 
 export default function ProductDetails() {
   const product = useSelector(selectors.selectedProduct)
+  const dispatch = useDispatch()
+  const handleRatingChange = rating => dispatch(productChanged({ ...product, rating }))
 
   if (!product) {
     return <></>
@@ -18,7 +21,7 @@ export default function ProductDetails() {
     <ProductStyled data-testid="ProductDetails">
       <div className="titleContainer">
         <h1 className="name">{product.name}</h1>
-        <MenuPopover />
+        <MenuPopover/>
       </div>
       <p className="opening-date">Opened: {parsedDate.format('DD.MM.YYYY')}</p>
       <p className="expiring-date">
@@ -27,6 +30,10 @@ export default function ProductDetails() {
       </p>
       {product.size && <p className="size">Size: {product.size}</p>}
       {product.price && <p className="price">Price: {product.price}</p>}
+      <ContainerStyled>
+        <StarRating rating={product.rating} onChange={handleRatingChange}/>
+      </ContainerStyled>
+
     </ProductStyled>
   )
 }
@@ -35,6 +42,7 @@ const ProductStyled = styled.section`
   background-color: var(--neutral);
   height: 100%;
   padding: 0 20px;
+  
   h1 {
     word-break: break-word;
   }
@@ -64,3 +72,9 @@ const ProductStyled = styled.section`
     width: 300px;
   }
 `
+
+const ContainerStyled = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
