@@ -15,6 +15,7 @@ export default function ProductEdit() {
 
   const [name, setName] = useState(product.name)
   const [date, setDate] = useState(product.date)
+  const [usedUpDate, setUsedUpDate] = useState(product.usedUp)
   const [month, setMonth] = useState(product.month)
   const [size, setSize] = useState(product.size)
   const [price, setPrice] = useState(product.price)
@@ -24,7 +25,7 @@ export default function ProductEdit() {
   const handleSubmit = (event) => {
     event.preventDefault()
     if (name && date && month) {
-      dispatch(productChanged({ ...product, name, date, month, size, price }))
+      dispatch(productChanged({ ...product, name, date, month, size, price, usedUp: usedUpDate }))
       dispatch(displayDrawerContent('ProductDetails'))
       AppToaster.show({
         message: 'Product has been updated.',
@@ -65,6 +66,21 @@ export default function ProductEdit() {
         id="date"
       />
 
+      {product.usedUp && (
+        <>
+          <label htmlFor="usedUpDate">Product used up</label>
+          <input
+            onChange={event => setUsedUpDate(event.target.value)}
+            value={usedUpDate}
+            type="date"
+            min="2018-01-01"
+            max={currentDate}
+            id="usedUpDate"
+          />
+        </>
+      )
+      }
+
       <label htmlFor="month">Months until expiration</label>
       <ContainerStyled>
         <input
@@ -76,7 +92,7 @@ export default function ProductEdit() {
           id="month"
           placeholder="E.g. 12"
         />
-        <InfoPopover />
+        <InfoPopover/>
       </ContainerStyled>
       {month > 120 && (
         <p>The product can expire up to 120 months after opening.</p>
@@ -117,7 +133,7 @@ export default function ProductEdit() {
           onClick={handleCancelClick}
           type="button"
         />
-        <Button text="Save" />
+        <Button text="Save"/>
       </div>
     </FormStyled>
   )
@@ -185,7 +201,7 @@ const FormStyled = styled.form`
     width: 300px;
   }
 
-  #date {
+  #date, #usedUpDate {
     width: 180px;
     height: 30px;
   }

@@ -12,7 +12,7 @@ export default function Drawer() {
 
   return (
     <>
-      {!isOpen && <DrawerToggle />}
+      {!isOpen && <DrawerToggle/>}
       <DrawerStyled
         data-testid="section"
         isOpen={isOpen}
@@ -22,11 +22,11 @@ export default function Drawer() {
         lazy={false}
         hasBackdrop={false}
       >
-        <DrawerToggle />
+        <DrawerToggle/>
         <DrawerContainer>
-          {visibleComponent === 'Form' && <Form />}
-          {visibleComponent === 'ProductDetails' && <ProductDetails />}
-          {visibleComponent === 'ProductEdit' && <ProductEdit />}
+          {visibleComponent === 'Form' && <Form/>}
+          {visibleComponent === 'ProductDetails' && <ProductDetails/>}
+          {visibleComponent === 'ProductEdit' && <ProductEdit/>}
         </DrawerContainer>
       </DrawerStyled>
     </>
@@ -43,8 +43,9 @@ const DrawerContainer = styled.div`
   height: 100%;
   overflow: auto;
   margin: 0 auto;
+  scrollbar-width: none;
 
   ::-webkit-scrollbar {
-    color: var(--neutral);
+    width: 0;
   }
 `
