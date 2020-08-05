@@ -2,15 +2,15 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 
 export default function Button({
-  text,
-  onClick,
-  disabled,
-  isCancel,
-  isDelete,
-  className,
-  testid,
-  type,
-}) {
+                                 text,
+                                 onClick,
+                                 disabled,
+                                 isCancel,
+                                 isDelete,
+                                 className,
+                                 testid,
+                                 type,
+                               }) {
   return (
     <ButtonStyled
       onClick={onClick}
@@ -34,7 +34,7 @@ const ButtonStyled = styled.button`
   padding: 10px 15px;
   border: none;
   border-radius: 10px;
-  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
 
   &:focus {
     outline: none;
@@ -42,8 +42,8 @@ const ButtonStyled = styled.button`
 
 
   ${(props) =>
-    props.disabled &&
-    css`
+  props.disabled &&
+  css`
       background: white;
       color: var(--secondary);
       border: 1px solid var(--secondary);
@@ -51,15 +51,15 @@ const ButtonStyled = styled.button`
     `}
 
   ${(props) =>
-    props.isCancel &&
-    css`
+  props.isCancel &&
+  css`
       background: white;
       color: var(--secondary);
     `}
 
     ${(props) =>
-      props.isDelete &&
-      css`
+  props.isDelete &&
+  css`
         background: var(--secondary);
         color: white;
       `}
