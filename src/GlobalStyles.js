@@ -17,8 +17,7 @@ export default createGlobalStyle`
   
   body {
      width: 100%;
-     margin: 0 auto;
-     margin-bottom: 80px;
+     margin: 0 auto 80px auto;
      color: var(--primary);
      background-color: var(--neutral);
   }

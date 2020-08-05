@@ -2,20 +2,22 @@ import React from 'react'
 import styled from 'styled-components'
 import Button from './Button'
 import { Dialog } from '@blueprintjs/core'
-import { useDispatch } from 'react-redux'
-import { selectedProductRemoved } from '../store/productsSlice'
-import { drawerIsOpened } from '../store/drawerSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  selectedProductCommentRemoved,
+  selectors,
+} from '../store/productsSlice'
 import { AppToaster } from '../toaster'
 import { ActionCreators } from 'redux-undo'
 
-export default function DeleteModal({ isOpen, onClose }) {
+export default function DeleteCommentModal({ isOpen, onClose }) {
+  const product = useSelector(selectors.selectedProduct)
   const dispatch = useDispatch()
 
   const handleDeleteClick = () => {
-    dispatch(selectedProductRemoved())
-    dispatch(drawerIsOpened(false))
+    dispatch(selectedProductCommentRemoved(product))
     AppToaster.show({
-      message: 'Product has been deleted.',
+      message: 'Comment has been deleted.',
       className: 'toast',
       action: {
         text: 'Undo',
@@ -26,7 +28,7 @@ export default function DeleteModal({ isOpen, onClose }) {
 
   return (
     <DialogStyled isOpen={isOpen} usePortal={isOpen} onClose={onClose}>
-      <h2>Are you sure you want to delete this product?</h2>
+      <h2>Are you sure you want to delete this comment?</h2>
       <div>
         <Button text="Cancel" isCancel onClick={onClose} />
         <Button

@@ -4,16 +4,13 @@ import dayjs from 'dayjs'
 import Button from './Button'
 import InfoPopover from './InfoPopover'
 import { useDispatch, useSelector } from 'react-redux'
-import { productChanged } from '../store/productsSlice'
+import { productChanged, selectors } from '../store/productsSlice'
 import { displayDrawerContent } from '../store/drawerSlice'
 import { AppToaster } from '../toaster'
 import { ActionCreators } from 'redux-undo'
 
 export default function ProductEdit() {
-  const productId = useSelector((state) => state.products.present.selected)
-  const allProducts = useSelector((state) => state.products.present.allProducts)
-  const product = allProducts.find((product) => product.id === productId)
-
+  const product = useSelector(selectors.selectedProduct)
   const dispatch = useDispatch()
 
   const [name, setName] = useState(product.name)
@@ -129,7 +126,7 @@ export default function ProductEdit() {
 const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
-  padding: 25px;
+  margin: 20px;
   color: var(--primary);
   background-color: var(--neutral);
 
