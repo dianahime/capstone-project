@@ -14,8 +14,10 @@ import { AppToaster } from '../toaster'
 import { ActionCreators } from 'redux-undo'
 
 export default function Form() {
+  const currentDate = dayjs().format('YYYY-MM-DD')
+
   const [name, setName] = useState('')
-  const [date, setDate] = useState('')
+  const [date, setDate] = useState(currentDate)
   const [month, setMonth] = useState('')
   const [size, setSize] = useState('')
   const [price, setPrice] = useState('')
@@ -24,7 +26,6 @@ export default function Form() {
 
   const dispatch = useDispatch()
 
-  const currentDate = dayjs().format('YYYY-MM-DD')
   const resetForm = () => {
     setName('')
     setDate('')

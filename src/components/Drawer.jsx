@@ -12,7 +12,7 @@ export default function Drawer() {
 
   return (
     <>
-      {!isOpen && <DrawerToggle/>}
+      {!isOpen && <DrawerToggle />}
       <DrawerStyled
         data-testid="section"
         isOpen={isOpen}
@@ -22,11 +22,11 @@ export default function Drawer() {
         lazy={false}
         hasBackdrop={false}
       >
-        <DrawerToggle/>
+        <DrawerToggle />
         <DrawerContainer>
-          {visibleComponent === 'Form' && <Form/>}
-          {visibleComponent === 'ProductDetails' && <ProductDetails/>}
-          {visibleComponent === 'ProductEdit' && <ProductEdit/>}
+          {visibleComponent === 'Form' && <Form />}
+          {visibleComponent === 'ProductDetails' && <ProductDetails />}
+          {visibleComponent === 'ProductEdit' && <ProductEdit />}
         </DrawerContainer>
       </DrawerStyled>
     </>
@@ -39,6 +39,7 @@ const DrawerStyled = styled(BluePrintDrawer)`
   }
 `
 const DrawerContainer = styled.div`
+  padding: 0 20px;
   max-width: 500px;
   height: 100%;
   overflow: auto;
