@@ -18,12 +18,14 @@ export default function ProductUsedUp() {
   const openingDate = dayjs(product.date)
   const usedUpDate = dayjs(product.usedUp)
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault()
-    dispatch(productChanged({
-      ...product,
-      usedUp: date,
-    }))
+    dispatch(
+      productChanged({
+        ...product,
+        usedUp: date,
+      })
+    )
     AppToaster.show({
       message: 'The used up date has been updated.',
       className: 'toast',
@@ -36,52 +38,63 @@ export default function ProductUsedUp() {
     setIsChecked(false)
   }
 
+  const Message = () => {
+    const differenceInMonths = usedUpDate.diff(openingDate, 'month')
+    const differenceInDays = usedUpDate.diff(openingDate, 'day')
+
+    if (!differenceInDays) {
+      return 'Used up on the same day'
+    }
+    if (differenceInDays === 1) {
+      return `Used up after ${usedUpDate.diff(openingDate, 'day')} day`
+    }
+    if (differenceInMonths <= 1) {
+      return `Used up after ${usedUpDate.diff(openingDate, 'day')} days`
+    }
+    return `Used up after ${usedUpDate.diff(openingDate, 'month')} months`
+  }
+
   return (
     <ProductUsedUpStyled>
       {product.usedUp ? (
-          usedUpDate.diff(openingDate, 'month') > 1 ?
-            <p> Used up after {usedUpDate.diff(openingDate, 'month')} months</p>
-            : (
-              <>
-                <p>Used up after {usedUpDate.diff(openingDate, 'day')} days</p>
-                <MoveToArchiveModal onClose={() => setIsMoveToArhiveOpen(false)} isOpen={isMoveToArchiveOpen}/>
-              </>
-            )
-        )
+        <div>
+          <p>
+            <Message />
+          </p>
+          <MoveToArchiveModal
+            onClose={() => setIsMoveToArhiveOpen(false)}
+            isOpen={isMoveToArchiveOpen}
+          />
+        </div>
+      ) : (
+        <>
+          <label>
+            Used Up
+            <input
+              type="checkbox"
+              id="usedUp"
+              onChange={() => setIsChecked(!isChecked)}
+              checked={isChecked}
+            />
+            <i
+              className={isChecked ? 'far fa-check-square' : 'far fa-square'}
+            />
+          </label>
 
-        : (
-          <>
-            <label>
-              Used Up
+          {isChecked && (
+            <form onSubmit={handleSubmit}>
               <input
-                type="checkbox"
-                id="usedUp"
-                onChange={() => setIsChecked(!isChecked)}
-                checked={isChecked}
+                onChange={(event) => setDate(event.target.value)}
+                value={date}
+                type="date"
+                min="2018-01-01"
+                max={currentDate}
               />
-            </label>
-
-            {isChecked ? (
-                <form onSubmit={handleSubmit}>
-                  <i className="far fa-check-square"/>
-                  <input
-                    onChange={event => setDate(event.target.value)}
-                    value={date}
-                    type="date"
-                    min="2018-01-01"
-                    max={currentDate}
-                  />
-                  <Button
-                    text="Save"
-                  />
-                </form>
-
-              ) :
-              <i className="far fa-square"/>
-            }
-          </>
-        )
-      }
+              <Button text="Save" />
+            </form>
+          )}
+        </>
+      )}
     </ProductUsedUpStyled>
   )
 }
@@ -91,12 +104,16 @@ const ProductUsedUpStyled = styled.div`
   margin: 10px 0;
   align-items: center;
   height: 30px;
-  
-  label, i {
+
+  label {
     font-size: 1.2rem;
     margin-right: 5px;
   }
-  
+
+  i {
+    margin-left: 5px;
+  }
+
   input[type='date'] {
     font-size: 1rem;
     width: 142px;
@@ -104,27 +121,27 @@ const ProductUsedUpStyled = styled.div`
     border-radius: 20px;
     color: var(--primary);
     margin-right: 5px;
-    
+
     &:hover {
       border-color: var(--secondary);
     }
-    
+
     &:focus {
       outline: none;
     }
   }
-  
+
   input[type='checkbox'] {
     display: none;
   }
-  
+
   Button {
     font-size: 1rem;
     width: 80px;
     padding: 5px;
   }
-  
-  form{
+
+  form {
     display: inline;
   }
 `
