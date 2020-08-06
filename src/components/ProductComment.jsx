@@ -8,7 +8,7 @@ export default function ProductComment({ product }) {
   return (
     <ProductCommentStyled>
       {formVisible ? (
-        <ProductCommentEdit setFormVisible={setFormVisible}/>
+        <ProductCommentEdit setFormVisible={setFormVisible} />
       ) : (
         <>
           <TitleContainer>
@@ -28,29 +28,28 @@ export default function ProductComment({ product }) {
 }
 
 const ProductCommentStyled = styled.section`
-  width: 100%;
   font-size: 1.2rem;
   text-align: center;
-  margin: 20px 0;
-  
+  margin: 20px;
+
   p {
     font-size: 1.2rem;
     word-break: break-word;
+    padding: 0 10px;
   }
 `
 const TitleContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   p:first-of-type {
     font-size: 1.4rem;
     font-weight: bold;
     margin: 10px;
   }
-  
+
   i {
     color: var(--secondary);
   }
 `
-

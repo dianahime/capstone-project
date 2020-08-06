@@ -8,6 +8,7 @@ import { isProductExpired } from '../store/filterFunctions'
 import StarRating from './StarRating'
 import ProductCommentForm from './ProductCommentForm'
 import ProductComment from './ProductComment'
+import ProductUsedUp from './ProductUsedUp'
 
 export default function ProductDetails() {
   const product = useSelector(selectors.selectedProduct)
@@ -23,7 +24,7 @@ export default function ProductDetails() {
     <ProductStyled data-testid="ProductDetails">
       <div className="titleContainer">
         <h1 className="name">{product.name}</h1>
-        <MenuPopover />
+        <MenuPopover/>
       </div>
 
       <p className="opening-date">Opened: {parsedDate.format('DD.MM.YYYY')}</p>
@@ -31,16 +32,17 @@ export default function ProductDetails() {
         {isProductExpired(product) ? 'Expired: ' : 'Expires: '}
         {parsedDate.add(product.month, 'M').format('DD.MM.YYYY')}
       </p>
+      <ProductUsedUp/>
 
       {product.size && <p className="size">Size: {product.size}</p>}
       {product.price && <p className="price">Price: {product.price}</p>}
 
       <ContainerStyled>
-        <StarRating rating={product.rating} onChange={handleRatingChange} />
+        <StarRating rating={product.rating} onChange={handleRatingChange}/>
         {product.comment ? (
-          <ProductComment product={product} />
+          <ProductComment product={product}/>
         ) : (
-          <ProductCommentForm />
+          <ProductCommentForm/>
         )}
       </ContainerStyled>
     </ProductStyled>
@@ -50,6 +52,7 @@ export default function ProductDetails() {
 const ProductStyled = styled.section`
   background-color: var(--neutral);
   height: 100%;
+  min-width: 340px;
 
   h1 {
     word-break: break-word;
@@ -57,14 +60,15 @@ const ProductStyled = styled.section`
 
   p {
     font-size: 1.2rem;
-    margin: 10px 0;
+    
   }
 
   .titleContainer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
+    margin: 0 10px 0 0;
+    
     p {
       margin: 0;
     }
@@ -72,7 +76,6 @@ const ProductStyled = styled.section`
 
   .expiring-date {
     color: var(--secondary);
-    margin-bottom: 20px;
   }
 
   .name {

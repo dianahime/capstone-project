@@ -39,12 +39,14 @@ const DrawerStyled = styled(BluePrintDrawer)`
   }
 `
 const DrawerContainer = styled.div`
+  padding: 0 20px;
   max-width: 500px;
   height: 100%;
   overflow: auto;
   margin: 0 auto;
+  scrollbar-width: none;
 
   ::-webkit-scrollbar {
-    color: var(--neutral);
+    width: 0;
   }
 `
