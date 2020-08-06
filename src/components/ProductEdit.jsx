@@ -25,7 +25,17 @@ export default function ProductEdit() {
   const handleSubmit = (event) => {
     event.preventDefault()
     if (name && date && month) {
-      dispatch(productChanged({ ...product, name, date, month, size, price, usedUp: usedUpDate }))
+      dispatch(
+        productChanged({
+          ...product,
+          name,
+          date,
+          month,
+          size,
+          price,
+          usedUp: usedUpDate,
+        })
+      )
       dispatch(displayDrawerContent('ProductDetails'))
       AppToaster.show({
         message: 'Product has been updated.',
@@ -61,7 +71,7 @@ export default function ProductEdit() {
         onChange={(event) => setDate(event.target.value)}
         value={date}
         type="date"
-        min="2018-01-01"
+        min={'2018-01-01'}
         max={currentDate}
         id="date"
       />
@@ -70,16 +80,15 @@ export default function ProductEdit() {
         <>
           <label htmlFor="usedUpDate">Product used up</label>
           <input
-            onChange={event => setUsedUpDate(event.target.value)}
+            onChange={(event) => setUsedUpDate(event.target.value)}
             value={usedUpDate}
             type="date"
-            min="2018-01-01"
+            min={product.date}
             max={currentDate}
             id="usedUpDate"
           />
         </>
-      )
-      }
+      )}
 
       <label htmlFor="month">Months until expiration</label>
       <ContainerStyled>
@@ -92,7 +101,7 @@ export default function ProductEdit() {
           id="month"
           placeholder="E.g. 12"
         />
-        <InfoPopover/>
+        <InfoPopover />
       </ContainerStyled>
       {month > 120 && (
         <p>The product can expire up to 120 months after opening.</p>
@@ -133,7 +142,7 @@ export default function ProductEdit() {
           onClick={handleCancelClick}
           type="button"
         />
-        <Button text="Save"/>
+        <Button text="Save" />
       </div>
     </FormStyled>
   )
@@ -201,7 +210,8 @@ const FormStyled = styled.form`
     width: 300px;
   }
 
-  #date, #usedUpDate {
+  #date,
+  #usedUpDate {
     width: 180px;
     height: 30px;
   }
