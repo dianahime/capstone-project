@@ -7,6 +7,7 @@ import Button from './Button'
 import { AppToaster } from '../toaster'
 import { ActionCreators } from 'redux-undo'
 import MoveToArchiveModal from './MoveToArchiveModal'
+import productUsedUpMessage from './productUsedUpMessage'
 
 export default function ProductUsedUp() {
   const currentDate = dayjs().format('YYYY-MM-DD')
@@ -38,32 +39,14 @@ export default function ProductUsedUp() {
     setIsChecked(false)
   }
 
-  const Message = () => {
-    const differenceInMonths = usedUpDate.diff(openingDate, 'month')
-    const differenceInDays = usedUpDate.diff(openingDate, 'day')
-
-    if (!differenceInDays) {
-      return 'Used up on the same day'
-    }
-    if (differenceInDays === 1) {
-      return `Used up after ${usedUpDate.diff(openingDate, 'day')} day`
-    }
-    if (differenceInMonths <= 1) {
-      return `Used up after ${usedUpDate.diff(openingDate, 'day')} days`
-    }
-    return `Used up after ${usedUpDate.diff(openingDate, 'month')} months`
-  }
-
   return (
     <ProductUsedUpStyled>
       {product.usedUp ? (
         <div>
-          <p>
-            <Message />
-          </p>
+          <p>{productUsedUpMessage(openingDate, usedUpDate)}</p>
           <MoveToArchiveModal
-            onClose={() => setIsMoveToArhiveOpen(false)}
             isOpen={isMoveToArchiveOpen}
+            onClose={() => setIsMoveToArhiveOpen(false)}
           />
         </div>
       ) : (
@@ -89,6 +72,8 @@ export default function ProductUsedUp() {
                 type="date"
                 min="2018-01-01"
                 max={currentDate}
+                title="used up on"
+                className="usedUpDate"
               />
               <Button text="Save" />
             </form>
