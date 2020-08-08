@@ -8,9 +8,8 @@ import { AppToaster } from '../toaster'
 import { ActionCreators } from 'redux-undo'
 
 export default function MoveToArchiveModal({ isOpen, onClose }) {
-  const dispatch = useDispatch()
   const product = useSelector(selectors.selectedProduct)
-
+  const dispatch = useDispatch()
 
   const handleMoveToArhive = () => {
     dispatch(productArchived(product))

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export default function StarRating({ rating, onChange }) {
   return (
-    <StarRatingStyled>
+    <StarRatingStyled data-testid="starRating">
       {[...Array(5)].map((star, i) => {
         const ratingValue = i + 1
 
