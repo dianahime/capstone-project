@@ -3,10 +3,7 @@ import styled from 'styled-components'
 import dayjs from 'dayjs'
 import Button from './Button'
 import { useDispatch } from 'react-redux'
-import {
-  productArchived,
-  productExpirationIgnored,
-} from '../store/productsSlice'
+import { productArchived, productExpirationIgnored } from '../store/productsSlice'
 import { AppToaster } from '../toaster'
 import { ActionCreators } from 'redux-undo'
 
@@ -36,7 +33,7 @@ export default function ExpirationAlert({ product }) {
       <p>{product.name} has expired:</p>
       <p>{expirationDate}</p>
       <ButtonContainer>
-        <Button text="Ignore" isCancel onClick={handleIgnore} />
+        <Button text="Ignore" isCancel onClick={handleIgnore}/>
         <Button
           text="Add to Archive"
           isDelete

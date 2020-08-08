@@ -19,7 +19,9 @@ export default function ProductDetails() {
   if (!product) {
     return <></>
   }
+  
   const parsedDate = dayjs(product.date)
+
   return (
     <ProductStyled data-testid="ProductDetails">
       <div className="titleContainer">

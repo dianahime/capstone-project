@@ -17,6 +17,7 @@ jest.mock('react-redux', () => {
     useDispatch: () => dispatch,
   }
 })
+
 jest.mock('uuid', () => ({
   v4: () => 'jujuid',
 }))
@@ -35,24 +36,24 @@ describe('Form.test.js', () => {
   }
 
   beforeEach(() => {
-    render(<Form />)
+    render(<Form/>)
   })
 
   it('provides the entered value to the name input after change event', () => {
-    const nameInput = screen.getByLabelText('1. Add product name:')
+    const nameInput = screen.getByLabelText('Add product name:')
     fireEvent.change(nameInput, { target: { value: PRODUCT_MOCK_DATA.name } })
     expect(nameInput.value).toBe(PRODUCT_MOCK_DATA.name)
   })
 
   it('provides the entered value to the date input after change event', () => {
-    const dateInput = screen.getByLabelText('2. When did you open the product?')
+    const dateInput = screen.getByLabelText('When did you open the product?')
     fireEvent.change(dateInput, { target: { value: PRODUCT_MOCK_DATA.date } })
     expect(dateInput.value).toBe(PRODUCT_MOCK_DATA.date)
   })
 
   it('provides the entered value to the month input after change event', () => {
     const monthInput = screen.getByLabelText(
-      '3. In how many months does the product expire?'
+      'In how many months does the product expire?',
     )
     fireEvent.change(monthInput, { target: { value: PRODUCT_MOCK_DATA.month } })
     expect(monthInput.value).toBe(PRODUCT_MOCK_DATA.month)
@@ -75,16 +76,16 @@ describe('Form submit', () => {
 
   it('does not dispatch an action when nothing has been entered', () => {
     const dispatch = useDispatch()
-    render(<Form />)
+    render(<Form/>)
     screen.getByText('Save').click()
     expect(dispatch.mock.calls).toEqual([])
   })
 
   it('does not dispatch an action when only name has been entered', () => {
     const dispatch = useDispatch()
-    render(<Form />)
+    render(<Form/>)
 
-    const nameInput = screen.getByLabelText('1. Add product name:')
+    const nameInput = screen.getByLabelText('Add product name:')
     fireEvent.change(nameInput, { target: { value: PRODUCT_MOCK_DATA.name } })
 
     screen.getByText('Save').click()
@@ -93,16 +94,16 @@ describe('Form submit', () => {
 
   it('dispatches actions with the entered values when name, date and month have been entered', () => {
     const dispatch = useDispatch()
-    render(<Form />)
+    render(<Form/>)
 
-    const nameInput = screen.getByLabelText('1. Add product name:')
+    const nameInput = screen.getByLabelText('Add product name:')
     fireEvent.change(nameInput, { target: { value: PRODUCT_MOCK_DATA.name } })
 
-    const dateInput = screen.getByLabelText('2. When did you open the product?')
+    const dateInput = screen.getByLabelText('When did you open the product?')
     fireEvent.change(dateInput, { target: { value: PRODUCT_MOCK_DATA.date } })
 
     const monthInput = screen.getByLabelText(
-      '3. In how many months does the product expire?'
+      'In how many months does the product expire?',
     )
     fireEvent.change(monthInput, { target: { value: PRODUCT_MOCK_DATA.month } })
 
