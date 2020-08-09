@@ -6,6 +6,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { productArchived, selectors } from '../store/productsSlice'
 import { AppToaster } from '../toaster'
 import { ActionCreators } from 'redux-undo'
+import PropTypes from 'prop-types'
+
+MoveToArchiveModal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+}
 
 export default function MoveToArchiveModal({ isOpen, onClose }) {
   const product = useSelector(selectors.selectedProduct)
@@ -28,11 +34,8 @@ export default function MoveToArchiveModal({ isOpen, onClose }) {
     <DialogStyled isOpen={isOpen} usePortal={isOpen} onClose={onClose}>
       <h2>Do you want to move the product to your archive?</h2>
       <div>
-        <Button text="No" isCancel onClick={onClose}/>
-        <Button
-          text="Yes"
-          onClick={handleMoveToArhive}
-        />
+        <Button text="No" isCancel onClick={onClose} />
+        <Button text="Yes" onClick={handleMoveToArhive} />
       </div>
     </DialogStyled>
   )

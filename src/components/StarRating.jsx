@@ -1,5 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
+
+StarRating.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  rating: PropTypes.number,
+}
 
 export default function StarRating({ rating, onChange }) {
   return (

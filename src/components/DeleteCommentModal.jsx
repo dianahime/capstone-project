@@ -9,6 +9,12 @@ import {
 } from '../store/productsSlice'
 import { AppToaster } from '../toaster'
 import { ActionCreators } from 'redux-undo'
+import PropTypes from 'prop-types'
+
+DeleteCommentModal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+}
 
 export default function DeleteCommentModal({ isOpen, onClose }) {
   const product = useSelector(selectors.selectedProduct)

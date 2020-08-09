@@ -6,6 +6,11 @@ import styled from 'styled-components'
 import DeleteCommentModal from './DeleteCommentModal'
 import { AppToaster } from '../toaster'
 import { ActionCreators } from 'redux-undo'
+import PropTypes from 'prop-types'
+
+ProductCommentEdit.propTypes = {
+  setFormVisible: PropTypes.func.isRequired,
+}
 
 export default function ProductCommentEdit({ setFormVisible }) {
   const product = useSelector(selectors.selectedProduct)
