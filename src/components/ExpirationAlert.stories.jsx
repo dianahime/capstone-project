@@ -1,9 +1,11 @@
 import React from 'react'
 import ExpirationAlert from './ExpirationAlert'
+import withProvider from '../../.storybook/Provider'
 
 export default {
   title: 'ExpirationAlert',
   component: ExpirationAlert,
+  decorators: [withProvider()],
 }
 const product = {
   name: 'test',
