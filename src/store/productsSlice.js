@@ -8,7 +8,7 @@ import {
 import { isProductExpired } from './filterFunctions'
 
 const defaultState = {
-  allProducts: JSON.parse(localStorage.getItem('products')) || [],
+  allProducts: [],
   selected: null,
   sorting: null,
 }
