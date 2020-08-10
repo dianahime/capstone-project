@@ -8,6 +8,7 @@ import GlobalStyles from './GlobalStyles'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore } from 'redux-persist'
+import LoadingPage from './components/LoadingPage'
 
 const persistor = persistStore(store)
 
@@ -16,7 +17,7 @@ ReactDOM.render(
     <Router>
       <GlobalStyles />
       <Provider store={store}>
-        <PersistGate loading={<div>Loading</div>} persistor={persistor}>
+        <PersistGate loading={<LoadingPage />} persistor={persistor}>
           <App />
         </PersistGate>
       </Provider>
