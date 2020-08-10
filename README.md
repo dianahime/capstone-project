@@ -7,9 +7,11 @@ With the App you also have a good overview for your products as you can save, up
 ## Motivation
 
 The App was created as a capstone project for the neue fische Web Development Bootcamp.
-The idea for the project came to me as I often found myself wanting an easy way to remember <br /> if my cosmetics products are still good and safe to use after a longer period of time.
+The idea for the project came to me as I often found myself wanting an easy way to remember if my cosmetic products are still good and safe to use after a longer period of time.
 
 ## Screenshots
+
+
 
 ## Tech/framework used
 
