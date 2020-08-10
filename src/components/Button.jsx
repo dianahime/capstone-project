@@ -1,16 +1,28 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
+Button.propTypes = {
+  text: PropTypes.string,
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool,
+  isCancel: PropTypes.bool,
+  isDelete: PropTypes.bool,
+  className: PropTypes.string,
+  testid: PropTypes.string,
+  type: PropTypes.string,
+}
+
 export default function Button({
-                                 text,
-                                 onClick,
-                                 disabled,
-                                 isCancel,
-                                 isDelete,
-                                 className,
-                                 testid,
-                                 type,
-                               }) {
+  text,
+  onClick,
+  disabled,
+  isCancel,
+  isDelete,
+  className,
+  testid,
+  type,
+}) {
   return (
     <ButtonStyled
       onClick={onClick}
@@ -42,8 +54,8 @@ const ButtonStyled = styled.button`
 
 
   ${(props) =>
-  props.disabled &&
-  css`
+    props.disabled &&
+    css`
       background: white;
       color: var(--secondary);
       border: 1px solid var(--secondary);
@@ -51,15 +63,15 @@ const ButtonStyled = styled.button`
     `}
 
   ${(props) =>
-  props.isCancel &&
-  css`
+    props.isCancel &&
+    css`
       background: white;
       color: var(--secondary);
     `}
 
     ${(props) =>
-  props.isDelete &&
-  css`
+      props.isDelete &&
+      css`
         background: var(--secondary);
         color: white;
       `}

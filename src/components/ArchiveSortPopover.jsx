@@ -1,6 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Classes, Popover, Position } from '@blueprintjs/core'
 import styled from 'styled-components'
+
+ArchiveSortPopover.propTypes = {
+  setIsAtoZ: PropTypes.func.isRequired,
+  isAtoZ: PropTypes.bool.isRequired,
+}
 
 export default function ArchiveSortPopover({ setIsAtoZ, isAtoZ }) {
   const handleNameSortAtoZ = () => {

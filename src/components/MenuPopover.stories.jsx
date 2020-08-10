@@ -1,10 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import MenuPopover from './MenuPopover.jsx'
+import withProvider from '../../.storybook/Provider'
 
 export default {
   title: 'MenuPopover',
   component: MenuPopover,
+  decorators: [withProvider()],
 }
 
 export const MenuPopoverDefault = () => (

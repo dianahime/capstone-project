@@ -6,6 +6,7 @@ import { productChanged, productSelected } from '../store/productsSlice'
 import { displayDrawerContent } from '../store/drawerSlice'
 import { isProductExpired } from '../store/filterFunctions'
 import StarRating from './StarRating'
+import ProductType from '../ProductType'
 
 const ProductsListItem = forwardRef(({ product }, ref) => {
   const dispatch = useDispatch()
@@ -15,7 +16,8 @@ const ProductsListItem = forwardRef(({ product }, ref) => {
     dispatch(productSelected(product.id))
     dispatch(displayDrawerContent('ProductDetails'))
   }
-  const handleRatingChange = rating => dispatch(productChanged({ ...product, rating }))
+  const handleRatingChange = (rating) =>
+    dispatch(productChanged({ ...product, rating }))
 
   return (
     <LiStyled
@@ -28,10 +30,14 @@ const ProductsListItem = forwardRef(({ product }, ref) => {
         {isProductExpired(product) ? 'Expired: ' : 'Expires: '}
         {parsedDate.add(product.month, 'M').format('DD.MM.YYYY')}
       </p>
-      <StarRating rating={product.rating} onChange={handleRatingChange}/>
+      <StarRating rating={product.rating} onChange={handleRatingChange} />
     </LiStyled>
   )
 })
+
+ProductsListItem.propTypes = {
+  product: ProductType.isRequired,
+}
 
 export default ProductsListItem
 
