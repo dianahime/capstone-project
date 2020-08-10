@@ -1,7 +1,7 @@
 ## AppToDate
 
-When did I buy that sunscreen? Is it still good? 
-**AppToDate** helps you track the expiring dates after opening your products so that you always know if the product is good or not. 
+When did I buy that sunscreen? Is it still good?
+**AppToDate** helps you track the expiring dates after opening your products so that you always know if the product is good or not.
 With the App you also have a good overview for your products as you can save, update, sort and archive your products.
 
 ## Motivation
@@ -11,18 +11,25 @@ The idea for the project came to me as I often found myself wanting an easy way 
 
 ## Screenshots
 
+![Dashboard page of the App](app-screenshots/dashboard-page.png)
+![Product page of the App](app-screenshots/product-page.png)
 
+You can see the full version of the app here: [https://capstone-project-nu.vercel.app/](https://capstone-project-nu.vercel.app/)
 
-## Tech/framework used
+## Tech / frameworks used
 
-React / Redux / React-Router / Jest / React Testing Library / Cypress / 
-StyledComponents / PropTypes / Storybook / redux-toolkit / redux-undo / 
-react-flip-move / react-swipe / localForage / Blueprint / Git Workflow / 
+React / Redux / React-Router / Jest / React Testing Library / Cypress /
+StyledComponents / PropTypes / Storybook / redux-toolkit / redux-undo /
+react-flip-move / react-swipe / localForage / Blueprint / Git Workflow /
 Sketch / Framer
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+
+To install the app dependencies.
 
 ### `npm start`
 
@@ -36,6 +43,10 @@ You will also see any lint errors in the console.
 
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npx cypress open`
+
+Launches the Cypress test runner.
 
 ### `npm run build`
 
@@ -56,4 +67,3 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
