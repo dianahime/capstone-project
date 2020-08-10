@@ -11,11 +11,14 @@ import productUsedUpMessage from './productUsedUpMessage'
 
 export default function ProductUsedUp() {
   const currentDate = dayjs().format('YYYY-MM-DD')
+
   const [isChecked, setIsChecked] = useState(false)
   const [date, setDate] = useState(currentDate)
   const [isMoveToArchiveOpen, setIsMoveToArhiveOpen] = useState(false)
+
   const product = useSelector(selectors.selectedProduct)
   const dispatch = useDispatch()
+
   const openingDate = dayjs(product.date)
   const usedUpDate = dayjs(product.usedUp)
 

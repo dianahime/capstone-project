@@ -2,17 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
-Button.propTypes = {
-  text: PropTypes.string,
-  onClick: PropTypes.func,
-  disabled: PropTypes.bool,
-  isCancel: PropTypes.bool,
-  isDelete: PropTypes.bool,
-  className: PropTypes.string,
-  testid: PropTypes.string,
-  type: PropTypes.string,
-}
-
 export default function Button({
   text,
   onClick,
@@ -36,6 +25,17 @@ export default function Button({
       {text}
     </ButtonStyled>
   )
+}
+
+Button.propTypes = {
+  text: PropTypes.string,
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool,
+  isCancel: PropTypes.bool,
+  isDelete: PropTypes.bool,
+  className: PropTypes.string,
+  testid: PropTypes.string,
+  type: PropTypes.string,
 }
 
 const ButtonStyled = styled.button`

@@ -8,11 +8,6 @@ import { AppToaster } from '../toaster'
 import { ActionCreators } from 'redux-undo'
 import PropTypes from 'prop-types'
 
-MoveToArchiveModal.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  isOpen: PropTypes.bool.isRequired,
-}
-
 export default function MoveToArchiveModal({ isOpen, onClose }) {
   const product = useSelector(selectors.selectedProduct)
   const dispatch = useDispatch()
@@ -39,6 +34,11 @@ export default function MoveToArchiveModal({ isOpen, onClose }) {
       </div>
     </DialogStyled>
   )
+}
+
+MoveToArchiveModal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
 }
 
 const DialogStyled = styled(Dialog)`

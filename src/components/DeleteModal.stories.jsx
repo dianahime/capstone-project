@@ -9,5 +9,5 @@ export default {
 }
 
 export const DeleteModalDefault = () => {
-  return <DeleteModal isOpen />
+  return <DeleteModal isOpen onClose={() => {}} />
 }

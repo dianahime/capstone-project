@@ -6,4 +6,6 @@ export default {
   component: ArchiveSortPopover,
 }
 
-export const ArchiveSortPopoverDefault = () => <ArchiveSortPopover/>
+export const ArchiveSortPopoverDefault = () => (
+  <ArchiveSortPopover isAtoZ setIsAtoZ={() => {}} />
+)

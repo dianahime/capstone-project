@@ -17,24 +17,24 @@ jest.mock('react-redux', () => {
 
 describe('DeleteModal.test.jsx', () => {
   it('renders a h2', () => {
-    render(<DeleteModal isOpen={true} />)
+    render(<DeleteModal isOpen={true} onClose={() => {}} />)
     expect(
       screen.getByText('Are you sure you want to delete this product?')
     ).toBeInTheDocument()
   })
 
   it('renders a cancel button', () => {
-    render(<DeleteModal isOpen={true} />)
+    render(<DeleteModal isOpen={true} onClose={() => {}} />)
     expect(screen.getByText('Cancel')).toBeInTheDocument()
   })
 
   it('renders a delete button', () => {
-    render(<DeleteModal isOpen={true} />)
+    render(<DeleteModal isOpen={true} onClose={() => {}} />)
     expect(screen.getByText('Delete')).toBeInTheDocument()
   })
 
   it('it does not render when isOpen is false', () => {
-    render(<DeleteModal isOpen={false} />)
+    render(<DeleteModal isOpen={false} onClose={() => {}} />)
     expect(
       screen.queryByText('Are you sure you want to delete this product?')
     ).not.toBeInTheDocument()
@@ -49,7 +49,7 @@ describe('DeleteModal.test.jsx', () => {
 
   it('it dispatches actions when delete is clicked', () => {
     const dispatch = useDispatch()
-    const { getByText } = render(<DeleteModal isOpen />)
+    const { getByText } = render(<DeleteModal isOpen onClose={() => {}} />)
     getByText('Delete').click()
     expect(dispatch.mock.calls).toEqual([
       [selectedProductRemoved()],

@@ -11,10 +11,6 @@ import { AppToaster } from '../toaster'
 import { ActionCreators } from 'redux-undo'
 import ProductType from '../ProductType'
 
-ExpirationAlert.propTypes = {
-  product: ProductType.isRequired,
-}
-
 export default function ExpirationAlert({ product }) {
   const dispatch = useDispatch()
   const parsedDate = dayjs(product.date)
@@ -51,6 +47,10 @@ export default function ExpirationAlert({ product }) {
       </ButtonContainer>
     </ExpirationAlertStyled>
   )
+}
+
+ExpirationAlert.propTypes = {
+  product: ProductType.isRequired,
 }
 
 const ExpirationAlertStyled = styled.section`

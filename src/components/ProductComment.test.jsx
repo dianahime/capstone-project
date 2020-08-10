@@ -1,6 +1,6 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import ProductComment from './ProductComment'
 
 describe('ProductComment when a comment is provided', () => {
@@ -15,13 +15,15 @@ describe('ProductComment when a comment is provided', () => {
     comment: 'This is a test product.',
   }
 
+  beforeEach(() => {
+    render(<ProductComment product={PRODUCTS_MOCK_DATA} />)
+  })
+
   it('renders the title', () => {
-    const { getByText } = render(<ProductComment product={PRODUCTS_MOCK_DATA}/>)
-    expect(getByText(PRODUCTS_MOCK_DATA.title)).toBeInTheDocument()
+    expect(screen.getByText(PRODUCTS_MOCK_DATA.title)).toBeInTheDocument()
   })
 
   it('renders the comment', () => {
-    const { getByText } = render(<ProductComment product={PRODUCTS_MOCK_DATA}/>)
-    expect(getByText(PRODUCTS_MOCK_DATA.comment)).toBeInTheDocument()
+    expect(screen.getByText(PRODUCTS_MOCK_DATA.comment)).toBeInTheDocument()
   })
 })

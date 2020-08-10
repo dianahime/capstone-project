@@ -9,7 +9,6 @@ import { selectors } from '../store/productsSlice'
 
 export default function ProductsList() {
   const products = useSelector(selectors.products)
-
   const isBlurred = useSelector((state) => state.drawer.isOpen)
 
   return products.length ? (

@@ -9,5 +9,5 @@ export default {
 }
 
 export const MoveToArchiveModalDefault = () => {
-  return <MoveToArchiveModal isOpen />
+  return <MoveToArchiveModal isOpen onClose={() => {}} />
 }

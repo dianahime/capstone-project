@@ -9,11 +9,6 @@ import { AppToaster } from '../toaster'
 import { ActionCreators } from 'redux-undo'
 import PropTypes from 'prop-types'
 
-DeleteModal.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  isOpen: PropTypes.bool.isRequired,
-}
-
 export default function DeleteModal({ isOpen, onClose }) {
   const dispatch = useDispatch()
 
@@ -44,6 +39,11 @@ export default function DeleteModal({ isOpen, onClose }) {
       </div>
     </DialogStyled>
   )
+}
+
+DeleteModal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
 }
 
 const DialogStyled = styled(Dialog)`

@@ -15,13 +15,14 @@ jest.mock('react-redux', () => {
 })
 
 describe('DeleteCommentModal is opened', () => {
-
   beforeEach(() => {
-    render(<DeleteCommentModal isOpen/>)
+    render(<DeleteCommentModal isOpen onClose={() => {}} />)
   })
 
   it('renders a h2', () => {
-    expect(screen.getByText('Are you sure you want to delete this comment?')).toBeInTheDocument()
+    expect(
+      screen.getByText('Are you sure you want to delete this comment?')
+    ).toBeInTheDocument()
   })
 
   it('renders a cancel button', () => {
@@ -35,25 +36,22 @@ describe('DeleteCommentModal is opened', () => {
   it('it dispatches actions when delete is clicked', () => {
     const dispatch = useDispatch()
     screen.getByText('Delete').click()
-    expect(dispatch.mock.calls).toEqual([
-      [selectedProductCommentRemoved()],
-    ])
+    expect(dispatch.mock.calls).toEqual([[selectedProductCommentRemoved()]])
   })
 })
 
 describe('DeleteCommentModal is closed', () => {
-
   it('it closes the modal when cancel is clicked', () => {
     const close = jest.fn()
-    const { getByText } = render(<DeleteCommentModal isOpen onClose={close}/>)
+    const { getByText } = render(<DeleteCommentModal isOpen onClose={close} />)
     getByText('Cancel').click()
     expect(close).toHaveBeenCalled()
   })
 
   it('it does not render when isOpen is false', () => {
-    render(<DeleteCommentModal isOpen={false}/>)
+    render(<DeleteCommentModal isOpen={false} onClose={() => {}} />)
     expect(
-      screen.queryByText('Are you sure you want to delete this comment?'),
+      screen.queryByText('Are you sure you want to delete this comment?')
     ).not.toBeInTheDocument()
   })
 })

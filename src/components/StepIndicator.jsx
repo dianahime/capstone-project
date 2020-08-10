@@ -2,10 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-StepIndicator.propTypes = {
-  step: PropTypes.number.isRequired,
-}
-
 export default function StepIndicator({ step }) {
   return (
     <StepIndicatorStyled>
@@ -16,6 +12,11 @@ export default function StepIndicator({ step }) {
     </StepIndicatorStyled>
   )
 }
+
+StepIndicator.propTypes = {
+  step: PropTypes.number.isRequired,
+}
+
 const StepIndicatorStyled = styled.div`
   display: flex;
   margin: 40px 0;

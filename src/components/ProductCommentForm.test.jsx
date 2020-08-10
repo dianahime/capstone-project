@@ -20,9 +20,8 @@ describe('ProductCommentForm.test.jsx', () => {
   const title = 'test title'
   const comment = 'test comment'
 
-
   beforeEach(() => {
-    render(<ProductCommentForm/>)
+    render(<ProductCommentForm />)
   })
 
   it('renders the add comment button', () => {
@@ -36,7 +35,9 @@ describe('ProductCommentForm.test.jsx', () => {
 
   it('renders the title input field when add comment button is clicked', () => {
     screen.getByText('Add comment').click()
-    expect(screen.getByPlaceholderText('Title of your comment')).toBeInTheDocument()
+    expect(
+      screen.getByPlaceholderText('Title of your comment')
+    ).toBeInTheDocument()
   })
 
   it('renders the comment input field when add comment button is clicked', () => {
@@ -99,10 +100,12 @@ describe('ProductCommentForm.test.jsx', () => {
     screen.getByText('Save').click()
 
     expect(dispatch.mock.calls).toEqual([
-      [productChanged({
-        comment: comment,
-        title: title,
-      })],
+      [
+        productChanged({
+          comment: comment,
+          title: title,
+        }),
+      ],
     ])
   })
 })
