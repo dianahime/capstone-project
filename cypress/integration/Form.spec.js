@@ -1,5 +1,9 @@
+import localForage from 'localforage'
+
 describe('Input form', () => {
   beforeEach(() => {
+    localForage.clear()
+
     cy.visit('/products')
     cy.get('[data-testid=icon]').click()
   })
@@ -88,7 +92,7 @@ describe('Input form', () => {
 
     it('has an info popover', () => {
       cy.get('[data-testid=save]').click()
-      
+
       cy.wait(500)
       cy.get('[data-testid=icon]').click()
       cy.get('[data-testid=nameNext]').click()
