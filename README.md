@@ -1,4 +1,22 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## AppToDate
+
+When did I buy that sunscreen? Is it still good? 
+**AppToDate** helps you track the expiring dates after opening your products so that you always know if the product is good or not. 
+With the App you also have a good overview for your products as you can save, update, sort and archive your products.
+
+## Motivation
+
+The App was created as a capstone project for the neue fische Web Development Bootcamp.
+The idea for the project came to me as I often found myself wanting an easy way to remember <br /> if my cosmetics products are still good and safe to use after a longer period of time.
+
+## Screenshots
+
+## Tech/framework used
+
+React / Redux / React-Router / Jest / React Testing Library / Cypress / 
+StyledComponents / PropTypes / Storybook / redux-toolkit / redux-undo / 
+react-flip-move / react-swipe / localForage / Blueprint / Git Workflow / 
+Sketch / Framer
 
 ## Available Scripts
 
@@ -37,32 +55,3 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
