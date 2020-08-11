@@ -73,7 +73,7 @@ export default function ProductUsedUp() {
                 onChange={(event) => setDate(event.target.value)}
                 value={date}
                 type="date"
-                min="2018-01-01"
+                min={product.date}
                 max={currentDate}
                 title="used up on"
                 className="usedUpDate"

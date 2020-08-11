@@ -71,7 +71,7 @@ export default function ProductEdit() {
         onChange={(event) => setDate(event.target.value)}
         value={date}
         type="date"
-        min={'2018-01-01'}
+        min={product.usedUp || '2018-01-01'}
         max={currentDate}
         id="date"
       />
