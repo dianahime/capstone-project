@@ -1,7 +1,7 @@
 ## AppToDate
 
-When did I buy that sunscreen? Is it still good?
-**AppToDate** helps you track the expiring dates after opening your products so that you always know if the product is good or not.
+When did I buy that sunscreen? Is it still good? <br />
+**AppToDate** helps you track the expiring dates after opening your products so that you always know if the product is good or not. <br />
 With the App you also have a good overview for your products as you can save, update, sort and archive your products.
 
 ## Motivation
