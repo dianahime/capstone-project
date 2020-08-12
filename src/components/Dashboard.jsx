@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
+import FlipMove from 'react-flip-move'
 import { useSelector } from 'react-redux'
 import ProductsListItem from './ProductsListItem'
-import Greeting from './Greeting'
 import { selectors } from '../store/productsSlice'
-import FlipMove from 'react-flip-move'
+import Greeting from './Greeting'
 import ExpirationAlert from './ExpirationAlert'
 
 export default function Dashboard() {

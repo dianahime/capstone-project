@@ -1,6 +1,6 @@
 import React from 'react'
-import DeleteModal from './DeleteModal.jsx'
 import withProvider from '../../.storybook/Provider'
+import DeleteModal from './DeleteModal.jsx'
 
 export default {
   title: 'DeleteModal',
@@ -9,5 +9,5 @@ export default {
 }
 
 export const DeleteModalDefault = () => {
-  return <DeleteModal isOpen />
+  return <DeleteModal isOpen onClose={() => {}} />
 }

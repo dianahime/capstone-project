@@ -1,11 +1,11 @@
 import React from 'react'
 import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
-import { render, screen } from '../test-utils'
-import ProductCommentForm from './ProductCommentForm'
 import { fireEvent } from '@testing-library/react'
+import { render, screen } from '../test-utils'
 import { useDispatch } from 'react-redux'
 import { productChanged } from '../store/productsSlice'
+import ProductCommentForm from './ProductCommentForm'
 
 jest.mock('react-redux', () => {
   const dispatch = jest.fn()
@@ -20,9 +20,8 @@ describe('ProductCommentForm.test.jsx', () => {
   const title = 'test title'
   const comment = 'test comment'
 
-
   beforeEach(() => {
-    render(<ProductCommentForm/>)
+    render(<ProductCommentForm />)
   })
 
   it('renders the add comment button', () => {
@@ -36,7 +35,9 @@ describe('ProductCommentForm.test.jsx', () => {
 
   it('renders the title input field when add comment button is clicked', () => {
     screen.getByText('Add comment').click()
-    expect(screen.getByPlaceholderText('Title of your comment')).toBeInTheDocument()
+    expect(
+      screen.getByPlaceholderText('Title of your comment')
+    ).toBeInTheDocument()
   })
 
   it('renders the comment input field when add comment button is clicked', () => {
@@ -99,10 +100,12 @@ describe('ProductCommentForm.test.jsx', () => {
     screen.getByText('Save').click()
 
     expect(dispatch.mock.calls).toEqual([
-      [productChanged({
-        comment: comment,
-        title: title,
-      })],
+      [
+        productChanged({
+          comment: comment,
+          title: title,
+        }),
+      ],
     ])
   })
 })

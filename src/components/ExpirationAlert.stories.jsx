@@ -1,6 +1,6 @@
 import React from 'react'
-import ExpirationAlert from './ExpirationAlert'
 import withProvider from '../../.storybook/Provider'
+import ExpirationAlert from './ExpirationAlert'
 
 export default {
   title: 'ExpirationAlert',

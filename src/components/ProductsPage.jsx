@@ -1,11 +1,11 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
-import ProductsList from './ProductsList'
-import ArchivedProductsList from './ArchivedProductsList'
 import styled from 'styled-components'
-import ProductsNavigation from './ProductsNavigation'
+import { Route, Switch } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { selectors } from '../store/productsSlice'
+import ArchivedProductsList from './ArchivedProductsList'
+import ProductsNavigation from './ProductsNavigation'
+import ProductsList from './ProductsList'
 
 export default function ProductsPage() {
   const isBlurred = useSelector((state) => state.drawer.isOpen)

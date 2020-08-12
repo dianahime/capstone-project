@@ -1,6 +1,6 @@
 import React from 'react'
-import ProductCommentEdit from './ProductCommentEdit'
 import withProvider from '../../.storybook/Provider'
+import ProductCommentEdit from './ProductCommentEdit'
 
 const PRODUCTS_MOCK_DATA = {
   allProducts: [

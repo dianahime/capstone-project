@@ -1,19 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
-import Button from './Button'
+import ProductType from '../ProductType'
+import { AppToaster } from '../toaster'
 import { useDispatch } from 'react-redux'
+import { ActionCreators } from 'redux-undo'
 import {
   productArchived,
   productExpirationIgnored,
 } from '../store/productsSlice'
-import { AppToaster } from '../toaster'
-import { ActionCreators } from 'redux-undo'
-import ProductType from '../ProductType'
-
-ExpirationAlert.propTypes = {
-  product: ProductType.isRequired,
-}
+import Button from './Button'
 
 export default function ExpirationAlert({ product }) {
   const dispatch = useDispatch()
@@ -51,6 +47,10 @@ export default function ExpirationAlert({ product }) {
       </ButtonContainer>
     </ExpirationAlertStyled>
   )
+}
+
+ExpirationAlert.propTypes = {
+  product: ProductType.isRequired,
 }
 
 const ExpirationAlertStyled = styled.section`

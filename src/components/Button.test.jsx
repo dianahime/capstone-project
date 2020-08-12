@@ -1,7 +1,7 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { render, screen } from '@testing-library/react'
-import Button from './Button.jsx'
+import Button from './Button'
 
 describe('Button.test.jsx', () => {
   it('renders a button element', () => {

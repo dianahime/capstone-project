@@ -8,9 +8,9 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/user-event": "^7.2.1",
     "dayjs": "^1.8.29",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
     "localforage": "^1.9.0",
     "mockdate": "^3.0.2",
-    "prettier": "^2.0.5",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -62,7 +62,11 @@
     "@storybook/react": "^5.3.19",
     "@testing-library/react": "^9.5.0",
     "cypress": "^4.10.0",
+    "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-cypress": "^2.11.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.0.5",
     "redux-devtools": "^3.5.0",
     "storybook-react-router": "^1.0.8"
   }

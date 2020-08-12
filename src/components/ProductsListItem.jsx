@@ -1,12 +1,12 @@
 import React, { forwardRef } from 'react'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
+import ProductType from '../ProductType'
 import { useDispatch } from 'react-redux'
 import { productChanged, productSelected } from '../store/productsSlice'
 import { displayDrawerContent } from '../store/drawerSlice'
 import { isProductExpired } from '../store/filterFunctions'
 import StarRating from './StarRating'
-import ProductType from '../ProductType'
 
 const ProductsListItem = forwardRef(({ product }, ref) => {
   const dispatch = useDispatch()

@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
-import Button from './Button'
-import InfoPopover from './InfoPopover'
 import { useDispatch, useSelector } from 'react-redux'
+import { ActionCreators } from 'redux-undo'
 import { productChanged, selectors } from '../store/productsSlice'
 import { displayDrawerContent } from '../store/drawerSlice'
 import { AppToaster } from '../toaster'
-import { ActionCreators } from 'redux-undo'
+import Button from './Button'
+import InfoPopover from './InfoPopover'
 
 export default function ProductEdit() {
   const product = useSelector(selectors.selectedProduct)
@@ -71,7 +71,7 @@ export default function ProductEdit() {
         onChange={(event) => setDate(event.target.value)}
         value={date}
         type="date"
-        min={'2018-01-01'}
+        min={product.usedUp || '2018-01-01'}
         max={currentDate}
         id="date"
       />

@@ -1,11 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import ProductCommentEdit from './ProductCommentEdit'
 import ProductType from '../ProductType'
-
-ProductComment.propTypes = {
-  product: ProductType.isRequired,
-}
+import ProductCommentEdit from './ProductCommentEdit'
 
 export default function ProductComment({ product }) {
   const [formVisible, setFormVisible] = useState(false)
@@ -30,6 +26,10 @@ export default function ProductComment({ product }) {
       )}
     </ProductCommentStyled>
   )
+}
+
+ProductComment.propTypes = {
+  product: ProductType.isRequired,
 }
 
 const ProductCommentStyled = styled.section`

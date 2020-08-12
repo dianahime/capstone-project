@@ -1,6 +1,6 @@
 import React from 'react'
-import ProductsPage from './ProductsPage'
 import withProvider from '../../.storybook/Provider'
+import ProductsPage from './ProductsPage'
 
 const PRODUCTS_MOCK_DATA = {
   allProducts: [

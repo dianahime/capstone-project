@@ -1,20 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
-import Button from './Button'
 import { Dialog } from '@blueprintjs/core'
 import { useDispatch, useSelector } from 'react-redux'
+import { ActionCreators } from 'redux-undo'
+import PropTypes from 'prop-types'
 import {
   selectedProductCommentRemoved,
   selectors,
 } from '../store/productsSlice'
 import { AppToaster } from '../toaster'
-import { ActionCreators } from 'redux-undo'
-import PropTypes from 'prop-types'
-
-DeleteCommentModal.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  isOpen: PropTypes.bool.isRequired,
-}
+import Button from './Button'
 
 export default function DeleteCommentModal({ isOpen, onClose }) {
   const product = useSelector(selectors.selectedProduct)
@@ -46,6 +41,11 @@ export default function DeleteCommentModal({ isOpen, onClose }) {
       </div>
     </DialogStyled>
   )
+}
+
+DeleteCommentModal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
 }
 
 const DialogStyled = styled(Dialog)`

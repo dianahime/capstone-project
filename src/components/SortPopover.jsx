@@ -1,6 +1,6 @@
 import React from 'react'
-import { Classes, Popover, Position } from '@blueprintjs/core'
 import styled from 'styled-components'
+import { Classes, Popover, Position } from '@blueprintjs/core'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   productsSortedByRecentlyAdded,

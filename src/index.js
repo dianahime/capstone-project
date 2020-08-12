@@ -1,13 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import GlobalStyles from './GlobalStyles'
 import * as serviceWorker from './serviceWorker'
 import store from './store'
 import { Provider } from 'react-redux'
-import GlobalStyles from './GlobalStyles'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore } from 'redux-persist'
+import App from './App'
 import LoadingPage from './components/LoadingPage'
 
 const persistor = persistStore(store)

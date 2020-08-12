@@ -1,6 +1,6 @@
 import React from 'react'
-import MoveToArchiveModal from './MoveToArchiveModal'
 import withProvider from '../../.storybook/Provider'
+import MoveToArchiveModal from './MoveToArchiveModal'
 
 export default {
   title: 'MoveToArchiveModal',
@@ -9,5 +9,5 @@ export default {
 }
 
 export const MoveToArchiveModalDefault = () => {
-  return <MoveToArchiveModal isOpen />
+  return <MoveToArchiveModal isOpen onClose={() => {}} />
 }

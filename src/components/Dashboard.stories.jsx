@@ -1,6 +1,6 @@
 import React from 'react'
-import Dashboard from './Dashboard'
 import withProvider from '../../.storybook/Provider'
+import Dashboard from './Dashboard'
 
 export default {
   title: 'Dashboard',

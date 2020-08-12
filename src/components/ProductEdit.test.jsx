@@ -3,10 +3,10 @@ import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
 import { fireEvent } from '@testing-library/react'
 import { render, screen } from '../test-utils'
-import ProductEdit from './ProductEdit'
 import { useDispatch } from 'react-redux'
 import { displayDrawerContent } from '../store/drawerSlice'
 import { productChanged } from '../store/productsSlice'
+import ProductEdit from './ProductEdit'
 
 jest.mock('react-redux', () => {
   const dispatch = jest.fn()
@@ -38,7 +38,7 @@ describe('ProductEdit.test.jsx', () => {
   }
 
   beforeEach(() => {
-    render(<ProductEdit/>, { products: PRODUCTS_MOCK_DATA })
+    render(<ProductEdit />, { products: PRODUCTS_MOCK_DATA })
   })
 
   it('renders the name of the product into the name input field', () => {
@@ -54,7 +54,7 @@ describe('ProductEdit.test.jsx', () => {
   it('renders the amount of months of the product into the month input field', () => {
     const monthInput = screen.getByLabelText('Months until expiration')
     expect(monthInput.value).toBe(
-      PRODUCTS_MOCK_DATA.allProducts[0].month.toString(),
+      PRODUCTS_MOCK_DATA.allProducts[0].month.toString()
     )
   })
 

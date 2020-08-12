@@ -1,9 +1,9 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
-import { createProductsSlice } from './productsSlice'
-import drawerReducer from './drawerSlice'
+import { persistReducer } from 'redux-persist'
 import undoable from 'redux-undo'
 import localForage from 'localforage'
-import { persistReducer } from 'redux-persist'
+import { createProductsSlice } from './productsSlice'
+import drawerReducer from './drawerSlice'
 
 const persistConfig = {
   key: 'products',

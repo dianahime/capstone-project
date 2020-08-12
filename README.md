@@ -11,8 +11,7 @@ The idea for the project came to me as I often found myself wanting an easy way 
 
 ## Screenshots
 
-<img src="app-screenshots/dashboard-page.png" width="375" height="667"> <img src="app-screenshots/product-page.png" width="375" height="667">
-
+<img src="app-screenshots/dashboard-page.png" width="375" height="667"> <img src="app-screenshots/products-page.png" width="375" height="667">
 
 You can see the full version of the app here: [https://capstone-project-nu.vercel.app/](https://capstone-project-nu.vercel.app/)
 

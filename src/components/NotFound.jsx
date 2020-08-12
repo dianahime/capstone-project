@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import NotFoundLogo from '../images/notFound.svg'
 import { useSelector } from 'react-redux'
+import NotFoundLogo from '../images/notFound.svg'
 
 export default function NotFound() {
   const isBlurred = useSelector((state) => state.drawer.isOpen)

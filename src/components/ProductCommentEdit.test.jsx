@@ -1,11 +1,11 @@
 import React from 'react'
 import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
-import { render, screen } from '../test-utils'
-import ProductCommentEdit from './ProductCommentEdit'
-import { useDispatch } from 'react-redux'
 import { fireEvent } from '@testing-library/react'
+import { render, screen } from '../test-utils'
+import { useDispatch } from 'react-redux'
 import { productChanged } from '../store/productsSlice'
+import ProductCommentEdit from './ProductCommentEdit'
 
 jest.mock('react-redux', () => {
   const dispatch = jest.fn()
@@ -19,7 +19,9 @@ jest.mock('react-redux', () => {
 describe('ProductCommentEdit.test.jsx', () => {
   beforeEach(() => {
     const setFormVisible = jest.fn()
-    render(<ProductCommentEdit setFormVisible={setFormVisible}/>, { products: PRODUCTS_MOCK_DATA })
+    render(<ProductCommentEdit setFormVisible={setFormVisible} />, {
+      products: PRODUCTS_MOCK_DATA,
+    })
   })
 
   afterEach(() => {
@@ -67,7 +69,8 @@ describe('ProductCommentEdit.test.jsx', () => {
 
   it('opens DeleteCommentModal when delete button is clicked', () => {
     screen.getByText('Delete').click()
-    expect(screen.getByText('Are you sure you want to delete this comment?'),
+    expect(
+      screen.getByText('Are you sure you want to delete this comment?')
     ).toBeInTheDocument()
   })
 

@@ -18,5 +18,5 @@ const product = {
 }
 
 export const ProductCommentDefault = () => {
-  return <ProductComment product={product}/>
+  return <ProductComment product={product} />
 }

@@ -1,10 +1,10 @@
 import React from 'react'
 import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
-import { render, screen } from '../test-utils'
-import DrawerToggle from './DrawerToggle.jsx'
-import { displayDrawerContent, drawerIsOpened } from '../store/drawerSlice'
 import { useDispatch } from 'react-redux'
+import { render, screen } from '../test-utils'
+import { displayDrawerContent, drawerIsOpened } from '../store/drawerSlice'
+import DrawerToggle from './DrawerToggle.jsx'
 
 jest.mock('react-redux', () => {
   const dispatch = jest.fn()

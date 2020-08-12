@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import FlipMove from 'react-flip-move'
 import { selectors } from '../store/productsSlice'
 import ProductsListItem from './ProductsListItem'
 import ArchiveSortPopover from './ArchiveSortPopover'
-import FlipMove from 'react-flip-move'
 import {
   sortProductsByNameAtoZ,
   sortProductsByNameZtoA,

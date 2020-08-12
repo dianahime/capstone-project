@@ -3,19 +3,22 @@ import styled from 'styled-components'
 import dayjs from 'dayjs'
 import { useDispatch, useSelector } from 'react-redux'
 import { productChanged, selectors } from '../store/productsSlice'
-import Button from './Button'
-import { AppToaster } from '../toaster'
 import { ActionCreators } from 'redux-undo'
+import { AppToaster } from '../toaster'
 import MoveToArchiveModal from './MoveToArchiveModal'
 import productUsedUpMessage from './productUsedUpMessage'
+import Button from './Button'
 
 export default function ProductUsedUp() {
   const currentDate = dayjs().format('YYYY-MM-DD')
+
   const [isChecked, setIsChecked] = useState(false)
   const [date, setDate] = useState(currentDate)
   const [isMoveToArchiveOpen, setIsMoveToArhiveOpen] = useState(false)
+
   const product = useSelector(selectors.selectedProduct)
   const dispatch = useDispatch()
+
   const openingDate = dayjs(product.date)
   const usedUpDate = dayjs(product.usedUp)
 
@@ -70,7 +73,7 @@ export default function ProductUsedUp() {
                 onChange={(event) => setDate(event.target.value)}
                 value={date}
                 type="date"
-                min="2018-01-01"
+                min={product.date}
                 max={currentDate}
                 title="used up on"
                 className="usedUpDate"

@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
-import MenuPopover from './MenuPopover'
-import { productChanged, selectors } from '../store/productsSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { productChanged, selectors } from '../store/productsSlice'
 import { isProductExpired } from '../store/filterFunctions'
+import MenuPopover from './MenuPopover'
+import ProductUsedUp from './ProductUsedUp'
 import StarRating from './StarRating'
 import ProductCommentForm from './ProductCommentForm'
 import ProductComment from './ProductComment'
-import ProductUsedUp from './ProductUsedUp'
 
 export default function ProductDetails() {
   const product = useSelector(selectors.selectedProduct)
@@ -19,14 +19,14 @@ export default function ProductDetails() {
   if (!product) {
     return <></>
   }
-  
+
   const parsedDate = dayjs(product.date)
 
   return (
     <ProductStyled data-testid="ProductDetails">
       <div className="titleContainer">
         <h1 className="name">{product.name}</h1>
-        <MenuPopover/>
+        <MenuPopover />
       </div>
 
       <p className="opening-date">Opened: {parsedDate.format('DD.MM.YYYY')}</p>
@@ -34,17 +34,17 @@ export default function ProductDetails() {
         {isProductExpired(product) ? 'Expired: ' : 'Expires: '}
         {parsedDate.add(product.month, 'M').format('DD.MM.YYYY')}
       </p>
-      <ProductUsedUp/>
+      <ProductUsedUp />
 
       {product.size && <p className="size">Size: {product.size}</p>}
       {product.price && <p className="price">Price: {product.price}</p>}
 
       <ContainerStyled>
-        <StarRating rating={product.rating} onChange={handleRatingChange}/>
+        <StarRating rating={product.rating} onChange={handleRatingChange} />
         {product.comment ? (
-          <ProductComment product={product}/>
+          <ProductComment product={product} />
         ) : (
-          <ProductCommentForm/>
+          <ProductCommentForm />
         )}
       </ContainerStyled>
     </ProductStyled>
@@ -62,7 +62,6 @@ const ProductStyled = styled.section`
 
   p {
     font-size: 1.2rem;
-    
   }
 
   .titleContainer {
@@ -70,7 +69,7 @@ const ProductStyled = styled.section`
     align-items: center;
     justify-content: space-between;
     margin: 0 10px 0 0;
-    
+
     p {
       margin: 0;
     }

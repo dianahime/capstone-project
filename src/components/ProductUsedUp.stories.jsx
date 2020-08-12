@@ -1,6 +1,6 @@
 import React from 'react'
-import ProductUsedUp from './ProductUsedUp'
 import withProvider from '../../.storybook/Provider'
+import ProductUsedUp from './ProductUsedUp'
 
 export default {
   title: 'ProductUsedUp',

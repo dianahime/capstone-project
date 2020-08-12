@@ -1,5 +1,9 @@
+import localForage from 'localforage'
+
 describe('Sort Popover', () => {
   beforeEach(() => {
+    localForage.clear()
+
     const itemText = 'Nivea body lotion'
     const itemOpeningDate = '2020-05-27'
     const itemMonth = 3

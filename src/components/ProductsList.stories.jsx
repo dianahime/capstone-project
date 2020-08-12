@@ -1,6 +1,6 @@
 import React from 'react'
-import ProductsList from './ProductsList'
 import withProvider from '../../.storybook/Provider'
+import ProductsList from './ProductsList'
 
 export default {
   title: 'ProductsList',

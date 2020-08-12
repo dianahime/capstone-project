@@ -1,5 +1,10 @@
+/* eslint-disable cypress/no-unnecessary-waiting */
+import localForage from 'localforage'
+
 describe('Archive', () => {
   beforeEach(() => {
+    localForage.clear()
+
     cy.visit('/')
     const itemName = 'Nivea body lotion'
     const itemOpeningDate = '2020-05-27'

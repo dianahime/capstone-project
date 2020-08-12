@@ -1,17 +1,12 @@
 import React from 'react'
 import Button from './Button'
 import styled from 'styled-components'
-import { Dialog } from '@blueprintjs/core'
-import { useDispatch, useSelector } from 'react-redux'
-import { productArchived, selectors } from '../store/productsSlice'
-import { AppToaster } from '../toaster'
-import { ActionCreators } from 'redux-undo'
 import PropTypes from 'prop-types'
-
-MoveToArchiveModal.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  isOpen: PropTypes.bool.isRequired,
-}
+import { useDispatch, useSelector } from 'react-redux'
+import { ActionCreators } from 'redux-undo'
+import { productArchived, selectors } from '../store/productsSlice'
+import { Dialog } from '@blueprintjs/core'
+import { AppToaster } from '../toaster'
 
 export default function MoveToArchiveModal({ isOpen, onClose }) {
   const product = useSelector(selectors.selectedProduct)
@@ -39,6 +34,11 @@ export default function MoveToArchiveModal({ isOpen, onClose }) {
       </div>
     </DialogStyled>
   )
+}
+
+MoveToArchiveModal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
 }
 
 const DialogStyled = styled(Dialog)`

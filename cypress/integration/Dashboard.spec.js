@@ -1,9 +1,13 @@
+import localForage from 'localforage'
+
 describe('Dashboard', () => {
   beforeEach(() => {
+    localForage.clear()
+
     cy.visit('/')
     const itemText = 'Nivea body lotion'
     const itemOpeningDate = '2020-05-27'
-    const itemMonth = 6
+    const itemMonth = '6'
 
     cy.get('[data-testid=icon]').click()
     cy.get('#name').type(itemText)
@@ -22,7 +26,7 @@ describe('Dashboard', () => {
   it('shows products in order according to the list criteria', () => {
     const secondItemName = 'Dove soap'
     const secondOpeningDate = '2020-05-27'
-    const secondMonth = 12
+    const secondMonth = '12'
 
     cy.wait(500)
     cy.get('[data-testid=icon]').click()

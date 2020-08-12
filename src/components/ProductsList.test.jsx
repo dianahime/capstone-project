@@ -1,7 +1,7 @@
 import React from 'react'
 import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
-import { render, screen } from '../test-utils'
+import { render } from '../test-utils'
 import ProductsList from './ProductsList.jsx'
 
 describe('ProductsList.test.js', () => {
@@ -26,9 +26,11 @@ describe('ProductsList.test.js', () => {
   })
 
   it('renders the product list when there are products', () => {
-    render(<ProductsList />, { products: PRODUCTS_MOCK_DATA })
+    const { getByText } = render(<ProductsList />, {
+      products: PRODUCTS_MOCK_DATA,
+    })
     expect(
-      screen.getByText(PRODUCTS_MOCK_DATA.allProducts[0].name)
+      getByText(PRODUCTS_MOCK_DATA.allProducts[0].name)
     ).toBeInTheDocument()
   })
 })
