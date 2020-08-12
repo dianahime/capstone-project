@@ -1,6 +1,6 @@
 import React from 'react'
-import Form from './Form'
 import withProvider from '../../.storybook/Provider'
+import Form from './Form'
 
 export default {
   title: 'Form',

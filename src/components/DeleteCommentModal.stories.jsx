@@ -1,6 +1,6 @@
 import React from 'react'
-import DeleteCommentModal from './DeleteCommentModal'
 import withProvider from '../../.storybook/Provider'
+import DeleteCommentModal from './DeleteCommentModal'
 
 export default {
   title: 'DeleteCommentModal',

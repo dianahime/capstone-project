@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import DrawerToggle from './DrawerToggle'
 import withProvider from '../../.storybook/Provider'
+import DrawerToggle from './DrawerToggle'
 
 export default {
   title: 'DrawerToggle',

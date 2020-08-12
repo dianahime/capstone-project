@@ -1,6 +1,6 @@
 import React from 'react'
-import Drawer from './Drawer'
 import withProvider from '../../.storybook/Provider'
+import Drawer from './Drawer'
 
 export default {
   title: 'Drawer',

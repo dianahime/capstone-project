@@ -1,12 +1,12 @@
 import React from 'react'
 import Button from './Button'
 import styled from 'styled-components'
-import { Dialog } from '@blueprintjs/core'
-import { useDispatch, useSelector } from 'react-redux'
-import { productArchived, selectors } from '../store/productsSlice'
-import { AppToaster } from '../toaster'
-import { ActionCreators } from 'redux-undo'
 import PropTypes from 'prop-types'
+import { useDispatch, useSelector } from 'react-redux'
+import { ActionCreators } from 'redux-undo'
+import { productArchived, selectors } from '../store/productsSlice'
+import { Dialog } from '@blueprintjs/core'
+import { AppToaster } from '../toaster'
 
 export default function MoveToArchiveModal({ isOpen, onClose }) {
   const product = useSelector(selectors.selectedProduct)

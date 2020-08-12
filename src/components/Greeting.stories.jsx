@@ -1,6 +1,6 @@
 import React from 'react'
-import Greeting from './Greeting'
 import withProvider from '../../.storybook/Provider'
+import Greeting from './Greeting'
 
 export default {
   title: 'Greeting',

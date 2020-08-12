@@ -3,11 +3,11 @@ import styled from 'styled-components'
 import dayjs from 'dayjs'
 import { useDispatch, useSelector } from 'react-redux'
 import { productChanged, selectors } from '../store/productsSlice'
-import Button from './Button'
-import { AppToaster } from '../toaster'
 import { ActionCreators } from 'redux-undo'
+import { AppToaster } from '../toaster'
 import MoveToArchiveModal from './MoveToArchiveModal'
 import productUsedUpMessage from './productUsedUpMessage'
+import Button from './Button'
 
 export default function ProductUsedUp() {
   const currentDate = dayjs().format('YYYY-MM-DD')

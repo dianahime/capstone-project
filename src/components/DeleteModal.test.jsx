@@ -1,10 +1,10 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { render, screen } from '../test-utils'
-import DeleteModal from './DeleteModal'
+import { useDispatch } from 'react-redux'
 import { drawerIsOpened } from '../store/drawerSlice'
 import { selectedProductRemoved } from '../store/productsSlice'
-import { useDispatch } from 'react-redux'
+import DeleteModal from './DeleteModal'
 
 jest.mock('react-redux', () => {
   const dispatch = jest.fn()

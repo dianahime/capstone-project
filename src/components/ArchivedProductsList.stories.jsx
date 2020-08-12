@@ -1,6 +1,6 @@
 import React from 'react'
-import ArchivedProductsList from './ArchivedProductsList'
 import withProvider from '../../.storybook/Provider'
+import ArchivedProductsList from './ArchivedProductsList'
 
 const PRODUCTS_MOCK_DATA = {
   allProducts: [

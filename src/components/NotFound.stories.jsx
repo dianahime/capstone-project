@@ -1,6 +1,6 @@
 import React from 'react'
-import NotFound from './NotFound'
 import withProvider from '../../.storybook/Provider'
+import NotFound from './NotFound'
 
 export default {
   title: 'NotFound',

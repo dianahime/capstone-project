@@ -1,6 +1,6 @@
 import React from 'react'
-import ProductDetails from './ProductDetails.jsx'
 import withProvider from '../../.storybook/Provider'
+import ProductDetails from './ProductDetails.jsx'
 
 export default {
   title: 'ProductDetails',

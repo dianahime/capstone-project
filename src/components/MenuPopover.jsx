@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { Popover, Position } from '@blueprintjs/core'
 import styled from 'styled-components'
-import DeleteModal from './DeleteModal'
+import { Popover, Position } from '@blueprintjs/core'
 import { useDispatch, useSelector } from 'react-redux'
+import { ActionCreators } from 'redux-undo'
 import { displayDrawerContent, drawerIsOpened } from '../store/drawerSlice'
 import {
   productArchived,
@@ -10,7 +10,7 @@ import {
   selectors,
 } from '../store/productsSlice'
 import { AppToaster } from '../toaster'
-import { ActionCreators } from 'redux-undo'
+import DeleteModal from './DeleteModal'
 
 export default function MenuPopover() {
   const dispatch = useDispatch()

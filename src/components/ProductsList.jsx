@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import ProductsListItem from './ProductsListItem'
-import Greeting from './Greeting'
 import { useSelector } from 'react-redux'
-import SortPopover from './SortPopover'
 import FlipMove from 'react-flip-move'
 import { selectors } from '../store/productsSlice'
+import Greeting from './Greeting'
+import SortPopover from './SortPopover'
+import ProductsListItem from './ProductsListItem'
 
 export default function ProductsList() {
   const products = useSelector(selectors.products)

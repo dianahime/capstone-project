@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import Button from './Button'
+import styled from 'styled-components'
+import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 import { productChanged, selectors } from '../store/productsSlice'
-import styled from 'styled-components'
-import DeleteCommentModal from './DeleteCommentModal'
-import { AppToaster } from '../toaster'
 import { ActionCreators } from 'redux-undo'
-import PropTypes from 'prop-types'
+import { AppToaster } from '../toaster'
+import DeleteCommentModal from './DeleteCommentModal'
+import Button from './Button'
 
 export default function ProductCommentEdit({ setFormVisible }) {
   const product = useSelector(selectors.selectedProduct)

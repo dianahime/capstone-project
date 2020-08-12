@@ -1,6 +1,6 @@
 import React from 'react'
-import DeleteModal from './DeleteModal.jsx'
 import withProvider from '../../.storybook/Provider'
+import DeleteModal from './DeleteModal.jsx'
 
 export default {
   title: 'DeleteModal',

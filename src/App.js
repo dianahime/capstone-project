@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
+import '@blueprintjs/core/lib/css/blueprint.css'
 import { Route, Switch } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import Drawer from './components/Drawer'
-import '@blueprintjs/core/lib/css/blueprint.css'
-import Dashboard from './components/Dashboard'
-import NotFound from './components/NotFound'
-import Navigation from './components/Navigation'
-import ProductsPage from './components/ProductsPage'
 import { selectors } from './store/productsSlice'
+import Navigation from './components/Navigation'
+import Drawer from './components/Drawer'
+import Dashboard from './components/Dashboard'
+import ProductsPage from './components/ProductsPage'
+import NotFound from './components/NotFound'
 
 function App() {
   const products = useSelector(selectors.products)

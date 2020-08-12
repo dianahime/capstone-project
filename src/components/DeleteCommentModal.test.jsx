@@ -1,9 +1,9 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { render, screen } from '../test-utils'
-import DeleteCommentModal from './DeleteCommentModal'
 import { useDispatch } from 'react-redux'
 import { selectedProductCommentRemoved } from '../store/productsSlice'
+import DeleteCommentModal from './DeleteCommentModal'
 
 jest.mock('react-redux', () => {
   const dispatch = jest.fn()

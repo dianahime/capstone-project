@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import dayjs from 'dayjs'
-import MenuPopover from './MenuPopover'
-import { productChanged, selectors } from '../store/productsSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { productChanged, selectors } from '../store/productsSlice'
 import { isProductExpired } from '../store/filterFunctions'
+import MenuPopover from './MenuPopover'
+import ProductUsedUp from './ProductUsedUp'
 import StarRating from './StarRating'
 import ProductCommentForm from './ProductCommentForm'
 import ProductComment from './ProductComment'
-import ProductUsedUp from './ProductUsedUp'
 
 export default function ProductDetails() {
   const product = useSelector(selectors.selectedProduct)

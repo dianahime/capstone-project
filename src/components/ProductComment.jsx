@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import ProductCommentEdit from './ProductCommentEdit'
 import ProductType from '../ProductType'
+import ProductCommentEdit from './ProductCommentEdit'
 
 export default function ProductComment({ product }) {
   const [formVisible, setFormVisible] = useState(false)

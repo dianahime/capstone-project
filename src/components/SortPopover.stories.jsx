@@ -1,6 +1,6 @@
 import React from 'react'
-import SortPopover from './SortPopover.jsx'
 import withProvider from '../../.storybook/Provider'
+import SortPopover from './SortPopover.jsx'
 
 export default {
   title: 'SortPopover',

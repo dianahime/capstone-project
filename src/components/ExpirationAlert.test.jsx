@@ -1,14 +1,14 @@
 import React from 'react'
+import dayjs from 'dayjs'
 import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
 import { render, screen } from '../test-utils'
-import ExpirationAlert from './ExpirationAlert'
-import dayjs from 'dayjs'
 import { useDispatch } from 'react-redux'
 import {
   productArchived,
   productExpirationIgnored,
 } from '../store/productsSlice'
+import ExpirationAlert from './ExpirationAlert'
 
 jest.mock('react-redux', () => {
   const dispatch = jest.fn()

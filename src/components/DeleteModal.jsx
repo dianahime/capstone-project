@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import Button from './Button'
+import PropTypes from 'prop-types'
 import { Dialog } from '@blueprintjs/core'
+import { AppToaster } from '../toaster'
 import { useDispatch } from 'react-redux'
+import { ActionCreators } from 'redux-undo'
 import { selectedProductRemoved } from '../store/productsSlice'
 import { drawerIsOpened } from '../store/drawerSlice'
-import { AppToaster } from '../toaster'
-import { ActionCreators } from 'redux-undo'
-import PropTypes from 'prop-types'
+import Button from './Button'
 
 export default function DeleteModal({ isOpen, onClose }) {
   const dispatch = useDispatch()

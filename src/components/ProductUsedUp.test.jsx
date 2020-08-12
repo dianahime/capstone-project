@@ -1,11 +1,11 @@
 import React from 'react'
 import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
-import { render, screen } from '../test-utils'
-import ProductUsedUp from './ProductUsedUp'
 import { fireEvent } from '@testing-library/react'
+import { render, screen } from '../test-utils'
 import { useDispatch } from 'react-redux'
 import { productChanged } from '../store/productsSlice'
+import ProductUsedUp from './ProductUsedUp'
 
 jest.mock('react-redux', () => {
   const dispatch = jest.fn()

@@ -1,6 +1,6 @@
 import React from 'react'
-import ProductEdit from './ProductEdit'
 import withProvider from '../../.storybook/Provider'
+import ProductEdit from './ProductEdit'
 
 export default {
   title: 'ProductEdit',

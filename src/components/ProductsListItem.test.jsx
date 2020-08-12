@@ -2,8 +2,8 @@ import React from 'react'
 import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
 import { render, screen } from '../test-utils'
-import ProductsListItem from './ProductsListItem.jsx'
 import dayjs from 'dayjs'
+import ProductsListItem from './ProductsListItem.jsx'
 
 describe('ProductsListItem.test.js', () => {
   const PRODUCT_MOCK_DATA = {

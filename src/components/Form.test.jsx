@@ -3,11 +3,11 @@ import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
 import { fireEvent } from '@testing-library/react'
 import { render, screen } from '../test-utils'
-import Form from './Form.jsx'
 import { useDispatch } from 'react-redux'
 import { productAdded } from '../store/productsSlice'
-import * as MockDate from 'mockdate'
 import { drawerIsOpened } from '../store/drawerSlice'
+import * as MockDate from 'mockdate'
+import Form from './Form.jsx'
 
 jest.mock('react-redux', () => {
   const dispatch = jest.fn()

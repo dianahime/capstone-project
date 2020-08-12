@@ -1,6 +1,6 @@
 import React from 'react'
-import { Popover, Position } from '@blueprintjs/core'
 import styled from 'styled-components'
+import { Popover, Position } from '@blueprintjs/core'
 import AfterOpen from '../images/12M_PAO_Symbol.svg'
 
 export default function InfoPopover() {

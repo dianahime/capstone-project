@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import DrawerToggle from './DrawerToggle'
-import Form from './Form'
-import ProductDetails from './ProductDetails'
-import ProductEdit from './ProductEdit'
 import { useSelector } from 'react-redux'
 import { Drawer as BluePrintDrawer, Position } from '@blueprintjs/core'
+import Form from './Form'
+import ProductEdit from './ProductEdit'
+import ProductDetails from './ProductDetails'
+import DrawerToggle from './DrawerToggle'
 
 export default function Drawer() {
   const { isOpen, visibleComponent } = useSelector((state) => state.drawer)
